@@ -1,0 +1,49 @@
+{
+  "app": {
+    "title": "",
+    "description": "",
+    "logout": "تسجيل الخروج",
+    "notifications": "التنبيهات",
+    "clear-all": "مسح الكل",
+    "common": {
+      "info": "info",
+      "error": "error",
+      "success": "success",
+      "infoMessage": "Info Message",
+      "errorMessage": "Error Message",
+      "successMessage": "Success Message",
+      "today": "Today",
+      "this-month": "This month",
+      "noDataFound": "No data found"
+    },
+    "login": {
+      "signIn": "تسجيل الدخول",
+      "userNameRequired": "اسم المستخدم مطلوب",
+      "passwordRequired": "الرقم السري مطلوب",
+      "userName": "اسم المستخدم",
+      "password": "الرقم السري",
+      "rememberMe": "تذكرني",
+      "logIn": "الدخول",
+      "invalidCredentials": "Invalid credentials.",
+      "company": "Company",
+      "enterUserName": "",
+      "enterPassword": "",
+      "selectCompany": ""
+    },
+    "vacationRequest": {
+      "title": "Vactions Requests",
+      "newTitle": "New Vaction Request",
+      "type": "Vaction Type",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "remarks": "Remarks",
+      "balance": "Balance",
+      "replacement": "Replacement",
+      "excludeWeekend": "Exclude Weekend",
+      "vacationDays": "Vacation Days",
+      "selectType": "Select Vaction Type",
+      "selectFromDate": "Select From Date",
+      "selectToDate": "Select To Date"
+    }
+  }
+}

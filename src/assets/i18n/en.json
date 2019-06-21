@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "",
+    "description": "",
+    "logout": "Logout",
+    "notifications": "Notifications",
+    "clear-all": "Clear All",
+    "common": {
+      "info": "info",
+      "error": "error",
+      "success": "success",
+      "infoMessage": "Info Message",
+      "errorMessage": "Error Message",
+      "successMessage": "Success Message",
+      "today": "Today",
+      "this-month": "This month",
+      "noDataFound": "No data found"
+    },
+    "login": {
+      "signIn": "Sign In",
+      "userNameRequired": "User Name is required",
+      "passwordRequired": "Password is required",
+      "userName": "Username",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "logIn": "Log In",
+      "invalidCredentials": "Invalid credentials.",
+      "company": "Company",
+      "enterUserName": "Please enter your username",
+      "enterPassword": "Please enter your password",
+      "selectCompany" : "Choose the company name"
+    },
+    "vacationRequest": {
+      "title": "Vactions Requests",
+      "newTitle": "New Vaction Request",
+      "type": "Vaction Type",      
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "remarks": "Remarks",
+      "balance": "Balance",
+      "replacement": "Replacement",
+      "excludeWeekend": "Exclude Weekend",
+      "vacationDays": "Vacation Days",
+      "selectType": "Select Vaction Type",
+      "selectReplacement": "Select Replacement",
+      "selectFromDate": "Select From Date",
+      "selectToDate": "Select To Date"
+    }
+  }
+}

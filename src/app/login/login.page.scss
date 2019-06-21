@@ -1,0 +1,136 @@
+    .logoSection {
+        position: relative;
+        margin: 4px -8px 0;
+        text-align: center;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: zoomIn;
+        animation-name: zoomIn;
+        display: block;
+        text-align: center;
+        padding-left: 0;
+      } 
+      .logoSection img{
+        display: block;
+        width: 179px;
+        margin: 0 auto;
+      }
+    
+      .scroll-content {
+        margin: 0 !important;
+        background-image: url('../../assets/imgs/bg.jpg');
+        height: auto !important;
+        overflow:hidden !important;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-color: transparent;
+      }
+    
+      ion-item {
+        padding-left: 10px !important;
+        margin-bottom: 10px;
+        background-color: transparent !important;
+        font-size: 0.9em;
+      }
+    
+      .login-container {
+        position: absolute;
+        background-image: url('../../assets/imgs/bg.jpg');
+        top: 0;
+        padding: 2vw;
+        width: 100%;
+        margin: 0 auto;
+        z-index: 2;
+      }
+      .list-md {
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+        background: none;
+      }
+      input, optgroup, select {
+        margin: 0;
+        font: inherit;
+        color: inherit;
+      }
+      .item-block{
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 !important;
+        min-height: inherit;
+      }
+      ion-label {
+        color: #fff;
+        width: 100%;
+        margin: 7px 0 !important;
+            text-align: left;
+            font-size: 12px;
+      }
+      .item-md.item-block .item-inner {
+        border: none;
+            padding: 0;
+      }
+    
+      .button-md {
+        padding: 1em 4em;
+        margin-top: 34px !important;
+      }
+      .item-block{
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 !important;
+      }
+    
+      .item-md.item-block .item-inner {
+            border: none;
+            padding: 0;
+      }
+     .inputform  ion-input ,.inputform   ion-select,.inputform  ion-datetime ,.inputform ion-textarea{
+        margin-bottom: 0;
+        border: 1px solid #fff;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0;
+        color: #fff;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        font-size: 12px;
+      }
+       .text-input-md{
+        margin: 0;
+        width: 100%;
+        padding: 5px;
+      }
+        .inputform   ion-select ,.inputform  ion-datetime ,.inputform ion-textarea {
+        margin: 0;
+        width: 100%;
+        padding: 5px;
+            max-width: inherit;
+            color:#fff;
+      }
+      
+      .loginBtn {
+        background: #60bd55;
+        color: #fff;
+        width: 100%;
+        padding: 13px;
+        font-size: 20px;
+        margin: 0 auto;
+        display: block;
+        font-family: 'Segoe UI';
+        font-weight: 100;
+      }  
+       .text-input-md {
+        color: #fff;
+      }
+    
+      .logindiv{
+        margin: 15px 0px 0 0 !important;
+      }
+    

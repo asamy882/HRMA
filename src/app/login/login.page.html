@@ -1,0 +1,51 @@
+<!-- ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header -->
+
+<ion-content>
+  <div class="login-container">
+    <div class="logoSection">
+      <img class="logo" src="assets/imgs/logo.png" />
+    </div>
+    <form [formGroup]="authForm">
+      <ion-list>
+        <ion-label>{{ 'app.login.company' | translate }}</ion-label>
+        <ion-item class="inputform">
+            <ion-label>{{ 'app.login.selectCompany' | translate }}</ion-label>
+          <ion-select [formControl]="authForm.controls['company']"
+            [ngClass]="{'error-border':!authForm.controls['company'].valid}">
+            <ion-select-option *ngFor="let company of companyList" value="{{company.Code}}">{{company.Name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-label>{{ 'app.login.userName' | translate }}</ion-label>
+        <ion-item class="inputform">
+          <ion-input type="text" [placeholder]="'app.login.enterUserName' | translate" [formControl]="authForm.controls['username']"
+            [ngClass]="{'error-border':!authForm.controls['username'].valid}"></ion-input>
+        </ion-item><br />
+        <div class="error-box"
+          *ngIf="authForm.controls['username'].hasError('required') && authForm.controls['username'].touched">{{ 'app.login.userNameRequired' | translate }}</div>
+        <ion-label>{{ 'app.login.password' | translate }}</ion-label>
+        <ion-item class="inputform">
+          <ion-input type="password" [placeholder]="'app.login.enterPassword' | translate"
+            [formControl]="authForm.controls['password']"
+            [ngClass]="{'error-border':!authForm.controls['username'].valid}"></ion-input>
+        </ion-item><br />
+        <div class="error-box"
+          *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">{{ 'app.login.passwordRequired' | translate }}</div>
+        <ion-item>
+          <ion-label>{{ 'app.login.rememberMe' | translate }}</ion-label>
+          <ion-checkbox [formControl]="authForm.controls['keepMeLogin']"></ion-checkbox>
+        </ion-item>
+
+        <div class="logindiv">
+          <button class="loginBtn" type="submit" [disabled]="!authForm.valid" (click)="login()">Login</button>
+        </div>
+
+      </ion-list>
+    </form>
+  </div>
+
+</ion-content>
