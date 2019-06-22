@@ -5,6 +5,8 @@
     "logout": "Logout",
     "notifications": "Notifications",
     "clear-all": "Clear All",
+    "home": "Home",
+    "menu": "Menu",
     "common": {
       "info": "info",
       "error": "error",
@@ -32,7 +34,8 @@
     },
     "vacationRequest": {
       "title": "Vactions Requests",
-      "newTitle": "New Vaction Request",
+      "newRequestPageTitle": "New Vaction Request",
+      "myRequestsTitle": "My Vaction Requests",
       "type": "Vaction Type",      
       "fromDate": "From Date",
       "toDate": "To Date",

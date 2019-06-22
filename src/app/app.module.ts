@@ -16,6 +16,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { CommonsModule } from '../common/commons.module';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

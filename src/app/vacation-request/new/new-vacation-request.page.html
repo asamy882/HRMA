@@ -1,11 +1,18 @@
-<!--ion-header>
-  <ion-toolbar>
-    <ion-title>{{ 'app.vacationRequest.newTitle' | translate }}</ion-title>
-  </ion-toolbar>
-</ion-header -->
-
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+          {{ 'app.vacationRequest.newRequestPageTitle' | translate }}
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-  <ion-list>
+  <ion-list class="mt50">
     <ion-label>{{ 'app.vacationRequest.type' | translate }}</ion-label>
     <ion-item class="inputform">
       <ion-label *ngIf="false">{{ 'app.vacationRequest.selectType' | translate }}</ion-label>
@@ -39,14 +46,18 @@
     <ion-label *ngIf="request.Balance > 0">{{ 'app.vacationRequest.replacement' | translate }}</ion-label>
     <ion-item *ngIf="request.Balance > 0">        
         <ionic-selectable [(ngModel)]="replacement" itemValueField="EmployeeId" itemTextField="EmployeeName" [items]="employees" [canSearch]="true"
-        (onSearch)="searchEmployee($event)" [placeholder]="'app.vacationRequest.selectReplacement' | translate">
-            <ng-template ionicSelectableItemTemplate let-port="item" let-isPortSelected="isItemSelected">
+          (onSearch)="searchEmployee($event)" [placeholder]="'app.vacationRequest.selectReplacement' | translate">
+            <ng-template ionicSelectableItemTemplate let-replacement="item" let-isReplacementtSelected="isItemSelected">
               {{replacement.EmployeeName}} ({{replacement.Department}})
             </ng-template>
           </ionic-selectable>
-      </ion-item>
-      <div class="logindiv">
-          <button class="loginBtn" type="submit"  *ngIf="request.Balance > 0" (click)="submit()">Submit</button>
-        </div>
+    </ion-item>
+    <ion-label *ngIf="request.Balance">{{ 'app.vacationRequest.remarks' | translate }}</ion-label>
+    <ion-item class="inputform" *ngIf="request.Balance">
+        <ion-textarea type="text"  [(ngModel)]="request.Remarks" ></ion-textarea>
+    </ion-item>
+    <div class="logindiv">
+        <button class="loginBtn" type="submit"  *ngIf="request.Balance > 0" (click)="submit()">Submit</button>
+    </div>
   </ion-list>
 </ion-content>

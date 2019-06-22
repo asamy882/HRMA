@@ -14,16 +14,49 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 export class AppComponent implements OnInit {
   public appPages = [
     {
-      title: 'Home',
+      title: 'app.home',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'app.vacationRequest.newRequestPageTitle',
+      url: '/vacation-request/new',
+      icon: 'football'
+    },
+    {
+      title: 'app.vacationRequest.myRequestsTitle',
+      url: '/vacation-request/search',
+      icon: 'football'
+    },
+    {
+      title: 'app.logout',
+      url: '/login',
+      icon: 'power'
     }
   ];
+  /*
+  pages = [
+    {
+      title: 'Main',
+      url: '/menu/main',
+      icon: 'home'
+    },
+    {
+      title: 'Cool Frameworks',
+      children: [
+        {
+          title: 'Ionic',
+          url: '/menu/ionic',
+          icon: 'logo-ionic'
+        },
+        {
+          title: 'Flutter',
+          url: '/menu/flutter',
+          icon: 'logo-google'
+        },
+      ]
+    }
+  ];*/
   loading: any;
 
   constructor(
@@ -33,7 +66,7 @@ export class AppComponent implements OnInit {
     private languageService: LanguageService,
     private spinnerService: SpinnerService,
     private loadingController: LoadingController,
-    private router: Router
+    public router: Router
   ) {
     this.initializeApp();
   }

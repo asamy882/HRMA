@@ -61,4 +61,11 @@ export class VacationRequestService {
     return this.http.post<any>(url, data);
   }
 
+  getMyVacationRequests(): Observable<any> {
+    const url = this.baseUrl +
+                `/api/Dashboard/GetMyVacationRequests`;
+    return this.http.get(url);
+  }
+
+
 }

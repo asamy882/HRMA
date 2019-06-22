@@ -116,6 +116,9 @@ export class NewVacationRequestPage implements OnInit {
   }
 
   submit() {
+    if (this.replacement) {
+      this.request.ReplacementId = this.replacement.EmployeeId;
+    }
     this.service.addVacationRequest(this.request).subscribe(res => {
       if (res.Success) {
         this.displayErrorMsg('The request added Successfully', 'success');

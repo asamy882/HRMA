@@ -10,6 +10,7 @@ import { VacationRequestService } from './vacation-request.service';
 import { VactionRequestRoutingModule } from './vaction-request-routing.module';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { SearchVacationRequestsPage } from './search/search-vacation-requests.page';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicSelectableModule,
     VactionRequestRoutingModule
   ],
-  declarations: [NewVacationRequestPage],
+  declarations: [NewVacationRequestPage, SearchVacationRequestsPage],
   providers: [VacationRequestService]
 })
 export class VacationRequestModule {}

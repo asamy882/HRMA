@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+          {{ 'app.vacationRequest.myRequestsTitle' | translate }}
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content *ngFor="let req of requests">
+          <ion-item>            
+              {{ 'app.vacationRequest.type' | translate }} : <span>{{req.VacationType.Name}}</span>
+          </ion-item>
+          <ion-item>
+              {{ 'app.vacationRequest.fromDate' | translate }} : <span>{{req.FromDate}}</span>
+          </ion-item>      
+          <ion-item>
+              {{ 'app.vacationRequest.toDate' | translate }} : <span>{{req.ToDate}}</span>
+          </ion-item> 
+          <ion-item>
+              {{ 'app.vacationRequest.vacationDays' | translate }} : <span>{{req.VacationDays}}</span>
+          </ion-item>        
+          <ion-item>
+            <button ion-button  color="primary"  icon-start><ion-icon name="create"></ion-icon>Edit</button>
+          </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
