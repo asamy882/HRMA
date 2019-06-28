@@ -1,136 +1,38 @@
-    .logoSection {
-        position: relative;
-        margin: 4px -8px 0;
-        text-align: center;
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        -webkit-animation-name: zoomIn;
-        animation-name: zoomIn;
-        display: block;
-        text-align: center;
-        padding-left: 0;
-      } 
-      .logoSection img{
-        display: block;
-        width: 179px;
-        margin: 0 auto;
-      }
-    
-      .scroll-content {
-        margin: 0 !important;
-        background-image: url('../../assets/imgs/bg.jpg');
-        height: auto !important;
-        overflow:hidden !important;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-color: transparent;
-      }
-    
-      ion-item {
-        padding-left: 10px !important;
-        margin-bottom: 10px;
-        background-color: transparent !important;
-        font-size: 0.9em;
-      }
-    
-      .login-container {
-        position: absolute;
-        background-image: url('../../assets/imgs/bg.jpg');
-        top: 0;
-        padding: 2vw;
-        width: 100%;
-        margin: 0 auto;
-        z-index: 2;
-      }
-      .list-md {
-        width: 100%;
-        margin: 0 auto;
-        padding: 10px;
-        background: none;
-      }
-      input, optgroup, select {
-        margin: 0;
-        font: inherit;
-        color: inherit;
-      }
-      .item-block{
-        margin: 0 auto;
-        width: 100%;
-        padding: 0 !important;
-        min-height: inherit;
-      }
-      ion-label {
-        color: #fff;
-        width: 100%;
-        margin: 7px 0 !important;
-            text-align: left;
-            font-size: 12px;
-      }
-      .item-md.item-block .item-inner {
-        border: none;
-            padding: 0;
-      }
-    
-      .button-md {
-        padding: 1em 4em;
-        margin-top: 34px !important;
-      }
-      .item-block{
-        margin: 0 auto;
-        width: 100%;
-        padding: 0 !important;
-      }
-    
-      .item-md.item-block .item-inner {
-            border: none;
-            padding: 0;
-      }
-     .inputform  ion-input ,.inputform   ion-select,.inputform  ion-datetime ,.inputform ion-textarea{
-        margin-bottom: 0;
-        border: 1px solid #fff;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 0;
-        color: #fff;
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        -webkit-animation-name: fadeIn;
-        animation-name: fadeIn;
-        font-size: 12px;
-      }
-       .text-input-md{
-        margin: 0;
-        width: 100%;
-        padding: 5px;
-      }
-        .inputform   ion-select ,.inputform  ion-datetime ,.inputform ion-textarea {
-        margin: 0;
-        width: 100%;
-        padding: 5px;
-            max-width: inherit;
-            color:#fff;
-      }
-      
-      .loginBtn {
-        background: #60bd55;
-        color: #fff;
-        width: 100%;
-        padding: 13px;
-        font-size: 20px;
-        margin: 0 auto;
-        display: block;
-        font-family: 'Segoe UI';
-        font-weight: 100;
-      }  
-       .text-input-md {
-        color: #fff;
-      }
-    
-      .logindiv{
-        margin: 15px 0px 0 0 !important;
-      }
-    
+.login-bg{height: 100vh;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100 */
+background: rgb(88,138,214);background: -moz-linear-gradient(top,  rgba(88,138,214,1) 0%, rgba(66,120,203,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', endColorstr='#4278cb',GradientType=0 ); /* IE6-9 */
+}
+.login-bg::after{content:"";position:absolute;z-index:1;background: url('../../assets/imgs/top-bar.png') no-repeat top center;top:0;bottom:0;left:0;right:0;background-size: auto 50%;}
+.login-bg::before{content:"";position:absolute;z-index:1;background: url('../../assets/imgs/bottom-bar.png') no-repeat bottom center;top:0;bottom:0;left:0;right:0;background-size: auto 50%;
+}
+.login-container {position: relative;padding:5vw;z-index: 2;}
+.logoSection {position: relative;margin: 4px -8px 0;text-align: center;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-animation-name: zoomIn;animation-name: zoomIn;display: block;
+text-align: center;padding-left: 0;} 
+.logoSection img{display: block;width: 120px;margin: 9vw auto;}
+
+.item-inner{border:none!important;border:0px!important}
+.sologon-1{color: #5fd8d1;font-size: 1.8rem;display: block;}
+.sologon-2{color: #fff;display: block;font-size: .9rem}
+
+/*
+.scroll-content {margin: 0 !important;background-image: url('../../assets/imgs/bg.jpg');height: auto !important;overflow:hidden !important;
+background-size: cover;background-position: center;background-repeat: no-repeat;border-color: transparent;}
+ion-item {padding-left: 10px !important;margin-bottom: 10px;background-color: transparent !important;font-size: 0.9em;}
+
+.list-md {width: 100%;margin: 0 auto;padding: 10px;background: none;}
+input, optgroup, select {margin: 0;font: inherit;color: inherit;}
+.item-block{margin: 0 auto;width: 100%;padding: 0 !important;min-height: inherit;}
+ion-label {color: #fff;width: 100%;margin: 7px 0 !important;text-align: left;font-size: 12px;}
+.item-md.item-block .item-inner {border: none;padding: 0;}
+.button-md {padding: 1em 4em;margin-top: 34px !important;}
+.item-block{margin: 0 auto;width: 100%;padding: 0 !important;}
+.item-md.item-block .item-inner {border: none;padding: 0;}
+.inputform  ion-input ,.inputform   ion-select,.inputform  ion-datetime ,.inputform ion-textarea{margin-bottom: 0;border: 1px solid #fff;background: rgba(255, 255, 255, 0.15);padding: 0;color: #fff;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-animation-name: fadeIn;animation-name: fadeIn;font-size: 12px;}
+.text-input-md{margin: 0;width: 100%;padding: 5px;}
+.inputform   ion-select ,.inputform  ion-datetime ,.inputform ion-textarea {margin: 0;width: 100%;padding: 5px;max-width: inherit;color:#fff;}
+.loginBtn {background: #60bd55;color: #fff;width: 100%;padding: 13px;font-size: 20px;margin: 0 auto;display: block;font-family: 'Segoe UI';
+font-weight: 100;}  
+.text-input-md {color: #fff;}
+.logindiv{margin: 15px 0px 0 0 !important;}*/
