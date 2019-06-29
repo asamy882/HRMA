@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+          {{ 'app.overtimeRequest.myRequestsTitle' | translate }}
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content *ngFor="let req of requests">
+          <ion-item>            
+              {{ 'app.overtimeRequest.requestDate' | translate }} : <span>{{req.OvertimeDate}}</span>
+          </ion-item>
+          <ion-item>
+              {{ 'app.overtimeRequest.fromTime' | translate }} : <span>{{req.FromTime}}</span>
+          </ion-item>      
+          <ion-item>
+              {{ 'app.overtimeRequest.toTime' | translate }} : <span>{{req.ToTime}}</span>
+          </ion-item> 
+          <ion-item>
+              {{ 'app.overtimeRequest.extendNextDay' | translate }} : <span>{{req.ExtendNextDay}}</span>
+          </ion-item>        
+          <ion-item>
+            {{ 'app.overtimeRequest.remarks' | translate }} : <span>{{req.Remarks}}</span>
+        </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

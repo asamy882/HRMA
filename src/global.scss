@@ -12,3 +12,62 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 
+.li-ionic-timepicker {
+    .modal-wrapper {
+        max-height: 276px;
+        width: 310px;
+        min-height: 0;
+        border-radius: 0px;
+        --ion-color-primary: #00345d; 
+        // This Variable used for the change of colour 
+        // ionic4-timepicker only.
+        // --ion-color-primary-tint: rgb(214, 153, 153); 
+        // This Variable changes the tint colour of background 
+        // when click button.
+ 
+        ion-button {
+            // --ion-color-primary: green; 
+            // This Variable used for the change colour of buttons only.
+            // --ion-color-primary-tint: lightgreen; 
+            // This Variable changes the tint color of background 
+            // when click buttons.
+            // --border-radious: 0px; 
+            // This Variable changes the border radious of buttons.
+            // button customization css write here...
+        }
+ 
+ 
+    }
+}
+
+ion-item {
+    --border-width: 0;
+    --inner-border-width: 0;
+    --show-full-highlight: 0;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+}
+
+.ng-valid[required],
+.ng-valid.required,
+.ng-valid:not(form) {
+    border-bottom: 1px solid #42A948 !important;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-bottom: 1px solid #a94442;
+    /* red */
+}
+
+.ng-pristine:not(form) {
+    border-bottom: 1px solid #ccc;
+}
+
+ion-content{
+    --padding-top: 65px;
+    }
+
+ion-toolbar{
+    --ion-background-color:#3880ff;
+}

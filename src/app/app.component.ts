@@ -29,6 +29,16 @@ export class AppComponent implements OnInit {
       icon: 'list-box'
     },
     {
+      title: 'app.overtimeRequest.newRequestPageTitle',
+      url: '/overtime-request/new',
+      icon: 'football'
+    },
+    {
+      title: 'app.overtimeRequest.myRequestsTitle',
+      url: '/overtime-request/search',
+      icon: 'football'
+    },
+    {
       title: 'app.logout',
       url: '/login',
       icon: 'power'

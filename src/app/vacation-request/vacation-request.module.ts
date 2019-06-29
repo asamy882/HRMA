@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { IonicSelectableModule } from 'ionic-selectable';
@@ -20,7 +20,8 @@ import { SearchVacationRequestsPage } from './search/search-vacation-requests.pa
     IonicModule,
     TranslateModule,
     IonicSelectableModule,
-    VactionRequestRoutingModule
+    VactionRequestRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [NewVacationRequestPage, SearchVacationRequestsPage],
   providers: [VacationRequestService]
