@@ -64,10 +64,13 @@ ion-item {
     border-bottom: 1px solid #ccc;
 }
 
-ion-content{
-    --padding-top: 65px;
+    ion-content.side-menu{
+        --padding-top: 80px;
+    --ion-background-color:#6695d9;
     }
 
 ion-toolbar{
-    --ion-background-color:#3880ff;
+    --ion-background-color:#6191d7;
+    --ion-color:#ffffff;
+    color:#ffffff!important;
 }

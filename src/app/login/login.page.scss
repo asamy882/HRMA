@@ -1,4 +1,4 @@
-.login-bg{height: 100vh;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100 */
+.login-bg{position: absolute;left:0;right:0;top:0;bottom: 0;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100 */
 background: rgb(88,138,214);background: -moz-linear-gradient(top,  rgba(88,138,214,1) 0%, rgba(66,120,203,1) 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -12,10 +12,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', end
 text-align: center;padding-left: 0;} 
 .logoSection img{display: block;width: 120px;margin: 9vw auto;}
 
-.item-inner{border:none!important;border:0px!important}
+
 .sologon-1{color: #5fd8d1;font-size: 1.8rem;display: block;}
 .sologon-2{color: #fff;display: block;font-size: .9rem}
-
+ion-content,app-login{background-color: rgba(66,120,203,1)!important}
+ion-list{background-color: transparent!important}
+ion-item{padding: 0 16px;margin: 16px 0 0 0;border-radius: 8px;background: #fff;}
+ion-input{border:none}
+.item-native{padding:0!important;margin:0!important;}
+ion-input input{border:none!important;border:0px!important}
+ion-checkbox{margin: 0!important} 
+.item-inner{border:none!important;border:0px!important}
 /*
 .scroll-content {margin: 0 !important;background-image: url('../../assets/imgs/bg.jpg');height: auto !important;overflow:hidden !important;
 background-size: cover;background-position: center;background-repeat: no-repeat;border-color: transparent;}
