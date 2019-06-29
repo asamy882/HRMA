@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'vacation-request',
     loadChildren: './vacation-request/vacation-request.module#VacationRequestModule'
+  },
+  {
+    path: 'overtime-request',
+    loadChildren: './overtime-request/overtime-request.module#OvertimeRequestModule'
   }
 ];
 

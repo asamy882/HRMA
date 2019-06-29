@@ -4,6 +4,8 @@ import { VactionRequest } from '../vacation-request.model';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-new-vacation-request',
@@ -16,8 +18,21 @@ export class NewVacationRequestPage implements OnInit {
   vacationTypeList: any[];
   employees: any[];
   replacement: any;
+  requestForm: FormGroup;
 
-  constructor(private service: VacationRequestService, private toastController: ToastController) { }
+  constructor(private service: VacationRequestService, private toastController: ToastController, public formBuilder: FormBuilder
+    ) {
+      this.requestForm = formBuilder.group({
+        FromDate: new FormControl('', [Validators.required]),
+        ToDate: new FormControl('', [Validators.required]),
+        VacationDays: new FormControl('', [Validators.required]),
+        VacationTypeId: new FormControl('', [Validators.required]),
+        Balance: new FormControl('', []),
+        ExcludeWeekend: new FormControl('', []),
+        Replacement: new FormControl('', []),
+        Remarks: new FormControl('', []),
+      });
+    }
 
   ngOnInit() {
     this.loadVacationTypeList();
@@ -33,6 +48,9 @@ export class NewVacationRequestPage implements OnInit {
   }
 
   getVacationTypeBalance() {
+    this.request = {... this.requestForm.value};
+    console.log(this.request);
+    console.log(this.requestForm.value);
     if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
       this.service.getVacationTypeBalance(this.request.VacationTypeId, this.formatDate(this.request.FromDate),
         this.formatDate(this.request.ToDate)).subscribe(res => {

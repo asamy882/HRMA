@@ -1,63 +1,94 @@
 <ion-header>
-    <ion-toolbar>
+  <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-buttons slot="secondary">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>
-          {{ 'app.vacationRequest.newRequestPageTitle' | translate }}
-      </ion-title>
-    </ion-toolbar>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{ 'app.vacationRequest.newRequestPageTitle' | translate }}
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list class="mt50">
-    <ion-label>{{ 'app.vacationRequest.type' | translate }}</ion-label>
-    <ion-item class="inputform">
-      <ion-label *ngIf="false">{{ 'app.vacationRequest.selectType' | translate }}</ion-label>
-      <ion-select [(ngModel)]="request.VacationTypeId" (ionChange)="getVacationTypeBalance()">
-        <ion-select-option *ngFor="let type of vacationTypeList" value="{{type.ID}}">{{type.Name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-label *ngIf="request.VacationTypeId">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
-    <ion-item class="inputform" *ngIf="request.VacationTypeId">
-      <ion-datetime displayFormat="YYYY-MM-DD" (ionChange)="getVacationTypeBalance()" pickerFormat="DD MMMM YYYY"
-        [(ngModel)]="request.FromDate"></ion-datetime>
-    </ion-item>
-    <ion-label *ngIf="request.VacationTypeId">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
-    <ion-item class="inputform" *ngIf="request.VacationTypeId">
-      <ion-datetime displayFormat="YYYY-MM-DD" (ionChange)="getVacationTypeBalance()" pickerFormat="DD MMMM YYYY"
-        [(ngModel)]="request.ToDate"></ion-datetime>
-    </ion-item>
-    <ion-label *ngIf="request.Balance">{{ 'app.vacationRequest.balance' | translate }}</ion-label>
-    <ion-item class="inputform" *ngIf="request.Balance">
-        <ion-input type="text"  [(ngModel)]="request.Balance" disabled></ion-input>
-    </ion-item>
-    <ion-label *ngIf="request.Balance > 0">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
-    <ion-item class="inputform" *ngIf="request.Balance">
-        <ion-input type="text"  [(ngModel)]="request.VacationDays" ></ion-input>
-    </ion-item>
-    <ion-item *ngIf="request.Balance > 0">
-        <ion-label>{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
-        <ion-checkbox [(ngModel)]="request.ExcludeWeekend" (ionChange)="calculateVacationDays()"></ion-checkbox>
-    </ion-item>
-    <ion-label *ngIf="request.Balance > 0">{{ 'app.vacationRequest.replacement' | translate }}</ion-label>
-    <ion-item *ngIf="request.Balance > 0">        
-        <ionic-selectable [(ngModel)]="replacement" itemValueField="EmployeeId" itemTextField="EmployeeName" [items]="employees" [canSearch]="true"
-          (onSearch)="searchEmployee($event)" [placeholder]="'app.vacationRequest.selectReplacement' | translate">
-            <ng-template ionicSelectableItemTemplate let-replacement="item" let-isReplacementtSelected="isItemSelected">
-              {{replacement.EmployeeName}} ({{replacement.Department}})
-            </ng-template>
-          </ionic-selectable>
-    </ion-item>
-    <ion-label *ngIf="request.Balance">{{ 'app.vacationRequest.remarks' | translate }}</ion-label>
-    <ion-item class="inputform" *ngIf="request.Balance">
-        <ion-textarea type="text"  [(ngModel)]="request.Remarks" ></ion-textarea>
-    </ion-item>
-    <div class="logindiv">
-        <button class="loginBtn" type="submit"  *ngIf="request.Balance > 0" (click)="submit()">Submit</button>
-    </div>
-  </ion-list>
+  <ion-card no-margin>
+    <ion-card-header no-padding padding-top padding-start>
+      <ion-card-title>{{ 'app.vacationRequest.newRequestPageTitle' | translate }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="requestForm" novalidate (submit)="submit()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.type' | translate }}</ion-label>
+                <ion-select formControlName="VacationTypeId" (ionChange)="getVacationTypeBalance()">
+                  <ion-select-option value="">{{ 'app.vacationRequest.selectType' | translate }}</ion-select-option>
+                  <ion-select-option *ngFor="let type of vacationTypeList" value="{{type.ID}}">{{type.Name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" 
+                  (ionChange)="getVacationTypeBalance()" formControlName="FromDate"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
+                  (ionChange)="getVacationTypeBalance()" formControlName="ToDate"></ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
+                <ion-checkbox formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false">
+                </ion-checkbox>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
+                <ion-input type="text" formControlName="VacationDays"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.balance' | translate }}</ion-label>
+                <ion-input type="text" formControlName="Balance" disabled></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.vacationRequest.replacement' | translate }}</ion-label>
+                <ionic-selectable formControlName="Replacement" itemValueField="EmployeeId" itemTextField="EmployeeName"
+                  [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)"
+                  [placeholder]="'app.vacationRequest.selectReplacement' | translate">
+                  <ng-template ionicSelectableItemTemplate let-replacement="item"
+                    let-isReplacementtSelected="isItemSelected">
+                    {{replacement.EmployeeName}} ({{replacement.Department}})
+                  </ng-template>
+                </ionic-selectable>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">{{ 'app.overtimeRequest.remarks' | translate }}</ion-label>
+                <ion-textarea type="text" formControlName="Remarks"></ion-textarea>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-button type="submit" shape="round" expand="full" [disabled]="requestForm.invalid">Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

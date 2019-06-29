@@ -48,6 +48,16 @@
       "selectReplacement": "Select Replacement",
       "selectFromDate": "Select From Date",
       "selectToDate": "Select To Date"
+    },
+    "overtimeRequest": {
+      "title": "Overtime Requests",
+      "newRequestPageTitle": "New Overtime Request",
+      "myRequestsTitle": "My Overtime Requests",
+      "fromTime": "From Time",
+      "toTime": "To Time",
+      "remarks": "Remarks",
+      "requestDate": "Request Date",
+      "extendNextDay": "Extend Next Day"
     }
   }
 }
