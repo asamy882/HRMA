@@ -21,12 +21,12 @@ export class AppComponent implements OnInit {
     {
       title: 'app.vacationRequest.newRequestPageTitle',
       url: '/vacation-request/new',
-      icon: 'football'
+      icon: 'clipboard'
     },
     {
       title: 'app.vacationRequest.myRequestsTitle',
       url: '/vacation-request/search',
-      icon: 'football'
+      icon: 'list-box'
     },
     {
       title: 'app.logout',
