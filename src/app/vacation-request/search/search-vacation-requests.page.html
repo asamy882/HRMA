@@ -12,25 +12,25 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="vacation-requests">
     <ion-card>
         <ion-card-content *ngFor="let req of requests">
-          <ion-item>            
-              {{ 'app.vacationRequest.type' | translate }} : <span>{{req.VacationType.Name}}</span>
+          <ion-item class="vacation-requests-item">            
+            <ion-icon class="vacation-requests-icon" name="apps"></ion-icon>{{ 'app.vacationRequest.type' | translate }} : <span>{{req.VacationType.Name}}</span>
           </ion-item>
-          <ion-item>
-              {{ 'app.vacationRequest.fromDate' | translate }} : <span>{{req.FromDate}}</span>
+          <ion-item class="vacation-requests-item">
+              <ion-icon class="vacation-requests-item" name="calendar"></ion-icon>{{ 'app.vacationRequest.fromDate' | translate }} : <span>{{req.FromDate}}</span>
           </ion-item>      
-          <ion-item>
-              {{ 'app.vacationRequest.toDate' | translate }} : <span>{{req.ToDate}}</span>
+          <ion-item class="vacation-requests-item">
+              <ion-icon class="vacation-requests-item" name="calendar"></ion-icon>{{ 'app.vacationRequest.toDate' | translate }} : <span>{{req.ToDate}}</span>
           </ion-item> 
-          <ion-item>
-              {{ 'app.vacationRequest.vacationDays' | translate }} : <span>{{req.VacationDays}}</span>
+          <ion-item class="vacation-requests-item">
+              <ion-icon class="vacation-requests-item" name="clipboard"></ion-icon>{{ 'app.vacationRequest.vacationDays' | translate }} : <span>{{req.VacationDays}}</span>
           </ion-item>        
-          <ion-item>
+          <ion-item class="vacation-requests-item">
             <button ion-button  color="primary"  icon-start><ion-icon name="create"></ion-icon>Edit</button>
           </ion-item>
         </ion-card-content>
-    </ion-card>
+    </ion-card> 
 
 </ion-content>

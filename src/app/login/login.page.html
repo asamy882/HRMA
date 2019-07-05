@@ -4,11 +4,11 @@
   </ion-toolbar>
 </ion-header -->
 
-<ion-content padding>
+<ion-content >
   <div class="login-bg">
     <div class="login-container">
       <div class="logoSection">
-        <img class="logo" src="assets/imgs/logo.png" />
+        <!-- <img class="logo" src="assets/imgs/logo.png" /> -->
 
 
         <ion-label class="sologon-1 text-bold">KIAN HRM SYSTEM</ion-label>
@@ -45,17 +45,19 @@
           <div class="error-box"
             *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">
             {{ 'app.login.passwordRequired' | translate }}</div>
-          <ion-item>
+          <!-- <ion-item>
             <ion-label>{{ 'app.login.rememberMe' | translate }}</ion-label>
             <ion-checkbox [formControl]="authForm.controls['keepMeLogin']"></ion-checkbox>
-          </ion-item>
+          </ion-item> -->
 
           <div class="logindiv">
             <button class="btn-brand" type="submit" [disabled]="!authForm.valid" (click)="login()">Login</button>
           </div>
 
         </ion-list>
-        <ion-label class="d-block text-center"><a href="#" class="text-white">Forget Password ?</a></ion-label>
+        <!-- <ion-label class="d-block text-center"><a href="#" class="text-white">Forget Password ?</a></ion-label> -->
+        <ion-label class="powered-by text-center"><a href="#" class="text-white"> Powered By KIAN SOFT </a></ion-label>
+
 
       </form>
     </div>

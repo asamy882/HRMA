@@ -1,20 +1,24 @@
-.login-bg{position: absolute;left:0;right:0;top:0;bottom: 0;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100 */
-background: rgb(88,138,214);background: -moz-linear-gradient(top,  rgba(88,138,214,1) 0%, rgba(66,120,203,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', endColorstr='#4278cb',GradientType=0 ); /* IE6-9 */
-}
-.login-bg::after{content:"";position:absolute;z-index:1;background: url('../../assets/imgs/top-bar.png') no-repeat top center;top:0;bottom:0;left:0;right:0;background-size: auto 50%;}
-.login-bg::before{content:"";position:absolute;z-index:1;background: url('../../assets/imgs/bottom-bar.png') no-repeat bottom center;top:0;bottom:0;left:0;right:0;background-size: auto 50%;
-}
+.login-bg{/*min-height: 100vh; Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100
+background: rgb(88,138,214);background: -moz-linear-gradient(top,  rgba(88,138,214,1) 0%, rgba(66,120,203,1) 100%);background: -webkit-linear-gradient(top,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%);
+background: linear-gradient(to bottom,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', endColorstr='#4278cb',GradientType=0 ) */}
+
+.login-bg{min-height: 100vh;background: #4278cb url('../../assets/imgs/bottom-bg.png') no-repeat bottom center;background-size: 800px auto;}
+.login-bg::after{content:"";position:absolute;z-index:1;background: url(../../assets/imgs/top-bar1.png) no-repeat top -100px center;top: 0;bottom: 0;left: 0;right: 0;background-size: 800px auto;}
+// .login-bg::before{content:"";position:absolute;z-index:1;background: url('../../assets/imgs/bottom-bar.png') no-repeat bottom center;top:0;bottom:0;left:0;right:0;background-size: auto 50%; }
 .login-container {position: relative;padding:5vw;z-index: 2;}
-.logoSection {position: relative;margin: 4px -8px 0;text-align: center;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-animation-name: zoomIn;animation-name: zoomIn;display: block;
-text-align: center;padding-left: 0;} 
-.logoSection img{display: block;width: 120px;margin: 9vw auto;}
+.logoSection {position: relative;margin: 4px -8px 20px;text-align: center;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-animation-name: zoomIn;animation-name: zoomIn;display: block;
+text-align: center;padding-top: 200px;} 
+.logoSection img{display: block;width: 120px;margin: 5vw auto;}
 
-
-.sologon-1{color: #5fd8d1;font-size: 1.8rem;display: block;}
-.sologon-2{color: #fff;display: block;font-size: .9rem}
+.powered-by {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    left:10px;
+    font-size: 90%;
+}
+.sologon-1{color: #5fd8d1;font-size: 1.6rem;display: block;}
+.sologon-2{color: #fff;display: block;font-size: .8rem}
 ion-content,app-login{background-color: rgba(66,120,203,1)!important}
 ion-list{background-color: transparent!important}
 ion-item{padding: 0 16px;margin: 16px 0 0 0;border-radius: 8px;background: #fff;}

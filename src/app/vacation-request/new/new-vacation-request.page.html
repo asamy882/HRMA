@@ -28,22 +28,22 @@
               </ion-select>
             </ion-item>
             <ion-item class="border bg-white">
-                <ion-label position="">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
+                <ion-label position="floating">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
                 <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" 
                   (ionChange)="getVacationTypeBalance()" formControlName="FromDate"></ion-datetime>
               </ion-item>
               <ion-item class="border bg-white">
-                  <ion-label position="">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
+                  <ion-label position="floating">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
                   <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
                     (ionChange)="getVacationTypeBalance()" formControlName="ToDate"></ion-datetime>
                 </ion-item>
                 <ion-item class="border bg-white">
-                    <ion-label position="">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
+                    <ion-label position="floating">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
                     <ion-checkbox formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false">
                     </ion-checkbox>
                   </ion-item>
                   <ion-item class="border bg-white">
-                      <ion-label position="">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
+                      <ion-label position="floating">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
                       <ion-input type="text" formControlName="VacationDays"></ion-input>
                     </ion-item>
                     <ion-item class="border bg-white">
@@ -51,7 +51,7 @@
                         <ion-input type="text" formControlName="Balance" disabled></ion-input>
                       </ion-item>
                       <ion-item class="border bg-white">
-                          <ion-label position="">{{ 'app.vacationRequest.replacement' | translate }}</ion-label>
+                          <ion-label position="floating">{{ 'app.vacationRequest.replacement' | translate }}</ion-label>
                           <ionic-selectable formControlName="Replacement" itemValueField="EmployeeId" itemTextField="EmployeeName"
                             [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)"
                             [placeholder]="'app.vacationRequest.selectReplacement' | translate">
@@ -62,7 +62,7 @@
                           </ionic-selectable>
                         </ion-item>
                         <ion-item class="border bg-white">
-                            <ion-label position="">{{ 'app.overtimeRequest.remarks' | translate }}</ion-label>
+                            <ion-label position="floating">{{ 'app.overtimeRequest.remarks' | translate }}</ion-label>
                             <ion-textarea type="text" formControlName="Remarks"></ion-textarea>
                           </ion-item>
                           <ion-button type="submit" expand="full" [disabled]="requestForm.invalid" class="btn-brand">Submit</ion-button>
