@@ -58,6 +58,17 @@
       "remarks": "Remarks",
       "requestDate": "Request Date",
       "extendNextDay": "Extend Next Day"
+    },
+    "missionRequest": {
+      "title": "Mission Requests",
+      "newRequestPageTitle": "New Mission Request",
+      "myRequestsTitle": "My Mission Requests",
+      "fromTime": "From Time",
+      "toTime": "To Time",
+      "remarks": "Remarks",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "extendNextDay": "Extend Next Day"
     }
   }
 }

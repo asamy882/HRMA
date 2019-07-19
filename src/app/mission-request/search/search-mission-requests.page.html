@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+          {{ 'app.missionRequest.myRequestsTitle' | translate }}
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content *ngFor="let req of requests">
+          <ion-item>            
+              {{ 'app.missionRequest.fromDate' | translate }} : <span>{{req.MissionDate}}</span>
+          </ion-item>
+          <ion-item>            
+            {{ 'app.missionRequest.toDate' | translate }} : <span>{{req.MissionEndDate}}</span>
+          </ion-item>
+          <ion-item>
+              {{ 'app.missionRequest.fromTime' | translate }} : <span>{{req.FromTime}}</span>
+          </ion-item>      
+          <ion-item>
+              {{ 'app.missionRequest.toTime' | translate }} : <span>{{req.ToTime}}</span>
+          </ion-item> 
+          <ion-item>
+              {{ 'app.missionRequest.extendNextDay' | translate }} : <span>{{req.ExtendToNextDay}}</span>
+          </ion-item>        
+          <ion-item>
+            {{ 'app.missionRequest.remarks' | translate }} : <span>{{req.Remarks}}</span>
+        </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

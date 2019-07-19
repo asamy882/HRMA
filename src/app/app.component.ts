@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Requests',
-      url: '/requests',
+      url: '/choose-request-type',
       icon: 'clipboard'
     },
     {
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       icon: 'clipboard'
         },
     //mine end
-    {
+   /*  {
       title: 'app.vacationRequest.myRequestsTitle',
       url: '/vacation-request/search',
       icon: 'list-box'
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       title: 'app.overtimeRequest.myRequestsTitle',
       url: '/overtime-request/search',
       icon: 'football'
-    },
+    },*/
     {
       title: 'app.logout',
       url: '/login',
