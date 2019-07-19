@@ -1,333 +1,418 @@
 @font-face {
-font-family: 'OpenSansBold';
-src: url('../assets/fonts/OpenSansBold.eot');
-src: url('../assets/fonts/OpenSansBold.eot') format('embedded-opentype'),
-url('../assets/fonts/OpenSansBold.woff2') format('woff2'),
-url('../assets/fonts/OpenSansBold.woff') format('woff'),
-url('../assets/fonts/OpenSansBold.ttf') format('truetype'),
-url('../assets/fonts/OpenSansBold.svg#OpenSansBold') format('svg');
+  font-family: 'OpenSansBold';
+  src: url('../assets/fonts/OpenSansBold.eot');
+  src: url('../assets/fonts/OpenSansBold.eot') format('embedded-opentype'), url('../assets/fonts/OpenSansBold.woff2') format('woff2'), url('../assets/fonts/OpenSansBold.woff') format('woff'), url('../assets/fonts/OpenSansBold.ttf') format('truetype'), url('../assets/fonts/OpenSansBold.svg#OpenSansBold') format('svg');
 }
 
 @font-face {
-font-family: 'OpenSansRegular';
-src: url('../assets/fonts/OpenSansRegular.eot');
-src: url('../assets/fonts/OpenSansRegular.eot') format('embedded-opentype'),
-url('../assets/fonts/OpenSansRegular.woff2') format('woff2'),
-url('../assets/fonts/OpenSansRegular.woff') format('woff'),
-url('../assets/fonts/OpenSansRegular.ttf') format('truetype'),
-url('../assets/fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
+  font-family: 'OpenSansRegular';
+  src: url('../assets/fonts/OpenSansRegular.eot');
+  src: url('../assets/fonts/OpenSansRegular.eot') format('embedded-opentype'), url('../assets/fonts/OpenSansRegular.woff2') format('woff2'), url('../assets/fonts/OpenSansRegular.woff') format('woff'), url('../assets/fonts/OpenSansRegular.ttf') format('truetype'), url('../assets/fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
 }
-
 
 body {
-font-family: 'OpenSansRegular', sans-serif;
-overflow-x: hidden;
-background:  #fff ;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+  font-family: 'OpenSansRegular', sans-serif;
+  overflow-x: hidden;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.btn-brand{
-font-family:'OpenSansBold';height: 45px;
-text-transform: uppercase;width: 100%;color: #fff;margin:16px 0 0 ;display: block;border-radius: 8px!important;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#059afe+0,6be1cb+100 */
-background: rgb(5,154,254); /* Old browsers */
-background: -moz-linear-gradient(left,  rgba(5,154,254,1) 0%, rgba(107,225,203,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left,  rgba(5,154,254,1) 0%,rgba(107,225,203,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right,  rgba(5,154,254,1) 0%,rgba(107,225,203,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#059afe', endColorstr='#6be1cb',GradientType=1 ); /* IE6-9 */
+.btn-brand {
+  font-family: 'OpenSansBold';
+  height: 45px;
+  text-transform: uppercase;
+  width: 100%;
+  color: #fff;
+  margin: 16px 0 0;
+  display: block;
+  border-radius: 8px!important;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#059afe+0,6be1cb+100 */
+  background: rgb(5, 154, 254);
+  /* Old browsers */
+  background: -moz-linear-gradient(left, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#059afe', endColorstr='#6be1cb', GradientType=1);
+  /* IE6-9 */
 }
-.toolbar-background{
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100 */
-background: rgb(88,138,214);background: -moz-linear-gradient(top,  rgba(88,138,214,1) 0%, rgba(66,120,203,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', endColorstr='#4278cb',GradientType=0 ); /* IE6-9 */}
-.d-block{display: block!important;}
-.text-upper{text-transform: uppercase;}
-.text-bold{font-family: 'OpenSansBold';}
-.text-center{text-align: center}
-.bg-brand0{background: #3880ff!important}
-.bg-brand{background: #6695d9!important}
-.side-menu ion-item{background: #6191d7!important}
-.side-menu-toggle{}
-.side-menu-item{background: #6191d7!important;color: #fff;}
-.side-menu-icon{    background: #6695d9 !important;
+
+.toolbar-background {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#588ad6+0,4278cb+100 */
+  background: rgb(88, 138, 214);
+  background: -moz-linear-gradient(top, rgba(88, 138, 214, 1) 0%, rgba(66, 120, 203, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(88, 138, 214, 1) 0%, rgba(66, 120, 203, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(88, 138, 214, 1) 0%, rgba(66, 120, 203, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', endColorstr='#4278cb', GradientType=0);
+  /* IE6-9 */
+}
+
+.d-block {
+  display: block!important;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.text-bold {
+  font-family: 'OpenSansBold';
+}
+.text-green{color:#60cb2c!important;}
+.text-white{color:#ffffff!important;}
+
+.text-center {
+  text-align: center
+}
+
+.bg-brand0 {
+  background: #3880ff!important
+}
+
+.bg-brand {
+  background: #6695d9!important
+}
+.bg-4c84d7{background: #4c84d7!important}
+.bg-e21b1b{background: #e21b1b!important}
+.bg-e7ebed{background: #e7ebed!important}
+.bg-e21b1b .text-primary,.bg-e21b1b .text-dark{color: #ffffff!important}
+.side-menu ion-item {
+  background: #6191d7!important
+}
+
+.side-menu-item {
+  background: #6191d7!important;
+  color: #fff;
+}
+
+.side-menu-icon {
+  background: #6695d9 !important;
   color: #fff;
   padding: 16px 8px 16px 24px;
   margin: 0;
-  height: 24px;}
-.side-menu-label{background: #6695d9 !important;
+  height: 24px;
+}
+
+.side-menu-label {
+  background: #6695d9 !important;
   height: 56px;
   padding: 18px;
-  margin: 0;}
-.form-bg{background:#eee}
-.p-3{padding:1rem!important}
-h1,h2,h3,h4,h5,h6 {
-color: #333;
+  margin: 0;
+}
+
+.form-bg {
+  background: #eee
+}
+
+.p-3 {
+  padding: 1rem!important
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
 }
 
 a:hover {
-text-decoration: none;
+  text-decoration: none;
 }
 
 footer {
-position: relative;
-z-index: 99999;
+  position: relative;
+  z-index: 99999;
 }
 
 footer .copyright {
-font-size: 12px;
-padding: 15px 0;
-color: #333;
-text-align: center;
+  font-size: 12px;
+  padding: 15px 0;
+  color: #333;
+  text-align: center;
 }
 
 footer .copyright p {
-margin: 0;
+  margin: 0;
 }
+
 .logoKian {
-height: 20px;
-display: inline-block;
-vertical-align: top;
+  height: 20px;
+  display: inline-block;
+  vertical-align: top;
 }
+
 .sectionTitle {
-color: #fff;
-background: #9c2aa0;
-display: inline-block;
-padding: 7px 14px 7px 23px;
-margin: 29px 0 0;
-font-family: 'Segoe UI', sans-serif;
-font-size: 15px;
+  color: #fff;
+  background: #9c2aa0;
+  display: inline-block;
+  padding: 7px 14px 7px 23px;
+  margin: 29px 0 0;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
 }
+
 .logo-home {
-display: inline-block;
-vertical-align: top;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .user-info {
-display: inline-block;
-vertical-align: top;
-position: absolute;
-right: 0;
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  right: 0;
 }
+
 .user-info img {
-height: 40px;
-width: 40px;
-border-radius: 50%;
-display: inline-block;
-vertical-align: top;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
 }
+
 .user-info h3 {
-color: #fff;
-font-size: 1.2rem;
-margin: 0;
-font-weight: normal;
-display: inline-block;
-vertical-align: top;
-margin-top: 4px;
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: normal;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 4px;
 }
+
 .logoutbtn {
-right: 0;
-top: 0;
-background: #10709d;
-width: 40px !important;
-height: 40px !important;
-color: #fff;
--webkit-box-shadow: none;
-box-shadow: none;
-border-radius: 50%;
-margin: 0 !important;
-display: inline-block;
+  right: 0;
+  top: 0;
+  background: #10709d;
+  width: 40px !important;
+  height: 40px !important;
+  color: #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 50%;
+  margin: 0 !important;
+  display: inline-block;
 }
-.mainMenu button{
-color: #fff;
-background: rgba(0, 46, 83, 0.4);
-margin: 2px 0;
+
+.mainMenu button {
+  color: #fff;
+  background: rgba(0, 46, 83, 0.4);
+  margin: 2px 0;
 }
+
 .mainMenu button .item-inner {
-border: none !important;
+  border: none !important;
 }
+
 .scroll-content {
-padding-bottom:0 !important;
+  padding-bottom: 0 !important;
 }
 
 ion-header {
-left: 0;
-top: 0;
-position: absolute;
-z-index: 10;
-display: block;
-width: 100%;
-background: #fff;
-border-bottom: 1px solid #E0F7FA;
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index: 10;
+  display: block;
+  width: 100%;
+  background: #fff;
+  border-bottom: 0px solid #E0F7FA;
 }
+
 .toolbar-md {
-padding: 4px;
-min-height: 75px;
+  padding: 4px;
+  min-height: 75px;
 }
+
 .toolbar-background-md {
-background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
+
 ion-header:after {
-display: none;
+  display: none;
 }
+
 ion-menu {
-background: rgba(1, 87, 155, 0.3);
+  background: rgba(1, 87, 155, 0.3);
 }
-.side-menu .scroll-content{
-background: #01579B;
+
+.side-menu .scroll-content {
+  background: #01579B;
 }
+
 .toolbar button {
-background: #024166;
-color: #fff;
-height: 43px;
-vertical-align: top;
-width: 43px;
-margin-right: 6px !important;
-padding: 0;
-min-width: inherit;
+  background: #024166;
+  color: #fff;
+  height: 43px;
+  vertical-align: top;
+  width: 43px;
+  margin-right: 6px !important;
+  padding: 0;
+  min-width: inherit;
 }
+
 .logo-home img {
-width: 76px;
-margin: 0;
-padding: 0;
-display: inline-block;
-vertical-align: top;
+  width: 76px;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .logo-home .logoTxt {
-padding: 0;
-position: absolute;
-bottom: -2px;
-left: 17px;
-font-size: 14px;
+  padding: 0;
+  position: absolute;
+  bottom: -2px;
+  left: 17px;
+  font-size: 14px;
 }
+
 .logo-home .logoTxt h1 {
-color: #009688;
-margin: 0;
-font-weight: bold;
-font-size: 1em;
+  color: #009688;
+  margin: 0;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 .title-Box {
-background: #1b3362;
-padding: 14px;
+  background: #1b3362;
+  padding: 14px;
 }
+
 .title-Box h3 {
-color: #fff;
+  color: #fff;
 }
-
 
 ion-footer {
-background: rgba(96, 125, 139, 0.42);
+  background: rgba(96, 125, 139, 0.42);
 }
+
 .copyright p {
-color: #fff;
-text-align: center;
-font-size: 10px;
-line-height: 16px;
-padding: 0 6px;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  line-height: 16px;
+  padding: 0 6px;
 }
-.copyright p b{
-font-weight: bold;
+
+.copyright p b {
+  font-weight: bold;
 }
+
 ion-footer {
-left: 0;
-bottom: 0;
-position: fixed;
-z-index: 10;
-display: block;
-width: 100%;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 10;
+  display: block;
+  width: 100%;
 }
+
 .loading-md {
-background: rgba(1, 87, 155, 0.3);
+  background: rgba(1, 87, 155, 0.3);
 }
+
 .loading-md .loading-wrapper {
-background: #fff;
-box-shadow: none;
-padding: 10px;
-border-radius: 3px;
-color: #ababab;
-font-size: 12px;
-font-family: 'Segoe UI';
+  background: #fff;
+  box-shadow: none;
+  padding: 10px;
+  border-radius: 3px;
+  color: #ababab;
+  font-size: 12px;
+  font-family: 'Segoe UI';
 }
 
 ion-toast.success .toast-wrapper {
-color: #fff;
-background: #4CAF50;
+  color: #fff;
+  background: #4CAF50;
 }
 
 ion-toast.error .toast-wrapper {
-background: #e60000;
-color: #fff;
+  background: #e60000;
+  color: #fff;
 }
 
-
 .error-box {
-color: #f3f3f3;
-background: rgba(255, 0, 0, 0.82);
-padding: 5px;
-font-size: 12px;
-border-radius: 8px;
-
+  color: #f3f3f3;
+  background: rgba(255, 0, 0, 0.82);
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 8px;
 }
 
 .toolbar {
-background: #01579B;
-margin-top: 0 !important;
-padding: 13px 9px;
-height: auto !important;
+  background: #01579B;
+  margin-top: 0 !important;
+  padding: 13px 9px;
+  height: auto !important;
 }
+
 .toolbar-title {
-color: #fff;
+  color: #fff;
 }
+
 .expand-wrapper {
-transition: 2s linear;
-height: auto !important;
-width: 100%;
+  transition: 2s linear;
+  height: auto !important;
+  width: 100%;
 }
-.expand-wrapper.collapsed  {
-height: 0 !important;
-display: none;
+
+.expand-wrapper.collapsed {
+  height: 0 !important;
+  display: none;
 }
+
 .expand-wrapper .submenu {
-margin-left: 20px;
-margin-bottom: 0;
+  margin-left: 20px;
+  margin-bottom: 0;
 }
+
 .menu_item {
-position: relative;
+  position: relative;
 }
+
 .expand-icon {
-position: absolute;
-min-height: 2.8rem;
-font-size: 2.8rem;
-line-height: 1;
-color: #fff;
-margin-left: 0;
-margin-top: 10px;
-margin-bottom: 10px;
-right: 12px;
-width: 35px;
-background: #034376;
-border-radius: 50%;
-height: 35px;
-line-height: 40px;
-text-align: center;
-z-index: 99;
+  position: absolute;
+  min-height: 2.8rem;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: #fff;
+  margin-left: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  right: 12px;
+  width: 35px;
+  background: #034376;
+  border-radius: 50%;
+  height: 35px;
+  line-height: 40px;
+  text-align: center;
+  z-index: 99;
 }
+
 .closeMenu {
-position: absolute;
-width: 100%;
--webkit-box-shadow: none;
-box-shadow: none;
-padding: 29px;
-background: #00345d;
-border-radius: 0;
-left: -2px;
-bottom: -2px;
+  position: absolute;
+  width: 100%;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 29px;
+  background: #00345d;
+  border-radius: 0;
+  left: -2px;
+  bottom: -2px;
 }
 
 .mt50 {
-margin-top: 50px;
+  margin-top: 50px;
 }
-.xcx{background: #f00!important}
+
+.border-top-dotted {
+  border-top: 1px dotted #dee2e6!important;
+}
+ion-card{
+  -webkit-box-shadow: 0 0 5px 0px rgba(0,0,0,.2);
+  box-shadow: 0 0 5px 0px rgba(0,0,0,.2);}

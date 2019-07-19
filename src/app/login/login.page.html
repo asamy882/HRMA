@@ -20,7 +20,7 @@
           <!-- <ion-label>{{ 'app.login.company' | translate }}</ion-label> -->
           <ion-item class="inputform">
             <ion-label>{{ 'app.login.selectCompany' | translate }}</ion-label>
-            <ion-select [formControl]="authForm.controls['company']"
+            <ion-select class="w-60" [formControl]="authForm.controls['company']"
               [ngClass]="{'error-border':!authForm.controls['company'].valid}">
               <ion-select-option *ngFor="let company of companyList" value="{{company.Code}}">{{company.Name}}
               </ion-select-option>

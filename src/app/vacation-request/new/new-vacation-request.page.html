@@ -7,70 +7,94 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      {{ 'app.vacationRequest.newRequestPageTitle' | translate }}
+      <!-- {{ 'app.vacationRequest.newRequestPageTitle' | translate }} -->
+      New Vacation Request
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card no-margin>
-    <ion-card-header no-padding padding-top padding-start>
-      <ion-card-title>{{ 'app.vacationRequest.newRequestPageTitle' | translate }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="bg-white p-4">
-
-      <form [formGroup]="requestForm" novalidate (submit)="submit()">
-          <ion-item class="border bg-white">
-              <ion-label>{{ 'app.vacationRequest.type' | translate }}</ion-label>
-              <ion-select formControlName="VacationTypeId" (ionChange)="getVacationTypeBalance()">
-                <ion-select-option value="">{{ 'app.vacationRequest.selectType' | translate }}</ion-select-option>
-                <ion-select-option *ngFor="let type of vacationTypeList" value="{{type.ID}}">{{type.Name}}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item class="border bg-white">
-                <ion-label position="floating">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
-                <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" 
-                  (ionChange)="getVacationTypeBalance()" formControlName="FromDate"></ion-datetime>
+    <div style="height: 56px;"></div>
+    <div class="p-1 requests-menu">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0">
+                <ion-label class="text-bold">Mission Date</ion-label>
               </ion-item>
-              <ion-item class="border bg-white">
-                  <ion-label position="floating">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
-                  <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY"
-                    (ionChange)="getVacationTypeBalance()" formControlName="ToDate"></ion-datetime>
-                </ion-item>
-                <ion-item class="border bg-white">
-                    <ion-label position="floating">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
-                    <ion-checkbox formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false">
-                    </ion-checkbox>
-                  </ion-item>
-                  <ion-item class="border bg-white">
-                      <ion-label position="floating">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
-                      <ion-input type="text" formControlName="VacationDays"></ion-input>
-                    </ion-item>
-                    <ion-item class="border bg-white">
-                        <ion-label position="">{{ 'app.vacationRequest.balance' | translate }}</ion-label>
-                        <ion-input type="text" formControlName="Balance" disabled></ion-input>
-                      </ion-item>
-                      <ion-item class="border bg-white">
-                          <ion-label position="floating">{{ 'app.vacationRequest.replacement' | translate }}</ion-label>
-                          <ionic-selectable formControlName="Replacement" itemValueField="EmployeeId" itemTextField="EmployeeName"
-                            [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)"
-                            [placeholder]="'app.vacationRequest.selectReplacement' | translate">
-                            <ng-template ionicSelectableItemTemplate let-replacement="item"
-                              let-isReplacementtSelected="isItemSelected">
-                              {{replacement.EmployeeName}} ({{replacement.Department}})
-                            </ng-template>
-                          </ionic-selectable>
-                        </ion-item>
-                        <ion-item class="border bg-white">
-                            <ion-label position="floating">{{ 'app.overtimeRequest.remarks' | translate }}</ion-label>
-                            <ion-textarea type="text" formControlName="Remarks"></ion-textarea>
-                          </ion-item>
-                          <ion-button type="submit" expand="full" [disabled]="requestForm.invalid" class="btn-brand">Submit</ion-button>
-                          <button class="btn-brand" type="submit" [disabled]="!authForm.valid" (click)="login()">عاوز الزرار ده</button>
-
-                         
+              <ion-item class="border-0">
+                <ion-input placeholder="Feb 19, 2019" class="px-2 rounded bg-e7ebed border-0"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0">
+                <ion-label class="text-bold">Mission End Date</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input placeholder="Feb 19, 2019" class="px-2 rounded bg-e7ebed border-0"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0">
+                <ion-label class="text-bold">From Time</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input placeholder="7:30 pm" class="px-2 rounded bg-e7ebed border-0"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="6">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0">
+                <ion-label class="text-bold">To Time</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input placeholder="9:30 pm" class="px-2 rounded bg-e7ebed border-0"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-checkbox color="dark" checked slot="start"></ion-checkbox>
+              <ion-label class="text-bold">Extend Mission For Next Day</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0">
+                <ion-label><span class="text-bold">Description</span></ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-textarea placeholder="text goes here ..." class="px-2 rounded bg-e7ebed border-0">
+                </ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item>
+                <ion-text class="mt-2 w-100">
+                  <div class="text-bold">Attachments :</div>
+                  <div class="mt-2 text-bold bg-e7ebed p-2 w-100 rounded">
+                    <ion-icon name="attach" size="small"></ion-icon>medical-report-1.pdf
+                  </div>
                   
-      </form>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+                </ion-text>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+                <!-- <ion-button type="submit"  expand="full" [disabled]="requestForm.invalid">Submit</ion-button></ion-col> -->
+                <button  class="btn-brand" type="submit" disabled="">Save</button>
+        </ion-row>
+      </ion-grid>
+  
+  
+    </div>
+    
+  
+  </ion-content>

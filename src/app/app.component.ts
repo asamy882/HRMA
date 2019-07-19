@@ -18,15 +18,32 @@ export class AppComponent implements OnInit {
       url: '/home',
       icon: 'home'
     },
+    //mine start 
     {
-      title: 'app.vacationRequest.newRequestPageTitle',
-      url: '/vacation-request/new',
+      title: 'My Tasks',
+      url: '/mytasks',
+      icon: 'list'
+    },
+    {
+      title: 'Requests',
+      url: '/requests',
       icon: 'clipboard'
     },
+    {
+      title: 'My Informations',
+      url: '/myinformations',
+      icon: 'clipboard'
+        },
+    //mine end
     {
       title: 'app.vacationRequest.myRequestsTitle',
       url: '/vacation-request/search',
       icon: 'list-box'
+    },
+    {
+      title: 'app.vacationRequest.newRequestPageTitle',
+      url: '/vacation-request/new',
+      icon: 'clipboard'
     },
     {
       title: 'app.overtimeRequest.newRequestPageTitle',
@@ -41,7 +58,7 @@ export class AppComponent implements OnInit {
     {
       title: 'app.logout',
       url: '/login',
-      icon: 'power'
+      icon: 'log-out'
     }
   ];
   /*

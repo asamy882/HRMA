@@ -25,16 +25,7 @@
         // This Variable changes the tint colour of background 
         // when click button.
  
-        ion-button {
-            // --ion-color-primary: green; 
-            // This Variable used for the change colour of buttons only.
-            // --ion-color-primary-tint: lightgreen; 
-            // This Variable changes the tint color of background 
-            // when click buttons.
-            // --border-radious: 0px; 
-            // This Variable changes the border radious of buttons.
-            // button customization css write here...
-        }
+       
  
  
     }
@@ -63,11 +54,10 @@ ion-item {
 .ng-pristine:not(form) {
     border-bottom: 1px solid #ccc;
 }
-
-    ion-content.side-menu{
-        --padding-top: 80px;
+ion-content.side-menu{
+    --padding-top: 80px;
     --ion-background-color:#6695d9;
-    }
+}
 
 ion-toolbar{
     --ion-background-color:#6191d7;
@@ -75,3 +65,20 @@ ion-toolbar{
     color:#ffffff!important;
     --ion-padding:0;
 }
+.ng-valid, .ng-valid.required, .ng-valid:not(form) {
+    border-bottom: 0px solid #42A948 !important;
+}
+
+.ng-pristine:not(form) {
+    border-bottom: 0px solid #ccc!important
+}
+
+#ion-sel-0-lbl {
+    max-width: 40%!important
+}
+
+.w-60 {
+    width: 60%!important;
+}
+
+.mt-56px{margin-top:56px;}

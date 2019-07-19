@@ -30,7 +30,18 @@ const routes: Routes = [
   {
     path: 'overtime-request',
     loadChildren: './overtime-request/overtime-request.module#OvertimeRequestModule'
-  }
+  },
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'mytasks', loadChildren: './mytasks/mytasks.module#MytasksPageModule' },
+  { path: 'requests', loadChildren: './requests/requests.module#RequestsPageModule' },
+  { path: 'myinformations', loadChildren: './myinformations/myinformations.module#MyinformationsPageModule' },  { path: 'myprofile', loadChildren: './myprofile/myprofile.module#MyprofilePageModule' },
+  { path: 'mysalary', loadChildren: './mysalary/mysalary.module#MysalaryPageModule' },
+  { path: 'myattendance', loadChildren: './myattendance/myattendance.module#MyattendancePageModule' },
+  { path: 'top10request', loadChildren: './top10request/top10request.module#Top10requestPageModule' },
+  { path: 'taskdetails', loadChildren: './taskdetails/taskdetails.module#TaskdetailsPageModule' },
+  { path: 'choose-request-type', loadChildren: './choose-request-type/choose-request-type.module#ChooseRequestTypePageModule' }
+
+
 ];
 
 @NgModule({
