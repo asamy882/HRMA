@@ -58,7 +58,8 @@ export class AppComponent implements OnInit {
     {
       title: 'app.logout',
       url: '/login',
-      icon: 'log-out'
+      icon: 'log-out',
+      action: this.logout()
     }
   ];
   /*
@@ -98,6 +99,9 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
+  logout() {
+    localStorage.clear();
+  }
   async presentLoadingWithOptions() {
     this.loading = await this.loadingController.create({
       spinner: null,

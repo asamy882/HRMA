@@ -5,6 +5,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {LanguageService} from '../../common/services/language.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 
 @Component({
@@ -20,20 +21,23 @@ export class LoginPage implements OnInit {
 
   constructor(private fb: FormBuilder, private service: AuthService, private router: Router,
               private toastController: ToastController, private languageService: LanguageService,
-              private readonly translate: TranslateService) {
+              private readonly translate: TranslateService, private statusBar: StatusBar) {
     this.authForm = fb.group({
       username: [null, Validators.compose([Validators.required])],
       company: [null, Validators.compose([Validators.required])],
-      password: [null, Validators.compose([Validators.required])],
-      keepMeLogin :[false]
+      password: [null, Validators.compose([Validators.required])]
     });
    }
 
   ngOnInit() {
+    this.statusBar.overlaysWebView(true);
+    this.statusBar.backgroundColorByHexString('#3880ff');
     this.translate.use(this.languageService.currentLang);
-    const keepMeLogin = localStorage.getItem('keepMeLogin');
-    if(keepMeLogin && keepMeLogin === 'true'){
-      this.keepMeLoginFun();
+    const companyId = localStorage.getItem('companyId');
+    const username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
+    if (companyId && username && password) {
+      this.keepMeLoginFun(companyId, username, password);
      // this.navCtrl.setRoot('HomePage');
     } else {
       this.service.getCompanies().subscribe(res => {
@@ -42,12 +46,9 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async keepMeLoginFun() {
+  async keepMeLoginFun(companyId, username, password) {
    // this.spinnerDialog.show();
     // this.spinnerDialog.show(null, 'Please wait...');
-    const companyId = localStorage.getItem('companyId');
-    const username = localStorage.getItem('username');
-    const password = localStorage.getItem('password');
     this.service.login(companyId, username, password).subscribe(() => {
       if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {
         // Get the redirect URL from our auth service
@@ -87,13 +88,10 @@ export class LoginPage implements OnInit {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         const redirect = this.service.redirectUrl ? this.service.redirectUrl : '/home';
-        localStorage.setItem('keepMeLogin', this.authForm.get('keepMeLogin').value);
 
-        if(this.authForm.get('keepMeLogin').value){
-          localStorage.setItem('companyId', companyId);
-          localStorage.setItem('username', username);
-          localStorage.setItem('password', password);
-        }
+        localStorage.setItem('companyId', companyId);
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
 
         // Set our navigation extras object
         // that passes on our global query params and fragment
@@ -109,7 +107,7 @@ export class LoginPage implements OnInit {
         this.displayErrorMsg();
       }
     },
-      (error)=>{
+      (error) => {
       /*  this.translate.get(['app.common.error', 'app.common.errorMessage']).subscribe(res => {
           this.messageService.add({
             severity: res['app.common.error'],

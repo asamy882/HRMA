@@ -17,7 +17,7 @@
       <ion-content class="side-menu">
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" class="side-menu-toggle">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" class="side-menu-item">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" class="side-menu-item" (click)="p.action ? p.action : null">
               <ion-icon class="side-menu-icon" slot="start" [name]="p.icon"></ion-icon>
               <ion-label class="side-menu-label">
                 {{p.title | translate}}
