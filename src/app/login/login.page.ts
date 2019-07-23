@@ -32,6 +32,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.statusBar.overlaysWebView(true);
     this.statusBar.backgroundColorByHexString('#3880ff');
+    this.statusBar.hide();
     this.translate.use(this.languageService.currentLang);
     const companyId = localStorage.getItem('companyId');
     const username = localStorage.getItem('username');
