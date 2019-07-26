@@ -13,52 +13,38 @@
 
 
   <div style="height: 56px;"></div>
-  <div class="personal-header-big">
-    <ion-avatar>
-      <img src="assets/imgs/man.png">
-    </ion-avatar>
+
+  <form [formGroup]="requestForm" novalidate  (submit)="submit()">
+      <ion-grid fixed no-padding>
+        <ion-row>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 py-0">
+                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.type' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                  <ion-select formControlName="VacationTypeId" (ionChange)="getVacationTypeBalance()" 
+                    [placeholder]="'app.vacationRequest.selectType' | translate" class="px-2 rounded bg-form border-1">
+                      <ion-select-option *ngFor="let type of vacationTypeList" value="{{type.ID}}">{{type.Name}}
+                      </ion-select-option>
+                    </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          
+         
+        </ion-row>
+      </ion-grid>  
+    </form>
 
 
-    <div class="personal-name">John Doe</div>
-    <div class="personal-position">Human Resource Lead</div>
-  </div>
   <div class="text-center p-3">
-    <h1 class="text-green text-bold">19,884</h1>
-    <div class="mb-4">May 2019 <span class="text-green">Net Salary</span></div>
-    <ion-grid class="p-0">
-      <ion-row>
-        <ion-col>
-          <div class="bg-4c84d7 rounded">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="4">
-                  <div><img src="assets/imgs/grand-total.png"></div>
-                </ion-col>
-                <ion-col>
-                  <div class="text-white text-left">Grand Total</div>
-                  <div class="text-white text-left text-bold">28,250</div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div class="bg-4c84d7 rounded">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="4">
-                  <div><img src="assets/imgs/total-debit.png"></div>
-                </ion-col>
-                <ion-col>
-                  <div class="text-white text-left">Grand Total</div>
-                  <div class="text-white text-left text-bold">8,365.99</div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <div class="bg-light mb-3 p-2">
+      <h1 class="text-primary2 text-bold">19,884</h1>
+      <div class="">May 2019 <span class="text-primary2">Net Salary</span></div>
+    </div>
+
+   
     <ion-segment>
       <ion-segment-button checked>
         <ion-label>DUES</ion-label>
@@ -72,32 +58,32 @@
   <ion-list class="salary-list">
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Basic Salary : <strong class="text-green">1500.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Basic Salary :</strong> <span class="text-green">1500.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Allowances : <strong class="text-green">23535.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Allowances :</strong> <span class="text-green">23535.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Additions : <strong class="text-green">3215.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Additions :</strong>  <span class="text-green">3215.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Special Allowance : <strong class="text-green">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Special Allowance :</strong>  <span class="text-green">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Overtime : <strong class="text-green">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Overtime :</strong> <span class="text-green">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Work In Dayoff : <strong class="text-green">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Work In Dayoff :</strong> <span class="text-green">0.00</span>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -107,67 +93,67 @@
 
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>SI Staff : <strong class="text-danger">563.65</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">SI Staff :</strong> <span class="text-danger">563.65</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Penalties : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Penalties : </strong><span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Late : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Late :</strong> <span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Absenace : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace :</strong> <span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Absenace Penalties : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace Penalties :</strong> <span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Permissions : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Permissions :</strong> <span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Early Leave : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Early Leave : </strong><span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>No Sign : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">No Sign :</strong> <span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Medical Insurance : <strong class="text-danger">0.00</strong>
-      </ion-label>
-    </ion-item>
-    <ion-item>   
-      <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Unpaid Leaves : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Medical Insurance : </strong><span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Taxes : <strong class="text-danger">5302.34</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Unpaid Leaves : </strong><span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Mobile Invoice : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Taxes :</strong> <span class="text-danger">5302.34</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon>Loan Payment : <strong class="text-danger">0.00</strong>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Mobile Invoice : </strong><span class="text-danger">0.00</span>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Loan Payment :</strong> <span class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
   </ion-list>

@@ -56,14 +56,14 @@
           </ion-col>
           <ion-col size="12">
               <ion-item>
-                <ion-checkbox color="dark" formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false" slot="start"></ion-checkbox>
-                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
+                <ion-checkbox class="m-0 mr-3" color="dark" formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false" slot="start"></ion-checkbox>
+                <ion-label class="font-weight-bold ">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
               </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-list class="task-details-list">
               <ion-item class="border-0">
-                <ion-label class="font-weight-bold ةلا--5">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
+                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
                 <ion-input formControlName="VacationDays" class="px-2 rounded bg-form border-1"></ion-input>

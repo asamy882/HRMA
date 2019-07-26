@@ -61,17 +61,12 @@ ion-content.side-menu{
 
 ion-toolbar{
     --ion-background-color:#2b5492;
+    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
     --ion-color:#ffffff;
     color:#ffffff!important;
     --ion-padding:0;
 }
-.ng-valid, .ng-valid.required, .ng-valid:not(form) {
-    border-bottom: 0px solid #42A948 !important;
-}
 
-.ng-pristine:not(form) {
-    border-bottom: 0px solid #ccc!important
-}
 
 #ion-sel-0-lbl {
     max-width: 40%!important

@@ -11,7 +11,8 @@
 }
 
 body {
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif !important;
+  --ion-font-family: 'OpenSansRegular', sans-serif !important; 
   overflow-x: hidden;
   background: #fff;
   -webkit-font-smoothing: antialiased;
@@ -19,7 +20,7 @@ body {
 }
 
 .btn-brand {
-  font-family: 'OpenSansBold';
+  font-family: 'OpenSansBold'!important;
   height: 45px;
   text-transform: uppercase;
   width: 100%;
@@ -427,3 +428,25 @@ ion-card{
 
 
 .mb--5{margin-bottom: -5px}
+.ml--5{margin-left: -5px}
+.home-menu-button{
+  background: transparent;
+      color: #fff;
+      font-size: 32px;
+      position: absolute;
+      left: 24px;
+      top: 24px;
+  }.home-menu-button2{
+    background: transparent;
+        color: #fff;
+        font-size: 32px;
+        position: absolute;
+        right: 24px;
+        top: 24px;
+    }
+
+.text-primary2 {
+  color: #2b5492!important;
+}
+.w-50{width: 45%!important;
+  display: inline-block;}

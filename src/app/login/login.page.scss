@@ -95,3 +95,11 @@ ion-select {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#059afe', endColorstr='#6be1cb', GradientType=1);
     /* IE6-9 */
   }
+
+  .ng-valid, .ng-valid.required, .ng-valid:not(form) {
+    border-bottom: 0px solid #42A948 !important;
+}
+
+.ng-pristine:not(form) {
+    border-bottom: 0px solid #ccc!important
+}
