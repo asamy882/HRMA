@@ -21,10 +21,9 @@
   padding: 24px;
   background-color: #fff;
   font-size: 16px;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 }
-.personal-menu ion-card img{width: 46px;float: left;}
-.personal-menu ion-card > span{padding-top: 5px;display: block;padding-left: 56px;}
-.personal-menu ion-card span>.first-letter{font-size: 150%}
+.personal-menu ion-card img{width: 46px;float: left;margin-right: 10px;}
+.personal-menu ion-card span{padding-top: 10px;display: block;padding-left: 56px;font-size: 18px;color: #000;}
 .personal-menu ion-card:nth-child(1){margin-top:-32px;}
 

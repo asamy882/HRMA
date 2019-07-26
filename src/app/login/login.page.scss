@@ -73,3 +73,25 @@ ion-select {
     min-width: 100% !important;
     max-width: 100% !important;
 }
+
+.btn-brand {
+    font-family: 'OpenSansBold';
+    height: 45px;
+    text-transform: uppercase;
+    width: 100%;
+    color: #fff;
+    margin: 16px 0 0;
+    display: block;
+    border-radius: 8px!important;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#059afe+0,6be1cb+100 */
+    background: rgb(5, 154, 254);
+    /* Old browsers */
+    background: -moz-linear-gradient(left, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#059afe', endColorstr='#6be1cb', GradientType=1);
+    /* IE6-9 */
+  }

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     {
       title: 'My Informations',
       url: '/myinformations',
-      icon: 'clipboard'
+      icon: 'information-circle'
         },
     //mine end
    /*  {

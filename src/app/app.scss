@@ -28,15 +28,15 @@ body {
   display: block;
   border-radius: 8px!important;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#059afe+0,6be1cb+100 */
-  background: rgb(5, 154, 254);
+  background: #3165b1;
   /* Old browsers */
-  background: -moz-linear-gradient(left, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+  background: -moz-linear-gradient(left, #305997 0%, #3165b1 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+  background: -webkit-linear-gradient(left, #305997 0%, #3165b1 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(5, 154, 254, 1) 0%, rgba(107, 225, 203, 1) 100%);
+  background: linear-gradient(to right, #305997 0%, #3165b1 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#059afe', endColorstr='#6be1cb', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#305997', endColorstr='#3165b1', GradientType=1);
   /* IE6-9 */
 }
 
@@ -81,18 +81,20 @@ body {
 .bg-4c84d7{background: #4c84d7!important}
 .bg-e21b1b{background: #e21b1b!important}
 .bg-e7ebed{background: #e7ebed!important}
+.bg-form{border:1px solid #d9d9d9!important;background-color: #fff!important}
+.ng-pristine.bg-form:not(form) {border-bottom: 1px solid #d9d9d9 !important;}
 .bg-e21b1b .text-primary,.bg-e21b1b .text-dark{color: #ffffff!important}
 .side-menu ion-item {
   background: #6191d7!important
 }
 
 .side-menu-item {
-  background: #6191d7!important;
+  background: #2a4f88!important;
   color: #fff;
 }
 
 .side-menu-icon {
-  background: #6695d9 !important;
+  background: #2a4f88!important;
   color: #fff;
   padding: 16px 8px 16px 24px;
   margin: 0;
@@ -100,7 +102,7 @@ body {
 }
 
 .side-menu-label {
-  background: #6695d9 !important;
+  background: #2a4f88!important;
   height: 56px;
   padding: 18px;
   margin: 0;
@@ -422,3 +424,6 @@ ion-card{
  .width100 {
   width: 100%;
 }
+
+
+.mb--5{margin-bottom: -5px}
