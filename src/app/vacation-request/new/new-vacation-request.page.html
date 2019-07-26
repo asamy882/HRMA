@@ -20,8 +20,8 @@
         <ion-row>
           <ion-col size="12">
             <ion-list class="task-details-list">
-              <ion-item class="border-0 py-0">
-                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.type' | translate }}</ion-label>
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.vacationRequest.type' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
                   <ion-select formControlName="VacationTypeId" (ionChange)="getVacationTypeBalance()" 
@@ -34,8 +34,8 @@
           </ion-col>
           <ion-col size="12">
             <ion-list class="task-details-list">
-              <ion-item class="border-0">
-                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
                   <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" class="px-2 rounded bg-form border-1 width100"
@@ -45,8 +45,8 @@
           </ion-col>
           <ion-col size="12">
             <ion-list class="task-details-list">
-              <ion-item class="border-0">
-                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
                   <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" class="px-2 rounded bg-form border-1 width100"
@@ -57,44 +57,33 @@
           <ion-col size="12">
               <ion-item>
                 <ion-checkbox class="m-0 mr-3" color="dark" formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false" slot="start"></ion-checkbox>
-                <ion-label class="font-weight-bold ">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
+                <ion-label class="font-weight-bold h28">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
               </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.balance' | translate }}</ion-label>
+              </ion-item>
               <ion-item class="border-0">
-                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
+                <ion-input formControlName="Balance" disabled class="px-2 rounded bg-form border-1"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>   
+          <ion-col size="6">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
                 <ion-input formControlName="VacationDays" class="px-2 rounded bg-form border-1"></ion-input>
               </ion-item>
             </ion-list>
-          </ion-col>
-          <ion-col size="6">
+          </ion-col>          
+            <ion-col size="12">
               <ion-list class="task-details-list">
-                <ion-item class="border-0">
-                  <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.balance' | translate }}</ion-label>
-                </ion-item>
-                <ion-item class="border-0">
-                  <ion-input formControlName="Balance" disabled class="px-2 rounded bg-form border-1"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>             
-          <ion-col size="12">
-            <ion-list class="task-details-list">
-              <ion-item class="border-0">
-                <ion-label><span class="font-weight-bold mb--5">{{ 'app.vacationRequest.remarks' | translate }}</span></ion-label>
-              </ion-item>
-              <ion-item class="border-0">
-                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1">
-                </ion-textarea>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-          <ion-col size="12">
-              <ion-list class="task-details-list">
-                <ion-item class="border-0">
-                  <ion-label><span class="font-weight-bold mb--5">{{ 'app.vacationRequest.replacement' | translate }}</span></ion-label>
+                <ion-item class="border-0 h29">
+                  <ion-label><span class="font-weight-bold mb--2">{{ 'app.vacationRequest.replacement' | translate }}</span></ion-label>
                 </ion-item>
                 <ion-item class="border-0">
                     <ionic-selectable class="px-2 rounded bg-form border-1" formControlName="Replacement" itemValueField="EmployeeId" itemTextField="EmployeeName"
@@ -107,7 +96,18 @@
                   </ionic-selectable>
                 </ion-item>
               </ion-list>
-            </ion-col>
+            </ion-col>          
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label><span class="font-weight-bold mb--2">{{ 'app.vacationRequest.remarks' | translate }}</span></ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1">
+                </ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-col>          
           <ion-col size="12">
                 <!-- <ion-button type="submit"  expand="full" [disabled]="requestForm.invalid">Submit</ion-button></ion-col> -->
                 <button  class="btn-brand" type="submit" [disabled]="requestForm.invalid">Save</button>
