@@ -10,6 +10,12 @@
   src: url('../assets/fonts/OpenSansRegular.eot') format('embedded-opentype'), url('../assets/fonts/OpenSansRegular.woff2') format('woff2'), url('../assets/fonts/OpenSansRegular.woff') format('woff'), url('../assets/fonts/OpenSansRegular.ttf') format('truetype'), url('../assets/fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
 }
 
+@font-face {
+  font-family: 'JFFlatregular';
+  src: url('../assets/fonts/JFFlatregular.eot');
+  src: url('../assets/fonts/JFFlatregular.eot') format('embedded-opentype'), url('../assets/fonts/JFFlatregular.woff2') format('woff2'), url('../assets/fonts/JFFlatregular.woff') format('woff'), url('../assets/fonts/JFFlatregular.ttf') format('truetype'), url('../assets/fonts/JFFlatregular.svg#JFFlatregular') format('svg');
+}
+
 body {
   font-family: 'OpenSansRegular', sans-serif !important;
   --ion-font-family: 'OpenSansRegular', sans-serif !important; 
@@ -18,7 +24,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.arabic{font-family: 'JFFlatregular', sans-serif !important;
+  --ion-font-family: 'JFFlatregular', sans-serif !important;}
 .btn-brand {
   font-family: 'OpenSansBold'!important;
   height: 45px;
@@ -28,17 +35,41 @@ body {
   margin: 16px 0 0;
   display: block;
   border-radius: 8px!important;
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#059afe+0,6be1cb+100 */
   background: #3165b1;
-  /* Old browsers */
   background: -moz-linear-gradient(left, #305997 0%, #3165b1 100%);
-  /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #305997 0%, #3165b1 100%);
-  /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #305997 0%, #3165b1 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#305997', endColorstr='#3165b1', GradientType=1);
-  /* IE6-9 */
+}
+
+.btn-danger {
+  font-family: 'OpenSansBold'!important;
+  height: 45px;
+  text-transform: uppercase;
+  width: 100%;
+  color: #fff;
+  margin: 16px 0 0;
+  display: block;
+  border-radius: 8px!important;
+  background: #d62b2b;
+  background: -moz-linear-gradient(left, #d62b2b 0%, #ea1e1e 100%);
+  background: -webkit-linear-gradient(left, #d62b2b 0%, #ea1e1e 100%);
+  background: linear-gradient(to right, #d62b2b 0%, #ea1e1e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d62b2b', endColorstr='#ea1e1e', GradientType=1);
+}
+
+.btn-brand-outline {
+  font-family: 'OpenSansBold'!important;
+  height: 45px;
+  text-transform: uppercase;
+  width: 100%;
+  margin: 16px 0 0;
+  display: block;
+  border-radius: 8px!important;
+  color: #3165b1;
+  border:1px solid #3165b1;
+  background-color: #fff;
+  
 }
 
 .toolbar-background {
@@ -432,19 +463,21 @@ ion-card{
 .ml--5{margin-left: -5px}
 .home-menu-button{
   background: transparent;
-      color: #fff;
-      font-size: 32px;
-      position: absolute;
-      left: 24px;
-      top: 24px;
-  }.home-menu-button2{
-    background: transparent;
-        color: #fff;
-        font-size: 32px;
-        position: absolute;
-        right: 24px;
-        top: 24px;
-    }
+  color: #fff;
+  font-size: 18px;
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 28px;
+}
+.home-menu-button2{
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
 
 .text-primary2 {
   color: #2b5492!important;

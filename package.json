@@ -25,7 +25,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.1.0",
     "@logisticinfotech/ionic-timepicker": "^1.0.2",
-    "@logisticinfotech/ionic4-datepicker": "^1.4.0",
+    "@logisticinfotech/ionic4-datepicker": "^1.4.1",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "cordova-android": "8.0.0",

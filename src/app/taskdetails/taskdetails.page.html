@@ -18,18 +18,18 @@
   <ion-list class="task-details-list">
     <ion-item class="border-0">
       <ion-label class="text-white bg-4c84d7 p-2 rounded">
-          <ion-icon name="contact"></ion-icon> Requester: Ramy Ismaeil
-          <ion-icon name="arrow-dropdown" style="float:right"></ion-icon>
+        <ion-icon name="contact"></ion-icon> Requester: Ramy Ismaeil
+        <ion-icon name="arrow-dropdown" style="float:right"></ion-icon>
       </ion-label>
-      
+
     </ion-item>
     <div class="bg-e7ebed border-0 p-3 rounded">
-      <div> Employee No :<strong>KL104</strong></div> 
-      <div> Section :<strong>Industrial 10th of Ramadan</strong></div> 
-      <div> Grade :<strong>6th</strong></div> 
-      <div> Job Title : <strong>عامل انتاج</strong></div> 
-      <div> Created Date :<strong> 17/02/2019 11:30 pm</strong></div> 
-      </div>
+      <div> Employee No :<strong>KL104</strong></div>
+      <div> Section :<strong>Industrial 10th of Ramadan</strong></div>
+      <div> Grade :<strong>6th</strong></div>
+      <div> Job Title : <strong>عامل انتاج</strong></div>
+      <div> Created Date :<strong> 17/02/2019 11:30 pm</strong></div>
+    </div>
     <ion-item>
       <ion-label>
         Mission Date : <strong>Feb 19, 2019</strong>
@@ -52,7 +52,7 @@
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-checkbox color="dark" checked slot="start"></ion-checkbox>
+      <ion-checkbox class="m-0 mr-3" color="dark" checked slot="start"></ion-checkbox>
       <ion-label>Extend Mission For Next Day</ion-label>
     </ion-item>
 
@@ -85,29 +85,17 @@
       <ion-textarea placeholder="Enter more information here..." class="px-2 rounded bg-e7ebed border-0"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-grid>
+      <ion-grid class="p-0">
         <ion-row>
-          <ion-col size="6">
-            <ion-button expand="block" type="submit" color="success">
-              <ion-icon name="checkmark"></ion-icon>Approve
-            </ion-button>
-          </ion-col>
-          <ion-col size="6">
-            <ion-button expand="full" type="submit" color="danger">
-              <ion-icon name="close"></ion-icon>Reject
-            </ion-button>
+          <ion-col size="12">
+            <button class="btn-brand" type="submit"><ion-icon name="checkmark" class="bs1"></ion-icon>Approve</button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-            <ion-button expand="block" type="submit" color="medium">
-              <ion-icon name="shuffle"></ion-icon>Change
-            </ion-button>
-          </ion-col>
-          <ion-col size="6">
-            <ion-button expand="full" type="submit" color="medium">
-              <ion-icon name="arrow-back"></ion-icon>Back
-            </ion-button>
+            <button class="btn-brand-outline mt-0" type="submit"><ion-icon name="create" class="bs1"></ion-icon>Change</button>
+          </ion-col><ion-col size="6">
+            <button class="btn-danger mt-0" type="submit"><ion-icon name="close" class="bs1"></ion-icon>Reject</button>
           </ion-col>
         </ion-row>
       </ion-grid>

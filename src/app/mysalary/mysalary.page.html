@@ -13,29 +13,29 @@
 
 
   <div style="height: 56px;"></div>
+<div class="px-3">
+  <form novalidate>
+    <ion-grid fixed no-padding>
+      <ion-row>
+        <ion-col size="12">
+          <ion-list class="task-details-list">
+            <ion-item class="border-0 py-0">
+              <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.type' | translate }}</ion-label>
+            </ion-item>
+            <ion-item class="border-0">
+              <ion-select formControlName="VacationTypeId" [placeholder]="'app.vacationRequest.selectType' | translate"
+                class="px-2 rounded bg-form border-1">
 
-  <form  novalidate>
-      <ion-grid fixed no-padding>
-        <ion-row>
-          <ion-col size="12">
-            <ion-list class="task-details-list">
-              <ion-item class="border-0 py-0">
-                <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.type' | translate }}</ion-label>
-              </ion-item>
-              <ion-item class="border-0">
-                  <ion-select formControlName="VacationTypeId"
-                    [placeholder]="'app.vacationRequest.selectType' | translate" class="px-2 rounded bg-form border-1">
-                      
-                    </ion-select>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-          
-         
-        </ion-row>
-      </ion-grid>  
-    </form>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
 
+
+      </ion-row>
+    </ion-grid>
+  </form>
+</div>
 
   <div class="text-center p-3">
     <div class="bg-light mb-3 p-2">
@@ -43,7 +43,7 @@
       <div class="">May 2019 <span class="text-primary2">Net Salary</span></div>
     </div>
 
-   
+
     <ion-segment>
       <ion-segment-button checked>
         <ion-label>DUES</ion-label>
@@ -57,32 +57,38 @@
   <ion-list class="salary-list">
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Basic Salary :</strong> <span class="text-green">1500.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Basic Salary :</strong> <span
+          class="text-green">1500.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Allowances :</strong> <span class="text-green">23535.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Allowances :</strong> <span
+          class="text-green">23535.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Additions :</strong>  <span class="text-green">3215.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Additions :</strong> <span
+          class="text-green">3215.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Special Allowance :</strong>  <span class="text-green">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Special Allowance :</strong> <span
+          class="text-green">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Overtime :</strong> <span class="text-green">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Overtime :</strong> <span
+          class="text-green">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Work In Dayoff :</strong> <span class="text-green">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Work In Dayoff :</strong> <span
+          class="text-green">0.00</span>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -92,67 +98,80 @@
 
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">SI Staff :</strong> <span class="text-danger">563.65</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">SI Staff :</strong> <span
+          class="text-danger">563.65</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Penalties : </strong><span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Penalties : </strong><span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Late :</strong> <span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Late :</strong> <span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace :</strong> <span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace :</strong> <span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace Penalties :</strong> <span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace Penalties :</strong> <span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Permissions :</strong> <span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Permissions :</strong> <span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Early Leave : </strong><span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Early Leave : </strong><span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">No Sign :</strong> <span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">No Sign :</strong> <span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Medical Insurance : </strong><span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Medical Insurance : </strong><span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Unpaid Leaves : </strong><span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Unpaid Leaves : </strong><span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Taxes :</strong> <span class="text-danger">5302.34</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Taxes :</strong> <span
+          class="text-danger">5302.34</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Mobile Invoice : </strong><span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Mobile Invoice : </strong><span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Loan Payment :</strong> <span class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Loan Payment :</strong> <span
+          class="text-danger">0.00</span>
       </ion-label>
     </ion-item>
   </ion-list>
