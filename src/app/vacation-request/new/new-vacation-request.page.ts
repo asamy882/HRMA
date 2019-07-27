@@ -38,30 +38,37 @@ export class NewVacationRequestPage implements OnInit {
   ngOnInit() {
     this.loadVacationTypeList();
     this.datePickerObj = {
-      // inputDate: new Date('12'), // If you want to set month in date-picker
-      // inputDate: new Date('2018'), // If you want to set year in date-picker
-      // inputDate: new Date('2018-12'), // If you want to set year & month in date-picker
-      //inputDate: new Date("2018-12-01"), // If you want to set date in date-picker
-
-      // inputDate: this.mydate,
-      // dateFormat: 'yyyy-MM-DD',
-      dateFormat: "DD-MM-YYYY",
-      closeOnSelect: true,
-      // fromDate: new Date('2018-12-08'), // default null
-      // toDate: new Date('2018-12-28'), // default null
-      // showTodayButton: true, // default true
-      // closeOnSelect: false, // default false
-      // disableWeekDays: [4], // default []
-      // mondayFirst: false, // default false
-      // setLabel: 'S',  // default 'Set'
-      // todayLabel: 'T', // default 'Today'
-      // closeLabel: 'C', // default 'Close'
-      // disabledDates: disabledDates, // default []
-      //titleLabel: "Select a Date", // default null
-      // monthsList: this.monthsList,
-      // weeksList: this.weeksList,
-      momentLocale: "pt-BR",
-      yearInAscending: true
+      inputDate: new Date(), // default new Date()
+      fromDate: new Date(), // default null
+      toDate: null, // default null
+      showTodayButton: true, // default true
+      closeOnSelect: true, // default false
+      disableWeekDays: [4], // default []
+      mondayFirst: true, // default false
+      setLabel: 'Set',  // default 'Set'
+      todayLabel: 'Today', // default 'Today'
+      closeLabel: 'Close', // default 'Close'
+      disabledDates: [], // default []
+      titleLabel: 'Select a Date', // default null
+      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      weeksList: ["S", "M", "T", "W", "T", "F", "S"],
+      dateFormat: 'YYYY-MM-DD', // default DD MMM YYYY 
+      clearButton : false , // default true
+      momentLocale: 'pt-BR', // Default 'en-US'
+      yearInAscending: false, // Default false
+      btnCloseSetInReverse: true, // Default false
+      btnProperties: {
+        expand: 'block', // Default 'block'
+        fill: 'solid', // Default 'solid'
+        size: 'default', // Default 'default'
+        disabled: false, // Default false
+        strong: false, // Default false
+        color: 'primary' // Default ''
+      },
+      arrowNextPrev: {
+        nextArrowSrc: 'assets/imgs/next.png',
+        prevArrowSrc: 'assets/imgs/previous.png'
+      } // This object supports only SVG files.
     };
   }
 
