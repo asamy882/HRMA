@@ -19,6 +19,7 @@ export class NewVacationRequestPage implements OnInit {
   employees: any[];
   replacement: any;
   requestForm: FormGroup;
+  datePickerObj: any = {};
 
   constructor(private service: VacationRequestService, private toastController: ToastController, public formBuilder: FormBuilder
     ) {
@@ -36,6 +37,32 @@ export class NewVacationRequestPage implements OnInit {
 
   ngOnInit() {
     this.loadVacationTypeList();
+    this.datePickerObj = {
+      // inputDate: new Date('12'), // If you want to set month in date-picker
+      // inputDate: new Date('2018'), // If you want to set year in date-picker
+      // inputDate: new Date('2018-12'), // If you want to set year & month in date-picker
+      //inputDate: new Date("2018-12-01"), // If you want to set date in date-picker
+
+      // inputDate: this.mydate,
+      // dateFormat: 'yyyy-MM-DD',
+      dateFormat: "DD-MM-YYYY",
+      closeOnSelect: true,
+      // fromDate: new Date('2018-12-08'), // default null
+      // toDate: new Date('2018-12-28'), // default null
+      // showTodayButton: true, // default true
+      // closeOnSelect: false, // default false
+      // disableWeekDays: [4], // default []
+      // mondayFirst: false, // default false
+      // setLabel: 'S',  // default 'Set'
+      // todayLabel: 'T', // default 'Today'
+      // closeLabel: 'C', // default 'Close'
+      // disabledDates: disabledDates, // default []
+      //titleLabel: "Select a Date", // default null
+      // monthsList: this.monthsList,
+      // weeksList: this.weeksList,
+      momentLocale: "pt-BR",
+      yearInAscending: true
+    };
   }
 
   async loadVacationTypeList() {

@@ -1,15 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="secondary">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      <!-- {{ 'app.vacationRequest.newRequestPageTitle' | translate }} -->
-      New Vacation Request
+      {{ 'app.vacationRequest.newRequestPageTitle' | translate }}
     </ion-title>
+    <ion-buttons slot="end" routerLink='/home'>
+      <ion-icon name="home" size="large"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -38,8 +37,9 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                  <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" class="px-2 rounded bg-form border-1 width100"
-                  (ionChange)="getVacationTypeBalance()" formControlName="FromDate"></ion-datetime>
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj"  class="px-2 rounded bg-form border-1"
+                  (ionChange)="getVacationTypeBalance()" formControlName="FromDate" mode="md" 
+                  [placeholder]="'app.vacationRequest.fromDate' | translate"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -49,8 +49,9 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                  <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DD MMMM YYYY" class="px-2 rounded bg-form border-1 width100"
-                  (ionChange)="getVacationTypeBalance()" formControlName="ToDate"></ion-datetime>
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                  (ionChange)="getVacationTypeBalance()" formControlName="ToDate" mode="md" 
+                  [placeholder]="'app.vacationRequest.toDate' | translate"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>
