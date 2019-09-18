@@ -1,0 +1,16 @@
+<ion-header class="absolute">
+    <ion-toolbar>
+        <ion-buttons slot="start"  *ngIf="renderMenuButton">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-buttons slot="start" (click)="goToBack()" *ngIf="renderBackButton">
+          <img src="assets/imgs/back.png" class="icon-in-toolbar"/>
+      </ion-buttons>
+      <ion-title>
+        {{title}}
+      </ion-title>
+      <ion-buttons slot="end" (click)="goToHome()" *ngIf="renderHomeButton">
+        <img src="assets/imgs/home-icon.png" class="icon-in-toolbar"/>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>

@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MytasksPage } from './mytasks.page';
+import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from '../components/components.module';
+import { MyTasksService } from './mytasks.service';
 
 const routes: Routes = [
   {
@@ -17,8 +20,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
+    ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MytasksPage]
+  declarations: [MytasksPage],
+  providers: [MyTasksService]
 })
 export class MytasksPageModule {}

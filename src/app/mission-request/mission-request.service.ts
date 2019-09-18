@@ -26,5 +26,10 @@ export class MissionRequestService {
     return this.http.get(url);
   }
 
+  getMissionRequest(requestId): Observable<any> {
+    const url = this.baseUrl +
+                `/api/Dashboard/GetMissionRequest?requestId=${requestId}`;
+    return this.http.get(url);
+  }
 
 }

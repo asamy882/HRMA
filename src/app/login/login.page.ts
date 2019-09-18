@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/common/services/auth.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import {LanguageService} from '../../common/services/language.service';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.statusBar.overlaysWebView(true);
     this.statusBar.backgroundColorByHexString('#3880ff');
-    this.statusBar.hide();
+   // this.statusBar.hide();
     this.translate.use(this.languageService.currentLang);
     const companyId = localStorage.getItem('companyId');
     const username = localStorage.getItem('username');
@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
    // this.spinnerDialog.show();
     // this.spinnerDialog.show(null, 'Please wait...');
     this.service.login(companyId, username, password).subscribe(() => {
-      if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {
+      if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {        
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         const redirect = this.service.redirectUrl ? this.service.redirectUrl : '/home';
@@ -61,7 +61,8 @@ export class LoginPage implements OnInit {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
-
+        this.service.loadMyPhoto();
+        this.service.loadMyInfo();
         // Redirect the user
         this.router.navigate([redirect], navigationExtras);
       }
@@ -100,7 +101,8 @@ export class LoginPage implements OnInit {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
-
+        this.service.loadMyPhoto();
+        this.service.loadMyInfo();
         // Redirect the user
         this.router.navigate([redirect], navigationExtras);
       } else {

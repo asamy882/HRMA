@@ -1,31 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      My Information
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header [title]="'app.myInfo.title' | translate"  renderMenuButton=true></app-header>
 <ion-content>
 
 
   <div style="height: 56px;"></div>
   <div class="personal-header-big">
     <ion-avatar>
-      <img src="assets/imgs/man.png">
+      <img src="assets/imgs/man.png" *ngIf="!myPhoto">
+      <img src="{{'data:image/png;base64,' + myPhoto}}" *ngIf="myPhoto">
     </ion-avatar>
 
 
-    <div class="personal-name">John Doe</div>
-    <div class="personal-position">Human Resource Lead</div>
+    <div class="personal-name">{{ myInfo.EmployeeName }}</div>
+    <div class="personal-position">{{ myInfo.JobTitle }}</div>
   </div>
   <div class="personal-menu">
-    <ion-card routerLink='/myprofile'><img class="logo" src="assets/imgs/information-icon.png" /><span>My Profile</span></ion-card>
-    <ion-card routerLink='/mysalary'><img class="logo" src="assets/imgs/salary-icon.png" /><span>Salary</span></ion-card>
-    <ion-card routerLink='/myattendance'><img class="logo" src="assets/imgs/attendance-icon.png" /><span>My Attendance</span></ion-card>
+    <ion-card routerLink='/myprofile'><img class="logo" src="assets/imgs/information-icon.png" /><span>{{ 'app.myInfo.myProfile' | translate }}</span></ion-card>
+    <ion-card routerLink='/mysalary'><img class="logo" src="assets/imgs/salary-icon.png" /><span>{{ 'app.myInfo.salary' | translate }}</span></ion-card>
+    <ion-card routerLink='/myattendance'><img class="logo" src="assets/imgs/attendance-icon.png" /><span>{{ 'app.myInfo.myAttendance' | translate }}</span></ion-card>
   </div>
   
  

@@ -26,5 +26,10 @@ export class OvertimeRequestService {
     return this.http.get(url);
   }
 
+  getOvertimeRequest(requestId): Observable<any> {
+    const url = this.baseUrl +
+                `/api/Dashboard/GetOvertimeRequest?requestId=${requestId}`;
+    return this.http.get(url);
+  }
 
 }

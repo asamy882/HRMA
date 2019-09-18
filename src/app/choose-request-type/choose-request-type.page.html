@@ -1,73 +1,62 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Choose Request Type</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header [title]="'app.chooseRequest.title' | translate" renderMenuButton=true></app-header>
 <ion-content>
-
-
   <div style="height: 56px;"></div>
   <div class="p-1 requests-menu">
     <ion-grid>
       <ion-row>
         <ion-col size="6">
-          <ion-card class="nine-menu" routerLink="/top10request">
+          <ion-card class="nine-menu" routerLink="/vacation-request/search">
             <img class="logo" src="assets/imgs/vacation-icon.png" />
-            <span class="font-weight-bold">Vacation</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.vacationReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu" routerLink="/top10request">
+          <ion-card class="nine-menu" routerLink="/permission-request/search">
             <img class="logo" src="assets/imgs/permission-icon.png" />
-            <span class="font-weight-bold">Permission</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.permissionReq' | translate}}</span>
           </ion-card>
         </ion-col>
 
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/mission-request/search">
             <img class="logo" src="assets/imgs/mission-icon.png" />
-            <span class="font-weight-bold">Mission</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.missionReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/overtime-request/search">
             <img class="logo" src="assets/imgs/overtime-icon.png" />
-            <span class="font-weight-bold">Overtime</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.overtimeReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/change-shift-request/search">
             <img class="logo" src="assets/imgs/changeshift-icon.png" />
-            <span class="font-weight-bold">Change Shift</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.changeShiftReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/change-day-off-request/search">
             <img class="logo" src="assets/imgs/changedayoff-icon.png" />
-            <span class="font-weight-bold">Change Day off</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.changeDayOffReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/work-in-day-off-request/search">
             <img class="logo" src="assets/imgs/workingInDayoff-icon.png" />
-            <span class="font-weight-bold">Working in Day
-              off</span>
+            <span class="font-weight-bold">{{'app.chooseRequest.workingInDayOffReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/loan-request/search">
             <img class="logo" src="assets/imgs/loan-icon.png" />
-            <span class="font-weight-bold">Loan </span>
+            <span class="font-weight-bold">{{'app.chooseRequest.loanReq' | translate}}</span>
           </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card class="nine-menu">
+          <ion-card class="nine-menu" routerLink="/penalty-request/search">
             <img class="logo" src="assets/imgs/penalty-icon.png" />
-            <span class="font-weight-bold">Penalty </span>
+            <span class="font-weight-bold">{{'app.chooseRequest.penaltyReq' | translate}} </span>
           </ion-card>
         </ion-col>
       </ion-row>

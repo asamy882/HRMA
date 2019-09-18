@@ -1,0 +1,29 @@
+  <ion-list> 
+    <ion-item class="border-0" *ngIf="renderComments">
+      <ion-label><strong>{{ 'app.taskAction.comments' | translate }}</strong></ion-label>
+    </ion-item>
+    <ion-item class="border-0" *ngIf="renderComments">
+      <ion-textarea [placeholder]="'app.taskAction.commentsPlaceholder' | translate" class="px-2 rounded bg-form" [(ngModel)]="comments"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-grid class="p-0">
+        <ion-row>
+          <ion-col size="12">
+            <button class="btn-brand" type="button" [disabled]="commentsRequired && !comments" *ngIf="renderApproveButton" (click)="approve()"><ion-icon name="checkmark" class="bs1"></ion-icon>{{ 'app.taskAction.approve' | translate }}</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+              <button class="btn-brand" type="button" *ngIf="renderOkButton" (click)="ok()"><ion-icon name="checkmark" class="bs1"></ion-icon>{{ 'app.taskAction.ok' | translate }}</button>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <button class="btn-brand-outline mt-0" [disabled]="commentsRequired && !comments" type="button" *ngIf="renderChangeButton" (click)="changeRequest()"><ion-icon name="create" class="bs1"></ion-icon>{{ 'app.taskAction.changeRequest' | translate }}</button>
+          </ion-col><ion-col size="6">
+            <button class="btn-danger mt-0" [disabled]="commentsRequired && !comments" type="button" *ngIf="renderRejectButton" (click)="reject()"><ion-icon name="close" class="bs1"></ion-icon>{{ 'app.taskAction.reject' | translate }}</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>

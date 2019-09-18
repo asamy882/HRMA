@@ -1,0 +1,104 @@
+<app-header [title]="title | translate" [backPage]="backPage" renderBackButton=true></app-header>
+<ion-content>
+  <div style="height: 56px;"></div>
+  <div class="p-3">
+    <form [formGroup]="requestForm" novalidate (submit)="submit()">
+      <ion-grid fixed no-padding>
+        <ion-row>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.changeDayOffRequest.oldDayOffDate' | translate }}
+                </ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                  formControlName="OldDayOffDate" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.changeDayOffRequest.oldDayOffDate' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+              <ion-col size="12">
+                <ion-list class="task-details-list">
+                  <ion-item class="border-0 h32">
+                    <ion-label class="font-weight-bold mb-0">{{ 'app.changeDayOffRequest.newDayOffDate' | translate }}
+                    </ion-label>
+                  </ion-item>
+                  <ion-item class="border-0">
+                    <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                      formControlName="NewDayOffDate" mode="md" [disabled]="readonly"
+                      [placeholder]="'app.changeDayOffRequest.newDayOffDate' | translate"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.changeDayOffRequest.shift' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-select formControlName="Shift" name="Shift" [selectedText]="request.Shift?.ShiftName"
+                  (ionChange)="shiftChanged($event.detail.value)"
+                  [placeholder]="'app.changeDayOffRequest.selectShift' | translate"
+                  class="px-2 rounded bg-form border-1" [disabled]="readonly">
+                  <ion-select-option *ngFor="let e of employeeShifts" value="{{e.ShiftId}}">{{e.ShiftName}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.changeDayOffRequest.signIn' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly  class="px-2 rounded bg-form border-1"
+                  [value]="request.Shift?.SignInTime" mode="md" disabled
+                  [placeholder]="'app.changeDayOffRequest.signIn' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.changeDayOffRequest.signOut' | translate }}
+                </ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly class="px-2 rounded bg-form border-1"
+                  [value]="request.Shift?.SignOffTime" mode="md" disabled
+                  [placeholder]="'app.changeDayOffRequest.signOut' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label><span
+                    class="font-weight-bold mb--2">{{ 'app.changeDayOffRequest.remarks' | translate }}</span>
+                </ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1" [disabled]="readonly">
+                </ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <button class="btn-brand" type="submit" *ngIf="renderSaveButton"
+              [disabled]="requestForm.invalid">{{ 'app.common.save' | translate }}</button>
+            <button class="btn-danger" type="button" (click)="navigateToSearch(false)"
+              *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>
+          </ion-col>
+          <ion-col size="12" *ngIf="renderTaskActions">
+            <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()"
+              [renderRejectButton]="renderApproveAndRejectButtons()" [renderOkButton]="renderOkButton()"
+              [renderComments]="request.AllowedComments" [commentsRequired]="request.CommentsMandatory">
+            </app-task-actions>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

@@ -7,4 +7,9 @@ export class VactionRequest {
   Balance: number;
   ExcludeWeekend = true;
   ReplacementId: number;
+  ReplacementName: string;
+  VacationType: any;
+  AllowedActions: number;
+  AllowedComments: boolean;
+  CommentsMandatory: boolean;
 }

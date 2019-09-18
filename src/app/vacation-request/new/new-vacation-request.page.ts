@@ -5,6 +5,11 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 import { Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/common/services/language.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { AppConstants } from 'src/common/AppConstants';
 
 
 @Component({
@@ -17,43 +22,89 @@ export class NewVacationRequestPage implements OnInit {
   portsSubscription: Subscription;
   vacationTypeList: any[];
   employees: any[];
-  replacement: any;
+  replacement: any = {};
   requestForm: FormGroup;
   datePickerObj: any = {};
+  readonly = false;
+  renderSaveButton: boolean;
+  renderCloseButton: boolean;
+  renderTaskActions: boolean;
+  successMsg: string;
+  errorMsg: string;
+  backPage = '/vacation-request/search';
+  title = 'app.vacationRequest.newRequestPageTitle';
 
-  constructor(private service: VacationRequestService, private toastController: ToastController, public formBuilder: FormBuilder
-    ) {
-      this.requestForm = formBuilder.group({
-        FromDate: new FormControl('', [Validators.required]),
-        ToDate: new FormControl('', [Validators.required]),
-        VacationDays: new FormControl('', [Validators.required]),
-        VacationTypeId: new FormControl('', [Validators.required]),
-        Balance: new FormControl('', []),
-        ExcludeWeekend: new FormControl('', []),
-        Replacement: new FormControl('', []),
-        Remarks: new FormControl('', []),
-      });
-    }
+
+  constructor(private service: VacationRequestService, private toastController: ToastController,
+              private route: ActivatedRoute, public formBuilder: FormBuilder, private languageService: LanguageService,
+              private readonly translate: TranslateService, private router: Router
+  ) {
+    this.requestForm = formBuilder.group({
+      FromDate: new FormControl('', [Validators.required]),
+      ToDate: new FormControl('', [Validators.required]),
+      VacationDays: new FormControl('', [Validators.required]),
+      VacationTypeId: new FormControl('', [Validators.required]),
+      Balance: new FormControl('', []),
+      ExcludeWeekend: new FormControl('', []),
+      Remarks: new FormControl('', []),
+    });
+  }
 
   ngOnInit() {
+    this.translate.use(this.languageService.currentLang);
+    this.translate.get(['app.vacationRequest.successMsg', 'app.vacationRequest.errorMsg']).subscribe(res => {
+      this.successMsg = res['app.vacationRequest.successMsg'];
+      this.errorMsg = res['app.vacationRequest.errorMsg'];
+    });
+    this.route.queryParams.subscribe(params => {
+      const req = params['req'];
+      const requestId = params['requestId'];
+      if (req) {
+        this.readonly = true;
+        this.title = 'app.vacationRequest.viewRequestPageTitle';
+        this.request = JSON.parse(req);
+        this.setFormValues(this.request);
+        this.renderCloseButton = true;
+      } else if (requestId) {
+        this.backPage = '/mytasks';
+        this.readonly = true;
+        this.title = 'app.vacationRequest.taskActionRequestPageTitle';
+        this.service.getVacationRequest(requestId).subscribe(res => {
+            if (res.Success) {
+              this.request = res.Item;
+              this.setFormValues(this.request);
+              if (this.request.AllowedActions == AppConstants.INITIATE) {
+                this.title = 'app.vacationRequest.changeRequestPageTitle';
+                this.renderSaveButton = true;
+                this.replacement = {EmployeeId : this.request.ReplacementId, EmployeeName: this.request.ReplacementName};
+                this.readonly = false;
+              } else {
+                this.renderTaskActions = true;
+              }
+            }
+          });
+      } else {
+        this.renderSaveButton = true;
+      }
+    });
     this.loadVacationTypeList();
     this.datePickerObj = {
       inputDate: new Date(), // default new Date()
-      fromDate: new Date(), // default null
-      toDate: null, // default null
+      // fromDate: new Date(), // default null
+      //toDate: null, // default null
       showTodayButton: true, // default true
       closeOnSelect: true, // default false
-      disableWeekDays: [4], // default []
-      mondayFirst: true, // default false
+      //  disableWeekDays: [4], // default []
+      mondayFirst: false, // default false
       setLabel: 'Set',  // default 'Set'
       todayLabel: 'Today', // default 'Today'
       closeLabel: 'Close', // default 'Close'
       disabledDates: [], // default []
-      titleLabel: 'Select a Date', // default null
+      // titleLabel: 'Select a Date', // default null
       monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
       weeksList: ["S", "M", "T", "W", "T", "F", "S"],
       dateFormat: 'YYYY-MM-DD', // default DD MMM YYYY 
-      clearButton : false , // default true
+      clearButton: !this.readonly, // default true
       momentLocale: 'pt-BR', // Default 'en-US'
       yearInAscending: false, // Default false
       btnCloseSetInReverse: true, // Default false
@@ -63,13 +114,24 @@ export class NewVacationRequestPage implements OnInit {
         size: 'default', // Default 'default'
         disabled: false, // Default false
         strong: false, // Default false
-        color: 'primary' // Default ''
+        color: '' // Default ''
       },
       arrowNextPrev: {
-        nextArrowSrc: 'assets/imgs/next.png',
-        prevArrowSrc: 'assets/imgs/previous.png'
+        //  nextArrowSrc: 'assets/imgs/next.png',
+        // prevArrowSrc: 'assets/imgs/previous.png'
       } // This object supports only SVG files.
     };
+  }
+
+  setFormValues(req: VactionRequest) {
+    this.requestForm.controls['Balance'].setValue(req.Balance);
+    this.requestForm.controls['ExcludeWeekend'].setValue(req.ExcludeWeekend);
+    this.requestForm.controls['FromDate'].setValue(req.FromDate);
+    this.requestForm.controls['Remarks'].setValue(req.Remarks);
+    this.requestForm.controls['ToDate'].setValue(req.ToDate);
+    this.requestForm.controls['VacationDays'].setValue(req.VacationDays);
+    this.requestForm.controls['VacationTypeId'].setValue(req.VacationTypeId);
+    //this.requestForm.controls['Replacement'].setValue(req.Balance);
   }
 
   async loadVacationTypeList() {
@@ -82,29 +144,32 @@ export class NewVacationRequestPage implements OnInit {
   }
 
   getVacationTypeBalance() {
-    this.request = {... this.requestForm.value};
-    console.log(this.request);
-    console.log(this.requestForm.value);
-    if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
-      this.service.getVacationTypeBalance(this.request.VacationTypeId, this.formatDate(this.request.FromDate),
-        this.formatDate(this.request.ToDate)).subscribe(res => {
-        if (res.Success) {
-          this.request.Balance = res.Item;
-          this.calculateVacationDays();
-        }
-      });
+    if (!this.readonly) {
+      this.request = { ... this.requestForm.value };
+      if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
+        this.service.getVacationTypeBalance(this.request.VacationTypeId, this.formatDate(this.request.FromDate),
+          this.formatDate(this.request.ToDate)).subscribe(res => {
+            if (res.Success) {
+              this.requestForm.controls['Balance'].setValue(res.Item);
+              this.calculateVacationDays();
+            }
+          });
+      }
     }
   }
 
   calculateVacationDays() {
-    if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
-      this.request.FromDate = this.formatDate(this.request.FromDate);
-      this.request.ToDate = this.formatDate(this.request.ToDate);
-      this.service.calculateVacationDays(this.request).subscribe(res => {
-        if (res.Success) {
-          this.request.VacationDays = res.Item.VacationDays;
-        }
-      });
+    if (!this.readonly) {
+      this.request = { ... this.requestForm.value };
+      if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
+        this.request.FromDate = this.formatDate(this.request.FromDate);
+        this.request.ToDate = this.formatDate(this.request.ToDate);
+        this.service.calculateVacationDays(this.request).subscribe(res => {
+          if (res.Success) {
+            this.requestForm.controls['VacationDays'].setValue(res.Item.VacationDays);
+          }
+        });
+    }
     }
   }
 
@@ -145,9 +210,9 @@ export class NewVacationRequestPage implements OnInit {
 
       // We get all ports and then filter them at the front-end,
       // however, filtering can be parameterized and moved to a back-end.
-     // event.component.items = this.filterEmployee(ports, text);
+      // event.component.items = this.filterEmployee(ports, text);
 
-     event.component.items = res.Items;
+      event.component.items = res.Items;
       event.component.endSearch();
     });
   }
@@ -155,7 +220,7 @@ export class NewVacationRequestPage implements OnInit {
   formatDate(date) {
     const d = new Date(date),
       year = d.getFullYear();
-    let  month = '' + (d.getMonth() + 1),
+    let month = '' + (d.getMonth() + 1),
       day = '' + d.getDate();
 
     if (month.length < 2) {
@@ -173,18 +238,43 @@ export class NewVacationRequestPage implements OnInit {
     }
     this.service.addVacationRequest(this.request).subscribe(res => {
       if (res.Success) {
-        this.displayErrorMsg('The request added Successfully', 'success');
+        this.displayMsg(this.successMsg, 'success');
+        this.navigateToSearch(true);
+      } else {
+        this.displayMsg(res.Message, 'error');
       }
     });
 
   }
 
-  async displayErrorMsg(msg, cal) {
+  navigateToSearch(reload) {
+    const navigationExtras: NavigationExtras = {
+      queryParamsHandling: 'preserve',
+      preserveFragment: true,
+      queryParams: null
+    };
+    this.router.navigate([this.backPage], navigationExtras).then(() => {
+      if (reload) {
+        window.location.reload();
+      }
+    });
+  }
+
+  async displayMsg(msg, cal) {
     const toast = await this.toastController.create({
       message: msg,
       cssClass: cal,
       duration: 5000
     });
     toast.present();
+  }
+
+  renderApproveAndRejectButtons() {
+    return this.renderTaskActions && (this.request.AllowedActions == AppConstants.APPROVE_REJECT ||
+      this.request.AllowedActions == AppConstants.APPROVE_REJECT_CHANGE_REQUEST);
+  }
+
+  renderOkButton() {
+    return this.renderTaskActions && this.request.AllowedActions == AppConstants.REVIEW;
   }
 }

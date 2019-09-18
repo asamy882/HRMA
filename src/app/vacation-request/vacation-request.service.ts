@@ -67,5 +67,12 @@ export class VacationRequestService {
     return this.http.get(url);
   }
 
+  getVacationRequest(requestId): Observable<any> {
+    const url = this.baseUrl +
+                `/api/Dashboard/GetVacationRequest?requestId=${requestId}`;
+    return this.http.get(url);
+  }
+
+
 
 }

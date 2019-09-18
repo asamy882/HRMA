@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SearchVacationRequestsPage } from './search/search-vacation-requests.page';
 
 import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
     IonicSelectableModule,
     VactionRequestRoutingModule,
     Ionic4DatepickerModule,
+    ComponentsModule,
     ReactiveFormsModule
   ],
   declarations: [NewVacationRequestPage, SearchVacationRequestsPage],

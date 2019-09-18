@@ -1,36 +1,41 @@
-<ion-header>
-    <ion-toolbar>
-    <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-buttons slot="secondary">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>
-          {{ 'app.overtimeRequest.myRequestsTitle' | translate }}
-      </ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-header [title]="'app.overtimeRequest.myRequestsTitle' | translate" backPage="/choose-request-type"
+  renderBackButton=true></app-header>
 
 <ion-content>
-    <ion-card>
-        <ion-card-content *ngFor="let req of requests">
-          <ion-item>            
-              {{ 'app.overtimeRequest.requestDate' | translate }} : <span>{{req.OvertimeDate}}</span>
-          </ion-item>
-          <ion-item>
-              {{ 'app.overtimeRequest.fromTime' | translate }} : <span>{{req.FromTime}}</span>
-          </ion-item>      
-          <ion-item>
-              {{ 'app.overtimeRequest.toTime' | translate }} : <span>{{req.ToTime}}</span>
-          </ion-item> 
-          <ion-item>
-              {{ 'app.overtimeRequest.extendNextDay' | translate }} : <span>{{req.ExtendNextDay}}</span>
-          </ion-item>        
-          <ion-item>
-            {{ 'app.overtimeRequest.remarks' | translate }} : <span>{{req.Remarks}}</span>
-        </ion-item>
-        </ion-card-content>
-    </ion-card>
-
-</ion-content>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button routerLink='/overtime-request/new'>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <div style="height: 56px;"></div>
+    <div class="p-1 pb-5">
+      <ion-card>
+        <ion-card class="p-3 m-3 text-dark " *ngFor="let req of requests">
+          <div class="text-bold text-dark pb-2">
+            <ion-icon name="person"></ion-icon>{{req.PendingOn}}
+            <ion-chip [color]="getColorClass(req.Status.ID)">
+              <ion-label>{{req.Status.Name}}</ion-label>
+            </ion-chip>
+          </div>
+          <div class="border-top-dotted pt-2">
+            <span class="arrow-point-to-right">
+              <ion-buttons (click)="goToDetails(req)">
+                <img src="assets/imgs/arrow-point-to-right.png" />
+              </ion-buttons></span>
+            <div>
+              <ion-icon name="calendar"></ion-icon><strong>{{ 'app.overtimeRequest.requestDate' | translate }}:</strong>
+              {{req.OvertimeDate}}
+            </div>
+            <div>
+              <ion-icon name="time"></ion-icon><strong>{{ 'app.overtimeRequest.fromTime' | translate }}:</strong>
+              {{req.FromTime}}
+            </div>
+            <div>
+              <ion-icon name="time"></ion-icon><strong>{{ 'app.overtimeRequest.toTime' | translate }}:</strong>
+              {{req.ToTime}}
+            </div>
+          </div>
+        </ion-card>
+      </ion-card>
+    </div>
+  </ion-content>

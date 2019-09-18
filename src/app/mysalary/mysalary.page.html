@@ -1,13 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      My Salary
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'app.mySalary.title' | translate" backPage="/myinformations" renderBackButton=true></app-header>
 
 <ion-content>
 
@@ -20,158 +11,177 @@
         <ion-col size="12">
           <ion-list class="task-details-list">
             <ion-item class="border-0 py-0">
-              <ion-label class="font-weight-bold mb--5">{{ 'app.vacationRequest.type' | translate }}</ion-label>
+              <ion-label class="font-weight-bold mb--5">{{ 'app.mySalary.period' | translate }}</ion-label>
             </ion-item>
             <ion-item class="border-0">
-              <ion-select formControlName="VacationTypeId" [placeholder]="'app.vacationRequest.selectType' | translate"
+              <ion-select [placeholder]="'app.mySalary.selectPeriod' | translate" (ionChange)="getMonthlyPayroll($event.detail.value)"
                 class="px-2 rounded bg-form border-1">
-
+                <ion-select-option *ngFor="let p of periods" value="{{p.ID}}">{{ p.Name }}
+                </ion-select-option>
               </ion-select>
             </ion-item>
           </ion-list>
         </ion-col>
-
-
       </ion-row>
     </ion-grid>
   </form>
 </div>
 
-  <div class="text-center p-3">
+  <div class="text-center p-3" *ngIf="tabName">
     <div class="bg-light mb-3 p-2">
-      <h1 class="text-primary2 text-bold">19,884</h1>
-      <div class="">May 2019 <span class="text-primary2">Net Salary</span></div>
+      <h1 class="text-primary2 text-bold">{{ monthlyPayroll.NetTotal }}</h1>
+      <div class=""><span class="text-primary2">{{ 'app.mySalary.netTotal' | translate }}</span></div>
     </div>
 
 
     <ion-segment>
-      <ion-segment-button checked>
-        <ion-label>DUES</ion-label>
+      <ion-segment-button [checked]="tabName == 'dues'" (click)="switchTab('dues')">
+        <ion-label>{{ 'app.mySalary.dues' | translate }}</ion-label>
       </ion-segment-button>
-      <ion-segment-button>
-        <ion-label>DEDECTIONS</ion-label>
+      <ion-segment-button [checked]="tabName == 'dedections'" (click)="switchTab('dedections')">
+        <ion-label>{{ 'app.mySalary.dedections' | translate }}</ion-label>
       </ion-segment-button>
-
     </ion-segment>
   </div>
-  <ion-list class="salary-list">
+  <ion-list class="salary-list" *ngIf="tabName == 'dues'">
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Basic Salary :</strong> <span
-          class="text-green">1500.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-65">{{ 'app.mySalary.basicSalary' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.BasicSalary }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Allowances :</strong> <span
-          class="text-green">23535.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-65">{{ 'app.mySalary.specialAllowance' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.SpecialAllowance }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Additions :</strong> <span
-          class="text-green">3215.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-65">{{ 'app.mySalary.allowances' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.Allowances }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Special Allowance :</strong> <span
-          class="text-green">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-65">{{ 'app.mySalary.additions' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.Additions }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Overtime :</strong> <span
-          class="text-green">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.overtimeAmount' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.OvertimeAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-50">Work In Dayoff :</strong> <span
-          class="text-green">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-65">{{ 'app.mySalary.workInDayoffAmount' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.WorkInDayoffAmount }}</span>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="list-box" size="small"></ion-icon> <strong class="w-65">{{ 'app.mySalary.productionIncentive' | translate }} :</strong> <span
+          class="text-green">{{ monthlyPayroll.ProductionIncentive }}</span>
       </ion-label>
     </ion-item>
   </ion-list>
-  <ion-list class="salary-list">
-
-
-
+  <ion-list class="salary-list" *ngIf="tabName == 'dedections'">
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">SI Staff :</strong> <span
-          class="text-danger">563.65</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.siCompany' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.SICompany }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Penalties : </strong><span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.siStaff' | translate }} : </strong><span
+          class="text-danger">{{ monthlyPayroll.SIStaff }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Late :</strong> <span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.deductions' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.Deductions }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace :</strong> <span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.lateAmount' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.LateAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Absenace Penalties :</strong> <span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.mobileInvoice' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.MobileInvoice }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Permissions :</strong> <span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.penaltyRequests' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.PenaltyRequests }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Early Leave : </strong><span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.noSignAmount' | translate }} : </strong><span
+          class="text-danger">{{ monthlyPayroll.NoSignAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">No Sign :</strong> <span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.absenaceAmount' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.AbsenaceAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Medical Insurance : </strong><span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.absenaceAmountPenalty' | translate }} : </strong><span
+          class="text-danger">{{ monthlyPayroll.AbsenaceAmountPenalty }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Unpaid Leaves : </strong><span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.medicalInsuranceAmount' | translate }} : </strong><span
+          class="text-danger">{{ monthlyPayroll.MedicalInsuranceAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Taxes :</strong> <span
-          class="text-danger">5302.34</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.loanRequestAmount' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.LoanRequestAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Mobile Invoice : </strong><span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.earlyLeaveAmount' | translate }} : </strong><span
+          class="text-danger">{{ monthlyPayroll.EarlyLeaveAmount }}</span>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
-        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-50">Loan Payment :</strong> <span
-          class="text-danger">0.00</span>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.leaveWithoutSalary' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.LeaveWithoutSalary }}</span>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.permissionsAmount' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.PermissionsAmount }}</span>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.notHiredDeduction' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.NotHiredDeduction }}</span>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="list-box" size="small"></ion-icon><strong class="w-65">{{ 'app.mySalary.taxes' | translate }} :</strong> <span
+          class="text-danger">{{ monthlyPayroll.Taxes }}</span>
       </ion-label>
     </ion-item>
   </ion-list>

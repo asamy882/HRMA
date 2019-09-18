@@ -1,16 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      {{ 'app.vacationRequest.newRequestPageTitle' | translate }}
-    </ion-title>
-    <ion-buttons slot="end" routerLink='/home'>
-      <img src="assets/imgs/home-icon.png" class="icon-in-toolbar"/>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="title | translate" [backPage]="backPage" renderBackButton=true></app-header>
 <ion-content>
     <div style="height: 56px;"></div>
     <div class="p-3">
@@ -23,7 +11,7 @@
                 <ion-label class="font-weight-bold mb-0">{{ 'app.vacationRequest.type' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                  <ion-select formControlName="VacationTypeId" (ionChange)="getVacationTypeBalance()" 
+                  <ion-select formControlName="VacationTypeId" [disabled]="readonly" name="VacationTypeId"  [selectedText]="request.VacationType?.Name" (ionChange)="getVacationTypeBalance()"
                     [placeholder]="'app.vacationRequest.selectType' | translate" class="px-2 rounded bg-form border-1">
                       <ion-select-option *ngFor="let type of vacationTypeList" value="{{type.ID}}">{{type.Name}}
                       </ion-select-option>
@@ -37,7 +25,7 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.fromDate' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input readonly [liIonic4Datepicker]="datePickerObj"  class="px-2 rounded bg-form border-1"
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj"  class="px-2 rounded bg-form border-1" [disabled]="readonly"
                   (ionChange)="getVacationTypeBalance()" formControlName="FromDate" mode="md" 
                   [placeholder]="'app.vacationRequest.fromDate' | translate"></ion-input>
               </ion-item>
@@ -49,7 +37,7 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.toDate' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1" [disabled]="readonly"
                   (ionChange)="getVacationTypeBalance()" formControlName="ToDate" mode="md" 
                   [placeholder]="'app.vacationRequest.toDate' | translate"></ion-input>
               </ion-item>
@@ -57,11 +45,11 @@
           </ion-col>
           <ion-col size="12">
               <ion-item>
-                <ion-checkbox class="m-0 mr-3" color="dark" formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="false" slot="start"></ion-checkbox>
+                <ion-checkbox  class="m-0 mr-3" [disabled]="readonly" color="dark" formControlName="ExcludeWeekend" (ionChange)="calculateVacationDays()" [checked]="request.ExcludeWeekend" slot="start"></ion-checkbox>
                 <ion-label class="font-weight-bold h28">{{ 'app.vacationRequest.excludeWeekend' | translate }}</ion-label>
               </ion-item>
           </ion-col>
-          <ion-col size="6">
+          <ion-col size="6" *ngIf="!readonly">
             <ion-list class="task-details-list">
               <ion-item class="border-0 h29">
                 <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.balance' | translate }}</ion-label>
@@ -77,7 +65,7 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.vacationDays' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input formControlName="VacationDays" class="px-2 rounded bg-form border-1"></ion-input>
+                <ion-input formControlName="VacationDays" [disabled]="readonly" class="px-2 rounded bg-form border-1"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>          
@@ -87,14 +75,15 @@
                   <ion-label><span class="font-weight-bold mb--2">{{ 'app.vacationRequest.replacement' | translate }}</span></ion-label>
                 </ion-item>
                 <ion-item class="border-0">
-                    <ionic-selectable class="px-2 rounded bg-form border-1" formControlName="Replacement" itemValueField="EmployeeId" itemTextField="EmployeeName"
-                    [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)"
+                    <ionic-selectable *ngIf="!readonly" item-content class="px-2 rounded bg-form border-1"  itemValueField="EmployeeId" itemTextField="EmployeeName"
+                    [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)" [canClear]="true" [(ngModel)]="replacement"
                     [placeholder]="'app.vacationRequest.selectReplacement' | translate">
                     <ng-template ionicSelectableItemTemplate let-replacement="item"
                       let-isReplacementtSelected="isItemSelected">
                       {{replacement.EmployeeName}} ({{replacement.Department}})
                     </ng-template>
                   </ionic-selectable>
+                  <ion-input [disabled]="readonly" class="px-2 rounded bg-form border-1" [value]="request.ReplacementName" *ngIf="readonly"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>          
@@ -104,15 +93,20 @@
                 <ion-label><span class="font-weight-bold mb--2">{{ 'app.vacationRequest.remarks' | translate }}</span></ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1">
+                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1" [disabled]="readonly">
                 </ion-textarea>
               </ion-item>
             </ion-list>
           </ion-col>          
           <ion-col size="12">
-                <!-- <ion-button type="submit"  expand="full" [disabled]="requestForm.invalid">Submit</ion-button></ion-col> -->
-                <button  class="btn-brand" type="submit" [disabled]="requestForm.invalid">Save</button>
+                <button  class="btn-brand" type="submit" *ngIf="renderSaveButton" [disabled]="requestForm.invalid">{{ 'app.common.save' | translate }}</button>
+                <button  class="btn-danger"  type="button" (click)="navigateToSearch(false)" *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>
           </ion-col>
+          <ion-col size="12" *ngIf="renderTaskActions">
+              <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()" [renderRejectButton]="renderApproveAndRejectButtons()"
+                [renderOkButton]="renderOkButton()" [renderComments]="request.AllowedComments" [commentsRequired]="request.CommentsMandatory">
+              </app-task-actions>
+        </ion-col>
         </ion-row>
       </ion-grid>  
     </form>

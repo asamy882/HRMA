@@ -1,13 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Attendance Sheet
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'app.myAttendance.title' | translate" backPage="/myinformations" renderBackButton=true></app-header>
 
 <ion-content>
 
@@ -15,474 +6,69 @@
   <div style="height: 56px;"></div>
 
   <div class="p-3">
+      <form [formGroup]="requestForm" novalidate  (submit)="getAttendanceSheet()">
+          <ion-grid fixed no-padding>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-list class="task-details-list">
+                      <ion-item class="border-0 h29">
+                        <ion-label class="font-weight-bold mb--2">{{ 'app.myAttendance.fromDate' | translate }}</ion-label>
+                      </ion-item>
+                      <ion-item class="border-0">
+                        <ion-input readonly [liIonic4Datepicker]="datePickerObj"  class="px-2 rounded bg-form border-1" 
+                           formControlName="FromDate" mode="md" 
+                          [placeholder]="'app.myAttendance.fromDate' | translate"></ion-input>
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-list class="task-details-list">
+                      <ion-item class="border-0 h29">
+                        <ion-label class="font-weight-bold mb--2">{{ 'app.myAttendance.toDate' | translate }}</ion-label>
+                      </ion-item>
+                      <ion-item class="border-0">
+                        <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                          formControlName="ToDate" mode="md" 
+                          [placeholder]="'app.myAttendance.toDate' | translate"></ion-input>
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+                  <ion-col size="12">
+                      <button  class="btn-brand" type="submit" [disabled]="requestForm.invalid">{{ 'app.myAttendance.buttonLabel' | translate }}</button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </form>
     <ion-grid class="p-0" style="font-size:90%">
       <ion-row class="border-bottom">
         <ion-col size="2">
-          <span class="text-primary">Date</span>
+          <span class="text-primary">{{ 'app.myAttendance.date' | translate }}</span>
         </ion-col>
         <ion-col size="4">
-          <span class="text-primary">SignIn</span>
+          <span class="text-primary">{{ 'app.myAttendance.signIn' | translate }}</span>
         </ion-col>
         <ion-col size="4">
-          <span class="text-primary">SignOut</span>
+          <span class="text-primary">{{ 'app.myAttendance.signOut' | translate }}</span>
         </ion-col>
         <ion-col size="2">
-          <span class="text-primary">Lack</span>
+          <span class="text-primary">{{ 'app.myAttendance.dayStatus' | translate }}</span>
         </ion-col>
       </ion-row>
-      <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">1/7</span>
+      <ion-row class="border-bottom" *ngFor="let item of attendanceSheet">
+          <ion-col size="3">
+            <span class="">{{item.DayDate}}</span>
           </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
+          <ion-col size="3">
+            <span class="">{{item.SignIn}}</span>
           </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
+          <ion-col size="3">
+            <span class="">{{item.SignOut}}</span>
           </ion-col>
-          <ion-col size="2">
-            <span class="">-</span>
+          <ion-col size="3">
+            <span class="">{{item.DayStatus}}</span>
           </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">2/7</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="2">
-            <span class=""><span class="text-danger">65min</span></span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">3/7</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="2">
-            <span class="">-</span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">4/7</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="2">
-            <span class="">-</span>
-          </ion-col>
-        </ion-row>
-        
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">5/7</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="2">
-            <span class="">-</span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">6/7</span>
-          </ion-col>
-          
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-          </ion-col>
-          <ion-col size="2">
-            <span class=""><span class="text-danger">65min</span></span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">7/7</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="2">
-            <span class="">-</span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom">
-          <ion-col size="2">
-            <span class="">8/7</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-          </ion-col>
-          <ion-col size="4">
-            <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-          </ion-col>
-          <ion-col size="2">
-            <span class="">-</span>
-          </ion-col>
-        </ion-row><ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">1/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class="">-</span>
-            </ion-col>
-          </ion-row>
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">2/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class=""><span class="text-danger">65min</span></span>
-            </ion-col>
-          </ion-row>
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">3/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class="">-</span>
-            </ion-col>
-          </ion-row>
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">4/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class="">-</span>
-            </ion-col>
-          </ion-row>
-          
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">5/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class="">-</span>
-            </ion-col>
-          </ion-row>
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">6/7</span>
-            </ion-col>
-            
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-            </ion-col>
-            <ion-col size="2">
-              <span class=""><span class="text-danger">65min</span></span>
-            </ion-col>
-          </ion-row>
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">7/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class="">-</span>
-            </ion-col>
-          </ion-row>
-          <ion-row class="border-bottom">
-            <ion-col size="2">
-              <span class="">8/7</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-            </ion-col>
-            <ion-col size="4">
-              <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-            </ion-col>
-            <ion-col size="2">
-              <span class="">-</span>
-            </ion-col>
-          </ion-row><ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">1/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class="">-</span>
-              </ion-col>
-            </ion-row>
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">2/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class=""><span class="text-danger">65min</span></span>
-              </ion-col>
-            </ion-row>
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">3/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class="">-</span>
-              </ion-col>
-            </ion-row>
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">4/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class="">-</span>
-              </ion-col>
-            </ion-row>
-            
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">5/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class="">-</span>
-              </ion-col>
-            </ion-row>
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">6/7</span>
-              </ion-col>
-              
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-              </ion-col>
-              <ion-col size="2">
-                <span class=""><span class="text-danger">65min</span></span>
-              </ion-col>
-            </ion-row>
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">7/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class="">-</span>
-              </ion-col>
-            </ion-row>
-            <ion-row class="border-bottom">
-              <ion-col size="2">
-                <span class="">8/7</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-              </ion-col>
-              <ion-col size="4">
-                <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-              </ion-col>
-              <ion-col size="2">
-                <span class="">-</span>
-              </ion-col>
-            </ion-row><ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">1/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class="">-</span>
-                </ion-col>
-              </ion-row>
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">2/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class=""><span class="text-danger">65min</span></span>
-                </ion-col>
-              </ion-row>
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">3/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class="">-</span>
-                </ion-col>
-              </ion-row>
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">4/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class="">-</span>
-                </ion-col>
-              </ion-row>
-              
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">5/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class="">-</span>
-                </ion-col>
-              </ion-row>
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">6/7</span>
-                </ion-col>
-                
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-danger"></ion-icon>--><span class="text-danger">10:32 AM</span></span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class=""><span class="text-danger">65min</span></span>
-                </ion-col>
-              </ion-row>
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">7/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class="">-</span>
-                </ion-col>
-              </ion-row>
-              <ion-row class="border-bottom">
-                <ion-col size="2">
-                  <span class="">8/7</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->08:00 AM</span>
-                </ion-col>
-                <ion-col size="4">
-                  <span class=""><!--<ion-icon name="time" class="text-green"></ion-icon>-->04:00 PM</span>
-                </ion-col>
-                <ion-col size="2">
-                  <span class="">-</span>
-                </ion-col>
-              </ion-row>
+      </ion-row>      
+           
     </ion-grid>
 
   </div>

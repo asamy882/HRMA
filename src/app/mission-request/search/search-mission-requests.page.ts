@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MissionRequestService } from '../mission-request.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-vaction-requests',
@@ -10,7 +11,7 @@ export class SearchMissionRequestsPage implements OnInit {
 
   requests: any[] = [];
 
-  constructor(private service: MissionRequestService) { }
+  constructor(private service: MissionRequestService, private router: Router) { }
 
   ngOnInit() {
     this.service.getMyMissionRequests().subscribe(res => {
@@ -18,6 +19,28 @@ export class SearchMissionRequestsPage implements OnInit {
         this.requests = res.Items;
       }
     });
+  }
+
+  getColorClass(statusId) {
+    if (statusId === 1) {
+      return 'primary float-right cust-chip';
+    } else if (statusId === 2) {
+      return 'success float-right cust-chip';
+    } else if (statusId === 3) {
+      return 'danger float-right cust-chip';
+    } else {
+      return 'dark float-right cust-chip';
+    }
+  }
+
+  goToDetails(req) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {req: JSON.stringify(req)},
+      preserveFragment: true
+    };
+
+    // Redirect the user
+    this.router.navigate(['/mission-request/new'], navigationExtras);
   }
 
 }

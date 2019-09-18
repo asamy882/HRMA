@@ -482,5 +482,12 @@ ion-card{
 .text-primary2 {
   color: #2b5492!important;
 }
-.w-50{width: 45%!important;
-  display: inline-block;}
+.w-65{width: 67%!important;
+  display: inline-block;
+}
+
+
+ion-content.side-menu{
+  --padding-top: 0px !important;
+  --ion-background-color:#2a4f88;
+}

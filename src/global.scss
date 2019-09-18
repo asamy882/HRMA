@@ -139,3 +139,8 @@ li-ionic4-datepicker {
         border-bottom: unset !important;
     }
 }
+
+ion-header{position: relative !important;}
+.absolute{position: absolute !important;}
+
+ion-toolbar .toolbar-title{font-size: 16 !important;}

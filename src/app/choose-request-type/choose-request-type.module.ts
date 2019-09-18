@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChooseRequestTypePage } from './choose-request-type.page';
 
+import { ComponentsModule } from '../components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +22,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
+    TranslateModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ChooseRequestTypePage]

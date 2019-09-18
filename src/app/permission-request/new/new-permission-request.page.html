@@ -1,0 +1,82 @@
+<app-header [title]="title | translate" [backPage]="backPage" renderBackButton=true></app-header>
+<ion-content>
+    <div style="height: 56px;"></div>
+    <div class="p-3">
+    <form [formGroup]="requestForm" novalidate  (submit)="submit()">
+      <ion-grid fixed no-padding>
+        <ion-row>
+            <ion-col size="12">
+                <ion-list class="task-details-list">
+                  <ion-item class="border-0 h32">
+                    <ion-label class="font-weight-bold mb-0">{{ 'app.permissionRequest.type' | translate }}</ion-label>
+                  </ion-item>
+                  <ion-item class="border-0">
+                      <ion-select formControlName="PermissionTypeId" name="PermissionTypeId"  [selectedText]="request.PermissionType?.Name" 
+                        [placeholder]="'app.permissionRequest.selectType' | translate" class="px-2 rounded bg-form border-1" [disabled]="readonly">
+                          <ion-select-option *ngFor="let type of permissionTypeList" value="{{type.ID}}">{{type.Name}}
+                          </ion-select-option>
+                        </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.permissionRequest.requestDate' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj"  class="px-2 rounded bg-form border-1"
+                   formControlName="PermissionDate" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.permissionRequest.requestDate' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.permissionRequest.fromTime' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonicTimepicker]="timePickerObj"  class="px-2 rounded bg-form border-1"
+                   formControlName="FromTime" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.permissionRequest.fromTime' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.permissionRequest.toTime' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonicTimepicker]="timePickerObj"  class="px-2 rounded bg-form border-1"
+                   formControlName="ToTime" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.permissionRequest.toTime' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>           
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label><span class="font-weight-bold mb--2">{{ 'app.permissionRequest.remarks' | translate }}</span></ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1" [disabled]="readonly">
+                </ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-col>          
+          <ion-col size="12">
+            <button  class="btn-brand" type="submit" *ngIf="renderSaveButton" [disabled]="requestForm.invalid">{{ 'app.common.save' | translate }}</button>
+            <button  class="btn-danger"  type="button" (click)="navigateToSearch(false)" *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>
+          </ion-col>
+          <ion-col size="12" *ngIf="renderTaskActions">
+              <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()" [renderRejectButton]="renderApproveAndRejectButtons()"
+                [renderOkButton]="renderOkButton()" [renderComments]="request.AllowedComments" [commentsRequired]="request.CommentsMandatory">
+              </app-task-actions>
+        </ion-col>
+        </ion-row>
+      </ion-grid>  
+    </form>
+    </div>
+  </ion-content>

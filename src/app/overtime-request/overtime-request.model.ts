@@ -4,6 +4,8 @@ export class OvertimeRequest {
   FromTime: string;
   ToTime: string;
   Remarks: string;
-  Balance: number;
-  ExtendNextDay: boolean;
+  ExtendNextDay = false;
+  AllowedActions: number;
+  AllowedComments: boolean;
+  CommentsMandatory: boolean;
 }

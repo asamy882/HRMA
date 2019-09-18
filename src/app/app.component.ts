@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import {LanguageService} from '../common/services/language.service';
-import {SpinnerService} from '../common/services/spinner.service';
+import { LanguageService } from '../common/services/language.service';
+import { SpinnerService } from '../common/services/spinner.service';
 import { LoadingController } from '@ionic/angular';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,23 +15,23 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 export class AppComponent implements OnInit {
   public appPages = [
     {
-      title: 'app.home',
+      title: 'app.menu.home',
       url: '/home',
       icon: 'home'
     },
     //mine start 
     {
-      title: 'My Tasks',
+      title: 'app.menu.mytasks',
       url: '/mytasks',
       icon: 'list'
     },
     {
-      title: 'Requests',
+      title: 'app.menu.requests',
       url: '/choose-request-type',
       icon: 'clipboard'
     },
     {
-      title: 'My Informations',
+      title: 'app.menu.myinformations',
       url: '/myinformations',
       icon: 'information-circle-outline'
         },
@@ -57,9 +58,8 @@ export class AppComponent implements OnInit {
     },*/
     {
       title: 'app.logout',
-      url: '/login',
-      icon: 'log-out',
-      action: this.logout()
+      url: '/logout',
+      icon: 'log-out'
     }
   ];
   /*
@@ -86,6 +86,8 @@ export class AppComponent implements OnInit {
     }
   ];*/
   loading: any;
+  myInfo: any;
+  myPhoto: any;
 
   constructor(
     private platform: Platform,
@@ -94,7 +96,8 @@ export class AppComponent implements OnInit {
     private languageService: LanguageService,
     private spinnerService: SpinnerService,
     private loadingController: LoadingController,
-    public router: Router
+    public router: Router,
+    private service: AuthService
   ) {
     this.initializeApp();
   }
@@ -138,6 +141,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.presentLoadingWithOptions();
+    this.myPhoto = this.service.getMyPhoto();
+    this.myInfo = this.service.getMyInfo();
 
     /*const lang = localStorage.getItem('current_lang');
 
@@ -151,8 +156,10 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+     // this.statusBar.styleDefault();
+     // this.splashScreen.hide();
+     this.statusBar.overlaysWebView(true);
+     this.statusBar.backgroundColorByHexString('#3880ff');
     });
   }
 }

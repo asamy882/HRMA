@@ -24,7 +24,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    let url: string = state.url;
+    const url: string = state.url;
+    if (url == '/logout') {
+      localStorage.clear();
+    }
     return this.checkLogin(url);
   }
 
@@ -34,7 +37,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canLoad(route: Route, segments: UrlSegment[]): boolean | Observable<boolean> | Promise<boolean> {
     let url = `/${route.path}`;
-    console.log(url)
     if (!this.authService.isUserAuthenticated()) {
       return true;
     }
@@ -48,7 +50,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
+    //this.authService.redirectUrl = url;
 
     // Create a dummy session id
     let sessionId = 123456789;
@@ -60,8 +62,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
        fragment: 'anchor'*/
     };
 
+    localStorage.clear();
     // Navigate to the login page with extras
-    this.router.navigate(['/login'], navigationExtras);
+    this.router.navigate(['/login'], navigationExtras).then(() => {
+      window.location.reload();
+    });
     return false;
   }
 }

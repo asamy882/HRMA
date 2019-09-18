@@ -1,39 +1,44 @@
-<ion-header>
-    <ion-toolbar>
-    <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-buttons slot="secondary">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>
-          {{ 'app.missionRequest.myRequestsTitle' | translate }}
-      </ion-title>
-    </ion-toolbar>
-</ion-header>
-
-<ion-content>
-    <ion-card>
-        <ion-card-content *ngFor="let req of requests">
-          <ion-item>            
-              {{ 'app.missionRequest.fromDate' | translate }} : <span>{{req.MissionDate}}</span>
-          </ion-item>
-          <ion-item>            
-            {{ 'app.missionRequest.toDate' | translate }} : <span>{{req.MissionEndDate}}</span>
-          </ion-item>
-          <ion-item>
-              {{ 'app.missionRequest.fromTime' | translate }} : <span>{{req.FromTime}}</span>
-          </ion-item>      
-          <ion-item>
-              {{ 'app.missionRequest.toTime' | translate }} : <span>{{req.ToTime}}</span>
-          </ion-item> 
-          <ion-item>
-              {{ 'app.missionRequest.extendNextDay' | translate }} : <span>{{req.ExtendToNextDay}}</span>
-          </ion-item>        
-          <ion-item>
-            {{ 'app.missionRequest.remarks' | translate }} : <span>{{req.Remarks}}</span>
-        </ion-item>
-        </ion-card-content>
-    </ion-card>
-
-</ion-content>
+<app-header [title]="'app.missionRequest.myRequestsTitle' | translate" backPage="/choose-request-type"
+  renderBackButton=true></app-header>
+  <ion-content>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button routerLink='/mission-request/new'>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <div style="height: 56px;"></div>
+    <div class="p-1 pb-5">
+      <ion-card>
+        <ion-card class="p-3 m-3 text-dark " *ngFor="let req of requests">
+          <div class="text-bold text-dark pb-2">
+            <ion-icon name="person"></ion-icon>{{req.PendingOn}}
+            <ion-chip [color]="getColorClass(req.Status.ID)">
+              <ion-label>{{req.Status.Name}}</ion-label>
+            </ion-chip>
+          </div>
+          <div class="border-top-dotted pt-2">
+            <span class="arrow-point-to-right">
+              <ion-buttons (click)="goToDetails(req)">
+                <img src="assets/imgs/arrow-point-to-right.png" />
+              </ion-buttons></span>
+            <div>
+              <ion-icon name="calendar"></ion-icon><strong>{{ 'app.missionRequest.fromDate' | translate }}:</strong>
+              {{req.MissionDate}}
+            </div>
+            <div>
+                <ion-icon name="calendar"></ion-icon><strong>{{ 'app.missionRequest.toDate' | translate }}:</strong>
+                {{req.MissionEndDate}}
+              </div>
+            <div>
+              <ion-icon name="time"></ion-icon><strong>{{ 'app.missionRequest.fromTime' | translate }}:</strong>
+              {{req.FromTime}}
+            </div>
+            <div>
+              <ion-icon name="time"></ion-icon><strong>{{ 'app.missionRequest.toTime' | translate }}:</strong>
+              {{req.ToTime}}
+            </div>
+          </div>
+        </ion-card>
+      </ion-card>
+    </div>
+  </ion-content>

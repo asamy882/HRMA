@@ -12,6 +12,8 @@ import { OvertimeRequestRoutingModule } from './overtime-request-routing.module'
 import { TranslateModule } from '@ngx-translate/core';
 import { SearchOvertimeRequestsPage } from './search/search-overtime-requests.page';
 import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
+import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -24,6 +26,8 @@ import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
     IonicSelectableModule,
     IonicTimepickerModule,
     OvertimeRequestRoutingModule,
+    Ionic4DatepickerModule,
+    ComponentsModule,
     ReactiveFormsModule
   ],
   declarations: [NewOvertimeRequestPage, SearchOvertimeRequestsPage],

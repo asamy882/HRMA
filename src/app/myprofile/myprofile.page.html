@@ -1,13 +1,4 @@
-<ion-header>
-    <ion-toolbar>
-       <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>
-        My Profile
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<app-header [title]="'app.myProfile.title' | translate" backPage="/myinformations" renderBackButton=true></app-header>
   
   <ion-content>
   
@@ -15,41 +6,50 @@
     <div style="height: 56px;"></div>
     <div class="personal-header-big">
       <ion-avatar>
-        <img src="assets/imgs/man.png">
+          <img src="assets/imgs/man.png" *ngIf="!myPhoto">
+          <img src="{{'data:image/png;base64,' + myPhoto}}" *ngIf="myPhoto">
       </ion-avatar>
   
   
-      <div class="personal-name">John Doe</div>
-      <div class="personal-position">Human Resource Lead</div>
+      <div class="personal-name">{{ myInfo.EmployeeName }}</div>
+      <div class="personal-position">{{ myInfo.JobTitle }}</div>
     </div>
     
     <ion-list class="profile-list">
       <ion-item>
         <ion-label>
-          <ion-icon name="calendar" size="small"></ion-icon><strong>Date : </strong><span>14 May 2014</span>
+          <ion-icon name="list-box" size="small"></ion-icon><strong>{{ 'app.myProfile.employeeNo' | translate }}: </strong><span>{{ myInfo.EmployeeNo }}</span>
         </ion-label>
       </ion-item>
       <ion-item>
         <ion-label>
-          <ion-icon name="at" size="small"></ion-icon><strong>Email : </strong><span>email@domain.com</span>
+          <ion-icon name="list-box" size="small"></ion-icon><strong>{{ 'app.myProfile.employeeName' | translate }}: </strong><span>{{ myInfo.EmployeeName }}</span>
         </ion-label>
       </ion-item>
       <ion-item>
         <ion-label>
-          <ion-icon name="call" size="small"></ion-icon> <strong>Phone :</strong><span> +2 010 9541 123</span>
+          <ion-icon name="list-box" size="small"></ion-icon> <strong>{{ 'app.myProfile.jobTitle' | translate }}: </strong><span>{{ myInfo.JobTitle }}</span>
         </ion-label>
       </ion-item>
       <ion-item>
         <ion-label>
-          <ion-icon name="pin" size="small"></ion-icon> <strong>Address :</strong><span> 29 bahr street, City, Country</span>
+          <ion-icon name="list-box" size="small"></ion-icon> <strong>{{ 'app.myProfile.grade' | translate }}: </strong><span>{{ myInfo.Grade }}</span>
         </ion-label>
       </ion-item>
       <ion-item>
-        <ion-text class="mt-2">
-          <ion-icon name="pin" size="small"></ion-icon>Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.Lorem Ipsum has been the industry's standard dummy text ever since
-        </ion-text>
-  
+        <ion-label>
+          <ion-icon name="list-box" size="small"></ion-icon> <strong>{{ 'app.myProfile.department' | translate }}: </strong><span>{{ myInfo.Department }}</span>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="list-box" size="small"></ion-icon> <strong>{{ 'app.myProfile.division' | translate }}: </strong><span>{{ myInfo.Division }}</span>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="list-box" size="small"></ion-icon> <strong>{{ 'app.myProfile.section' | translate }}: </strong><span>{{ myInfo.Section }}</span>
+        </ion-label>
       </ion-item>
     </ion-list>
    

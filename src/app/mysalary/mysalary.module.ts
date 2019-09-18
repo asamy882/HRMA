@@ -9,6 +9,9 @@ import { MysalaryPage } from './mysalary.page';
 
 import { TranslateModule } from '@ngx-translate/core';
 
+import { ComponentsModule } from '../components/components.module';
+import { MySalaryService } from './mysalary.service';
+
 const routes: Routes = [
   {
     path: '',
@@ -23,8 +26,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicModule,
     TranslateModule,
+    ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MysalaryPage]
+  declarations: [MysalaryPage],
+  providers: [MySalaryService]
 })
 export class MysalaryPageModule {}

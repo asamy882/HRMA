@@ -12,6 +12,8 @@ import { MissionRequestRoutingModule } from './mission-request-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SearchMissionRequestsPage } from './search/search-mission-requests.page';
 import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
+import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -24,6 +26,8 @@ import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
     IonicSelectableModule,
     IonicTimepickerModule,
     MissionRequestRoutingModule,
+    Ionic4DatepickerModule,
+    ComponentsModule,
     ReactiveFormsModule
   ],
   declarations: [NewMissionRequestPage, SearchMissionRequestsPage],
