@@ -76,8 +76,8 @@
                 </ion-item>
                 <ion-item class="border-0">
                     <ionic-selectable *ngIf="!readonly" item-content class="px-2 rounded bg-form border-1"  itemValueField="EmployeeId" itemTextField="EmployeeName"
-                    [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)" [canClear]="true" [(ngModel)]="replacement"
-                    [placeholder]="'app.vacationRequest.selectReplacement' | translate">
+                    [items]="employees" [canSearch]="true" (onSearch)="searchEmployee($event)" [canClear]="true" 
+                    [placeholder]="'app.vacationRequest.selectReplacement' | translate" [(ngModel)] = "replacement" [ngModelOptions]="{standalone: true}">
                     <ng-template ionicSelectableItemTemplate let-replacement="item"
                       let-isReplacementtSelected="isItemSelected">
                       {{replacement.EmployeeName}} ({{replacement.Department}})

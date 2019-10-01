@@ -21,7 +21,7 @@ export class AppConstants {
   public static WORK_IN_WEEKLY_RESET_REQUEST = 10;
   public static CHANGE_WEEKLY_RESET_REQUEST = 11;
   public static ABSENCE_WITH_PERMISSION_REQUEST = 12;
-  public static PERMISSION_REQUEST = 12;
+  public static PERMISSION_REQUEST = 13;
 
   // Actions
   public static INITIATE = 1;

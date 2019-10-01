@@ -5,7 +5,6 @@ import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import {LanguageService} from '../../common/services/language.service';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 
 @Component({
@@ -21,7 +20,7 @@ export class LoginPage implements OnInit {
 
   constructor(private fb: FormBuilder, private service: AuthService, private router: Router,
               private toastController: ToastController, private languageService: LanguageService,
-              private readonly translate: TranslateService, private statusBar: StatusBar) {
+              private readonly translate: TranslateService) {
     this.authForm = fb.group({
       username: [null, Validators.compose([Validators.required])],
       company: [null, Validators.compose([Validators.required])],
@@ -30,9 +29,6 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
-    this.statusBar.overlaysWebView(true);
-    this.statusBar.backgroundColorByHexString('#3880ff');
-   // this.statusBar.hide();
     this.translate.use(this.languageService.currentLang);
     const companyId = localStorage.getItem('companyId');
     const username = localStorage.getItem('username');

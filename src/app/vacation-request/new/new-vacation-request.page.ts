@@ -22,7 +22,7 @@ export class NewVacationRequestPage implements OnInit {
   portsSubscription: Subscription;
   vacationTypeList: any[];
   employees: any[];
-  replacement: any = {};
+  replacement: any;
   requestForm: FormGroup;
   datePickerObj: any = {};
   readonly = false;
@@ -33,7 +33,7 @@ export class NewVacationRequestPage implements OnInit {
   errorMsg: string;
   backPage = '/vacation-request/search';
   title = 'app.vacationRequest.newRequestPageTitle';
-
+  selectReplacement: string;
 
   constructor(private service: VacationRequestService, private toastController: ToastController,
               private route: ActivatedRoute, public formBuilder: FormBuilder, private languageService: LanguageService,
@@ -46,15 +46,18 @@ export class NewVacationRequestPage implements OnInit {
       VacationTypeId: new FormControl('', [Validators.required]),
       Balance: new FormControl('', []),
       ExcludeWeekend: new FormControl('', []),
-      Remarks: new FormControl('', []),
+      Remarks: new FormControl('', [])
+    //  Replacement: new FormControl('', []),
     });
   }
 
   ngOnInit() {
     this.translate.use(this.languageService.currentLang);
-    this.translate.get(['app.vacationRequest.successMsg', 'app.vacationRequest.errorMsg']).subscribe(res => {
+    this.translate.get(['app.vacationRequest.successMsg', 'app.vacationRequest.errorMsg'
+       ,'app.vacationRequest.selectReplacement']).subscribe(res => {
       this.successMsg = res['app.vacationRequest.successMsg'];
       this.errorMsg = res['app.vacationRequest.errorMsg'];
+      this.selectReplacement = res['app.vacationRequest.selectReplacement'];
     });
     this.route.queryParams.subscribe(params => {
       const req = params['req'];
@@ -85,6 +88,7 @@ export class NewVacationRequestPage implements OnInit {
           });
       } else {
         this.renderSaveButton = true;
+        //this.replacement = {EmployeeId : 0, EmployeeName: this.selectReplacement};
       }
     });
     this.loadVacationTypeList();

@@ -18,8 +18,8 @@
     background-color: #fff;
     font-size: 16px;
   }
-.personal-menu ion-card img{width: 46px;float: left;margin-right: 10px;}
-.personal-menu ion-card span{padding-top: 10px;display: block;padding-left: 56px;font-size: 18px;color: #000;}
+.personal-menu ion-card img{width: 46px;}
+.personal-menu ion-card span{padding-top: 10px;display: block;font-size: 18px;color: #000;}
 .personal-menu ion-card:nth-child(1){margin-top:-32px;}
 
 .profile-list{margin:32px;}
@@ -27,3 +27,21 @@
 .profile-list ion-icon{color: #1b61cb;margin-bottom: -2px;margin-right: 6px;}
 
 .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{height: 100%;}
+
+.float-r{
+  float: right;
+  margin-left: 10px;
+}
+
+.float-l{
+  float: left;
+  margin-right: 10px;
+}
+
+.text-align-l{
+  text-align: left;
+}
+
+.text-align-r{
+  text-align: right;
+}

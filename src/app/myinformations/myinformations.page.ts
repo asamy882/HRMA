@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from 'src/common/services/auth.service';
+import { LanguageService } from 'src/common/services/language.service';
 
 @Component({
   selector: 'app-myinformations',
@@ -10,7 +11,7 @@ import { AuthService } from 'src/common/services/auth.service';
 export class MyinformationsPage implements OnInit {
   myInfo: any;
   myPhoto: any;
-  constructor(private service: AuthService) { }
+  constructor(private service: AuthService, public languageService: LanguageService) { }
 
   ngOnInit() {
     this.myInfo = this.service.getMyInfo();

@@ -14,7 +14,8 @@
 
   <!-- <div style="height: 56px;"></div> -->
   <div class="personal-header-big">
-    <!--span class="home-menu-button2 arabic">عربي</span -->
+    <span class="home-menu-button2 arabic" (click)="changeLanguage('ar')" *ngIf="languageService.currentLang == 'en'">عربي</span>
+    <span class="home-menu-button2 arabic" (click)="changeLanguage('en')" *ngIf="languageService.currentLang == 'ar'">English</span>
     <span class="home-menu-button">
       <ion-buttons routerLink='/logout'>
           <img src="assets/imgs/logout.png"/>
@@ -31,9 +32,12 @@
     <div class="personal-position">{{ myInfo.JobTitle }}</div>
   </div>
   <div class="personal-menu">
-    <ion-card routerLink='/mytasks'><img class="logo" src="assets/imgs/tasks-icon.png" /><span>{{'app.menu.mytasks' | translate}}</span></ion-card>
-    <ion-card routerLink='/choose-request-type'><img class="logo" src="assets/imgs/requests-icon.png" /><span>{{'app.menu.requests' | translate}}</span></ion-card>
-    <ion-card routerLink='/myinformations'><img class="logo" src="assets/imgs/information-icon.png" /><span>{{'app.menu.myinformations' | translate}}</span></ion-card>
+    <ion-card routerLink='/mytasks'><img class="logo" src="assets/imgs/tasks-icon.png" [ngClass]="languageService.currentLang == 'en' ?  'float-l' : 'float-r'" />
+      <span [ngClass]="languageService.currentLang == 'en' ?  'text-align-l' : 'text-align-r'">{{'app.menu.mytasks' | translate}}</span></ion-card>
+    <ion-card routerLink='/choose-request-type'><img class="logo" src="assets/imgs/requests-icon.png" [ngClass]="languageService.currentLang == 'en' ?  'float-l' : 'float-r'"/>
+      <span [ngClass]="languageService.currentLang == 'en' ?  'text-align-l' : 'text-align-r'">{{'app.menu.requests' | translate}}</span></ion-card>
+    <ion-card routerLink='/myinformations'><img class="logo" src="assets/imgs/information-icon.png" [ngClass]="languageService.currentLang == 'en' ?  'float-l' : 'float-r'"/>
+      <span [ngClass]="languageService.currentLang == 'en' ?  'text-align-l' : 'text-align-r'">{{'app.menu.myinformations' | translate}}</span></ion-card>
   </div>
 
 

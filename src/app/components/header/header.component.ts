@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { LanguageService } from 'src/common/services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponents implements OnInit {
   @Input() renderMenuButton: false;
   @Input() backPage: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
 

@@ -22,7 +22,10 @@ import { CommonsModule } from '../common/commons.module';
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      scrollPadding: false,
+      scrollAssist: false
+    }),​
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
