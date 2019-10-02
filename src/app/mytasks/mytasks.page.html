@@ -4,22 +4,22 @@
   <div class="p-1">
 
     <ion-card class="p-3 m-3 text-dark " *ngFor="let task of myTasks">
-      <div class="text-bold text-dark pb-2">
-        <ion-icon name="person"></ion-icon>{{task.Employee?.EmployeeName}}
+      <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+        <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>{{task.Employee?.EmployeeName}}
         
       </div>
       <div class="border-top-dotted pt-2">
-        <span class="arrow-point-to-right"><ion-buttons (click)="goToDetails(task)">
-            <img src="assets/imgs/arrow-point-to-right.png" />
+        <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'"><ion-buttons (click)="goToDetails(task)">
+            <img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" />
           </ion-buttons>
         </span>
-        <div>
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
           <ion-icon name="contacts"></ion-icon><strong>{{ 'app.mytasks.employeeID' | translate }}:</strong> {{task.Employee?.EmployeeId}}
         </div>
-        <div>
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
           <ion-icon name="flag"></ion-icon><strong>{{ 'app.mytasks.requestNo' | translate }}:</strong> {{task.RequestNo}}
         </div>
-        <div>
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
             <ion-icon name="flag"></ion-icon><strong>{{ 'app.mytasks.requestType' | translate }}:</strong> {{task.RequestTypeName}}
           </div>
       </div>

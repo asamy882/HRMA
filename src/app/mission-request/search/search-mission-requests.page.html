@@ -10,30 +10,30 @@
     <div class="p-1 pb-5">
       <ion-card>
         <ion-card class="p-3 m-3 text-dark " *ngFor="let req of requests">
-          <div class="text-bold text-dark pb-2">
-            <ion-icon name="person"></ion-icon>{{req.PendingOn}}
+          <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+            <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>{{req.PendingOn}}
             <ion-chip [color]="getColorClass(req.Status.ID)">
               <ion-label>{{req.Status.Name}}</ion-label>
             </ion-chip>
           </div>
           <div class="border-top-dotted pt-2">
-            <span class="arrow-point-to-right">
+            <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'">
               <ion-buttons (click)="goToDetails(req)">
-                <img src="assets/imgs/arrow-point-to-right.png" />
+                <img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" />
               </ion-buttons></span>
-            <div>
+              <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
               <ion-icon name="calendar"></ion-icon><strong>{{ 'app.missionRequest.fromDate' | translate }}:</strong>
               {{req.MissionDate}}
             </div>
-            <div>
+            <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
                 <ion-icon name="calendar"></ion-icon><strong>{{ 'app.missionRequest.toDate' | translate }}:</strong>
                 {{req.MissionEndDate}}
               </div>
-            <div>
+              <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
               <ion-icon name="time"></ion-icon><strong>{{ 'app.missionRequest.fromTime' | translate }}:</strong>
               {{req.FromTime}}
             </div>
-            <div>
+            <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
               <ion-icon name="time"></ion-icon><strong>{{ 'app.missionRequest.toTime' | translate }}:</strong>
               {{req.ToTime}}
             </div>

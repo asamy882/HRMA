@@ -18,14 +18,14 @@
     <div class="p-1 pb-5">
   
         <ion-card class="p-3 m-3 text-dark ">
-          <div class="text-bold text-dark pb-2">
-            <ion-icon name="person"></ion-icon>John Doe John
+          <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+            <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>John Doe John
             <ion-chip color="success float-right cust-chip">
               <ion-label>Approved</ion-label>
             </ion-chip>
           </div>
           <div class="border-top-dotted pt-2">
-            <span class="arrow-point-to-right"><img src="assets/imgs/arrow-point-to-right.png" /></span>
+            <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'"><img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" /></span>
             <div>
               <ion-icon name="contacts"></ion-icon><strong>Employee ID:</strong> 1254545
             </div>
@@ -36,14 +36,14 @@
         </ion-card>
         <!-- -->
         <ion-card class="p-3 m-3 text-dark ">
-          <div class="text-bold text-dark pb-2">
-            <ion-icon name="person"></ion-icon>John Doe John
+          <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+            <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>John Doe John
             <ion-chip color="danger float-right cust-chip">
               <ion-label>Rejected</ion-label>
             </ion-chip>
           </div>
           <div class="border-top-dotted pt-2">
-            <span class="arrow-point-to-right"><img src="assets/imgs/arrow-point-to-right.png" /></span>
+            <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'"><img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" /></span>
             <div>
               <ion-icon name="contacts"></ion-icon><strong>Employee ID:</strong> 1254545
             </div>
@@ -54,11 +54,11 @@
         </ion-card>
         <!-- -->
         <ion-card class="p-3 m-3 text-dark ">
-          <div class="text-bold text-dark pb-2">
-            <ion-icon name="person"></ion-icon>John Doe John
+          <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+            <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>John Doe John
           </div>
           <div class="border-top-dotted pt-2">
-            <span class="arrow-point-to-right"><img src="assets/imgs/arrow-point-to-right.png" /></span>
+            <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'"><img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" /></span>
             <div>
               <ion-icon name="contacts"></ion-icon><strong>Employee ID:</strong> 1254545
             </div>
@@ -69,11 +69,11 @@
         </ion-card>
         <!-- -->
         <ion-card class="p-3 m-3 text-dark ">
-          <div class="text-bold text-dark pb-2">
-            <ion-icon name="person"></ion-icon>John Doe John
+          <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+            <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>John Doe John
           </div>
           <div class="border-top-dotted pt-2">
-            <span class="arrow-point-to-right"><img src="assets/imgs/arrow-point-to-right.png" /></span>
+            <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'"><img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" /></span>
             <div>
               <ion-icon name="contacts"></ion-icon><strong>Employee ID:</strong> 1254545
             </div>
@@ -84,11 +84,11 @@
         </ion-card>
         <!-- -->
         <ion-card class="p-3 m-3 text-dark ">
-          <div class="text-bold text-dark pb-2">
-            <ion-icon name="person"></ion-icon>John Doe John
+          <div class="text-bold text-dark pb-2" [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+            <ion-icon name="person" [ngClass]="languageService.currentLanguageIsEnglish() ? 'float-l' : 'float-r'"></ion-icon>John Doe John
           </div>
           <div class="border-top-dotted pt-2">
-            <span class="arrow-point-to-right"><img src="assets/imgs/arrow-point-to-right.png" /></span>
+            <span [ngClass]="languageService.currentLanguageIsEnglish() ? 'arrow-point-to-right' : 'arrow-point-to-left'"><img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/arrow-point-to-right.png' : 'assets/imgs/arrow-point-to-left.png'" /></span>
             <div>
               <ion-icon name="contacts"></ion-icon><strong>Employee ID:</strong> 1254545
             </div>

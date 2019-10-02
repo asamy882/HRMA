@@ -2,7 +2,7 @@
   
 <ion-app>
   <ion-split-pane>
-    <ion-menu [side]="languageService.currentLang == 'en' ? 'start' : 'end'" [dir]="languageService.currentDir">
+    <ion-menu *ngIf="languageService.currentLanguageIsEnglish()" side="start" dir="ltr">
       <ion-header class="border-0">
         <ion-toolbar>
             <ion-item class="p-3">
@@ -15,7 +15,33 @@
         </ion-toolbar>
       </ion-header>
       
-      <ion-content class="side-menu" [dir]="languageService.currentDir">
+      <ion-content class="side-menu" dir="ltr">
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" class="side-menu-toggle">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" class="side-menu-item">
+              <ion-icon class="side-menu-icon" slot="start" [name]="p.icon"></ion-icon>
+              <ion-label class="side-menu-label">
+                {{p.title | translate}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-menu *ngIf="languageService.currentLanguageIsArabic()" side="end" dir="rlt">
+      <ion-header class="border-0">
+        <ion-toolbar>
+            <ion-item class="p-3">
+                <ion-avatar slot="start">
+                    <img src="assets/imgs/man.png" *ngIf="!myPhoto">
+                    <img src="{{'data:image/png;base64,' + myPhoto}}" *ngIf="myPhoto">
+                </ion-avatar>
+                <ion-label class="text-white">{{ myInfo.EmployeeName }}</ion-label>
+              </ion-item>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="side-menu" dir="rlt">
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" class="side-menu-toggle">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" class="side-menu-item">

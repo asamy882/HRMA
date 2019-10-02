@@ -4,7 +4,7 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
       <ion-buttons slot="start" (click)="goToBack()" *ngIf="renderBackButton">
-          <img [src]="languageService.currentLang == 'en' ? 'assets/imgs/back.png' : 'assets/imgs/forward.png'" class="icon-in-toolbar"/>
+          <img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/back.png' : 'assets/imgs/forward.png'" class="icon-in-toolbar"/>
       </ion-buttons>
       <ion-title>
         {{title}}

@@ -21,3 +21,19 @@ ion-fab-button ion-icon{margin-bottom:0;margin-right:0}
     margin-right: 0;
     font-size: 13px;
 }
+
+.arrow-point-to-left{
+    background-color: #4278cb;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 9px;
+    display: block;
+    position: absolute;
+    left: 16px;
+    bottom: 20px;
+}
+.arrow-point-to-left img{
+    width: 11px;
+    margin: 0 auto;
+}

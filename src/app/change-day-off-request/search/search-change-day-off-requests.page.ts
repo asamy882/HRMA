@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDayOffRequestService } from '../change-day-off-request.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { LanguageService } from 'src/common/services/language.service';
 
 @Component({
   selector: 'app-search-vaction-requests',
@@ -11,7 +12,7 @@ export class SearchChangeDayOffRequestsPage implements OnInit {
 
   requests: any[] = [];
 
-  constructor(private service: ChangeDayOffRequestService, private router: Router) { }
+  constructor(private service: ChangeDayOffRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
     this.service.getMyChangeDayOffRequests().subscribe(res => {
@@ -22,14 +23,15 @@ export class SearchChangeDayOffRequestsPage implements OnInit {
   }
 
   getColorClass(statusId) {
+    const float = this.languageService.currentLanguageIsEnglish() ? 'float-right' : 'float-left';
     if (statusId === 1) {
-      return 'primary float-right cust-chip';
+      return `primary ${float} cust-chip`;
     } else if (statusId === 2) {
-      return 'success float-right cust-chip';
+      return `success ${float} cust-chip`;
     } else if (statusId === 3) {
-      return 'danger float-right cust-chip';
+      return `danger  ${float} cust-chip`;
     } else {
-      return 'dark float-right cust-chip';
+      return `dark  ${float} cust-chip`;
     }
   }
 

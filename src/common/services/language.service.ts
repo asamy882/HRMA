@@ -36,4 +36,12 @@ export class LanguageService {
     return result.pipe(switchMap(() => translate$));
   }
 
+  currentLanguageIsEnglish(): boolean {
+    return this.currentLang && this.currentLang == 'en';
+  }
+
+  currentLanguageIsArabic(): boolean {
+    return this.currentLang && this.currentLang == 'ar';
+  }
+
 }

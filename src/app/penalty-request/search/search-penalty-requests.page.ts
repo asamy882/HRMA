@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PenaltyRequestService } from '../penalty-request.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { LanguageService } from 'src/common/services/language.service';
 
 @Component({
   selector: 'app-search-vaction-requests',
@@ -11,7 +12,7 @@ export class SearchPenaltyRequestsPage implements OnInit {
 
   requests: any[] = [];
 
-  constructor(private service: PenaltyRequestService, private router: Router) { }
+  constructor(private service: PenaltyRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
     this.service.getMyPenaltyRequests().subscribe(res => {
@@ -22,14 +23,15 @@ export class SearchPenaltyRequestsPage implements OnInit {
   }
 
   getColorClass(statusId) {
+    const float = this.languageService.currentLanguageIsEnglish() ? 'float-right' : 'float-left';
     if (statusId === 1) {
-      return 'primary float-right cust-chip';
+      return `primary ${float} cust-chip`;
     } else if (statusId === 2) {
-      return 'success float-right cust-chip';
+      return `success ${float} cust-chip`;
     } else if (statusId === 3) {
-      return 'danger float-right cust-chip';
+      return `danger  ${float} cust-chip`;
     } else {
-      return 'dark float-right cust-chip';
+      return `dark  ${float} cust-chip`;
     }
   }
 

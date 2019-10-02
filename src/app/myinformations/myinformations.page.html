@@ -14,12 +14,12 @@
     <div class="personal-position">{{ myInfo.JobTitle }}</div>
   </div>
   <div class="personal-menu">
-    <ion-card routerLink='/myprofile'><img class="logo" src="assets/imgs/information-icon.png" [ngClass]="languageService.currentLang == 'en' ?  'float-l' : 'float-r'"/>
-      <span [ngClass]="languageService.currentLang == 'en' ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myProfile' | translate }}</span></ion-card>
-    <ion-card routerLink='/mysalary'><img class="logo" src="assets/imgs/salary-icon.png" [ngClass]="languageService.currentLang == 'en' ?  'float-l' : 'float-r'"/>
-      <span [ngClass]="languageService.currentLang == 'en' ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.salary' | translate }}</span></ion-card>
-    <ion-card routerLink='/myattendance'><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLang == 'en' ?  'float-l' : 'float-r'"/>
-      <span [ngClass]="languageService.currentLang == 'en' ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myAttendance' | translate }}</span></ion-card>
+    <ion-card routerLink='/myprofile'><img class="logo" src="assets/imgs/information-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+      <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myProfile' | translate }}</span></ion-card>
+    <ion-card routerLink='/mysalary'><img class="logo" src="assets/imgs/salary-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+      <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.salary' | translate }}</span></ion-card>
+    <ion-card routerLink='/myattendance'><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+      <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myAttendance' | translate }}</span></ion-card>
   </div>
   
  

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/common/services/language.service';
 
 @Component({
   selector: 'app-top10request',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Top10requestPage implements OnInit {
 
-  constructor() { }
+  constructor( public languageService: LanguageService) { }
 
   ngOnInit() {
   }

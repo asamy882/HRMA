@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MyTasksService } from './mytasks.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
+import { LanguageService } from 'src/common/services/language.service';
 
 @Component({
   selector: 'app-mytasks',
@@ -12,7 +13,7 @@ export class MytasksPage implements OnInit {
 
   myTasks: any[] = [];
 
-  constructor(private service: MyTasksService, private router: Router) { }
+  constructor(private service: MyTasksService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
     this.service.getMyTasks().subscribe(res => {
