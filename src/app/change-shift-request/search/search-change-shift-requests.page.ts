@@ -15,10 +15,8 @@ export class SearchChangeShiftRequestsPage implements OnInit {
   constructor(private service: ChangeShiftRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyChangeShiftRequests().subscribe(res => {
-      if (res.Success) {
+    this.service.getMyChangeShiftRequests().then(res => {
         this.requests = res.Items;
-      }
     });
   }
 

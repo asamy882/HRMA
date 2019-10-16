@@ -15,10 +15,8 @@ export class SearchPermissionRequestsPage implements OnInit {
   constructor(private service: PermissionRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyPermissionRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyPermissionRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

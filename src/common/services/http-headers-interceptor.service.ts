@@ -2,6 +2,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
+import { LanguageService } from './language.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
@@ -11,9 +12,14 @@ export class HeadersInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getUserToken();
+    let lang = 'en';
+    if (localStorage.getItem('current_lang')) {
+      lang = localStorage.getItem('current_lang');
+    }
     request = request.clone({
       setHeaders: {
-        UserToken: `${token}`
+        UserToken: `${token}`,
+        'Accept-Language': lang == 'ar' ? 'ar-EG' : 'en-US'
       }
     });
     return next.handle(request);

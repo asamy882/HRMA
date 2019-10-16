@@ -17,7 +17,7 @@
     <span class="home-menu-button2 arabic" (click)="changeLanguage('ar')" *ngIf="languageService.currentLanguageIsEnglish()">عربي</span>
     <span class="home-menu-button2 arabic" (click)="changeLanguage('en')" *ngIf="languageService.currentLanguageIsArabic()">English</span>
     <span class="home-menu-button">
-      <ion-buttons routerLink='/logout'>
+      <ion-buttons routerLink='/logout' (click)="clearLocalStorage()">
           <img src="assets/imgs/logout.png"/>
       </ion-buttons>
     </span>
@@ -28,8 +28,8 @@
     </ion-avatar>
 
 
-    <div class="personal-name">{{ myInfo.EmployeeName }}</div>
-    <div class="personal-position">{{ myInfo.JobTitle }}</div>
+    <div class="personal-name">{{ myInfo?.EmployeeName }}</div>
+    <div class="personal-position">{{ myInfo?.JobTitle }}</div>
   </div>
   <div class="personal-menu">
     <ion-card routerLink='/mytasks'><img class="logo" src="assets/imgs/tasks-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'" />

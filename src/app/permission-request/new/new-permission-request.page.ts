@@ -61,18 +61,16 @@ export class NewPermissionRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.permissionRequest.taskActionRequestPageTitle';
-        this.service.getPermissionRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.permissionRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getPermissionRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.permissionRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -147,8 +145,9 @@ export class NewPermissionRequestPage implements OnInit {
   async loadVacationTypeList() {
     this.permissionTypeList = this.service.getPermissionTypes();
     if (!this.permissionTypeList) {
-      this.service.loadPermissionTypes().subscribe(() => {
-        this.permissionTypeList = this.service.getPermissionTypes();
+      this.service.loadPermissionTypes().then((res) => {
+        this.permissionTypeList = res.Items;
+        localStorage.setItem('permissionTypes', JSON.stringify(res.Items));
       });
     }
   }
@@ -182,13 +181,8 @@ export class NewPermissionRequestPage implements OnInit {
         PermissionType: {ID: this.requestForm.get('PermissionTypeId').value},
         PermissionDate: this.formatDate(this.requestForm.get('PermissionDate').value)
        };
-    this.service.addPermissionRequest(request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg( res.Message, 'error');
-      }
+    this.service.addPermissionRequest(request).then(res => {
+      this.navigateToSearch(true);
     });
   }
 

@@ -15,10 +15,8 @@ export class SearchMissionRequestsPage implements OnInit {
   constructor(private service: MissionRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyMissionRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyMissionRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

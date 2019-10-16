@@ -1,40 +1,31 @@
 import {Injectable} from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
+
+import { HttpService } from 'src/common/services/http.service';
 
 
 @Injectable()
 export class ChangeShiftRequestService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  getEmployeeShifts(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetEmployeeShiftsForChangeShift`;
+  getEmployeeShifts(): Promise<any> {
+    const url = `/api/Dashboard/GetEmployeeShiftsForChangeShift`;
     return this.http.get(url);
   }
 
-  addChangeShiftRequest(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/AddChangeShiftRequest`;
-    return this.http.post<any>(url, data);
+  addChangeShiftRequest(data): Promise<any> {
+    const url = `/api/Dashboard/AddChangeShiftRequest`;
+    return this.http.post(url, data);
   }
 
-  getMyChangeShiftRequests(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyChangeShiftRequests`;
+  getMyChangeShiftRequests(): Promise<any> {
+    const url = `/api/Dashboard/GetMyChangeShiftRequests`;
     return this.http.get(url);
   }
 
-  getChangeShiftRequest(requestId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetChangeShiftRequest?requestId=${requestId}`;
+  getChangeShiftRequest(requestId): Promise<any> {
+    const url = `/api/Dashboard/GetChangeShiftRequest?requestId=${requestId}`;
     return this.http.get(url);
   }
 

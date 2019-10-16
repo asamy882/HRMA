@@ -28,6 +28,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewPenaltyRequestPage, SearchPenaltyRequestsPage],
   declarations: [NewPenaltyRequestPage, SearchPenaltyRequestsPage],
   providers: [PenaltyRequestService]
 })

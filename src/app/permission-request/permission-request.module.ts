@@ -30,6 +30,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewPermissionRequestPage, SearchPermissionRequestsPage],
   declarations: [NewPermissionRequestPage, SearchPermissionRequestsPage],
   providers: [PermissionRequestService]
 })

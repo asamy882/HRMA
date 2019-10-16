@@ -1,20 +1,16 @@
 import {Injectable} from '@angular/core';
+import { HttpService } from 'src/common/services/http.service';
 
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
 
 
 @Injectable()
 export class MyAttendanceService {
-  baseUrl = AppConstants.API_ENDPOINT;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  getAttendanceSheet(fromDate, toDate): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetAttendanceSheet?fromDate=${fromDate}&toDate=${toDate}`;
+  getAttendanceSheet(fromDate, toDate): Promise<any> {
+    const url = `/api/Dashboard/GetAttendanceSheet?fromDate=${fromDate}&toDate=${toDate}`;
     return this.http.get(url);
   }
 

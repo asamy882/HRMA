@@ -64,18 +64,16 @@ export class NewChangeDayOffRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.changeDayOffRequest.taskActionRequestPageTitle';
-        this.service.getChangeDayOffRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.changeDayOffRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getChangeDayOffRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.changeDayOffRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -125,13 +123,13 @@ export class NewChangeDayOffRequestPage implements OnInit {
   }
 
   async loadEmployeeDayOffs() {
-    this.service.getEmployeeDayOffs().subscribe((res) => {
+    this.service.getEmployeeDayOffs().then((res) => {
       this.employeeDayOffs = res.Items;
     });
   }
 
   async loadEmployeeShifts() {
-    this.service.getEmployeeShifts().subscribe((res) => {
+    this.service.getEmployeeShifts().then((res) => {
       this.employeeShifts = res.Items;
     });
   }
@@ -166,13 +164,8 @@ export class NewChangeDayOffRequestPage implements OnInit {
         NewDayOffDate : this.formatDate(this.requestForm.get('NewDayOffDate').value),
         Shift: {ShiftId: this.requestForm.get('Shift').value}
        };
-    this.service.addChangeDayOffRequest(request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg( res.Message, 'error');
-      }
+    this.service.addChangeDayOffRequest(request).then(res => {
+      this.navigateToSearch(true);
     });
 
   }
@@ -188,15 +181,6 @@ export class NewChangeDayOffRequestPage implements OnInit {
         window.location.reload();
       }
     });
-  }
-
-  async displayMsg(msg, cal) {
-    const toast = await this.toastController.create({
-      message: msg,
-      cssClass: cal,
-      duration: 5000
-    });
-    toast.present();
   }
 
   renderApproveAndRejectButtons() {

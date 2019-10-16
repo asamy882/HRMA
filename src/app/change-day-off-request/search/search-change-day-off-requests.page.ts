@@ -15,10 +15,8 @@ export class SearchChangeDayOffRequestsPage implements OnInit {
   constructor(private service: ChangeDayOffRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyChangeDayOffRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyChangeDayOffRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

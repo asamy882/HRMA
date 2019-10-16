@@ -1,34 +1,25 @@
 import {Injectable} from '@angular/core';
-
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
+import { HttpService } from 'src/common/services/http.service';
 
 
 @Injectable()
 export class LoanRequestService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
-  loanTypes: any[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  addLoanRequest(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/AddLoanRequest`;
-    return this.http.post<any>(url, data);
+  addLoanRequest(data): Promise<any> {
+    const url = `/api/Dashboard/AddLoanRequest`;
+    return this.http.post(url, data);
   }
 
-  getMyLoanRequests(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyLoanRequests`;
+  getMyLoanRequests(): Promise<any> {
+    const url = `/api/Dashboard/GetMyLoanRequests`;
     return this.http.get(url);
   }
 
-  getLoanRequest(requestId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetLoanRequest?requestId=${requestId}`;
+  getLoanRequest(requestId): Promise<any> {
+    const url = `/api/Dashboard/GetLoanRequest?requestId=${requestId}`;
     return this.http.get(url);
   }
 

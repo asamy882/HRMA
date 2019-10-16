@@ -1,0 +1,263 @@
+$colors: ( primary: #0278c4, // blue
+secondary: #32db64, // 
+danger: #d0011b, // red
+light: #9099a0, // Grey-light
+lighter: #d8d8d8, // Grey-Lighter
+dark: #172328, // black
+green: #56970b, // green
+grey: #545454, // grey,
+inputColor: #2B2B2B,
+black: #000000, 
+white: #ffffff, 
+coolGrey: #9099a0, 
+greyishBrownThree: #585858, 
+detailsTxt: #999999, 
+lighter2: #eeeeee, 
+font-black: #585858, 
+lighter-grey: #cfcfcf, 
+light-grey:#f9f9f9, 
+illustration: #cccccc, 
+disabled-txt: #b6b6b6, 
+pill: #cfcfcf, 
+grey-lighten:#f6f6f6, 
+grey-very-light: #fafafa, 
+orange: #f6a623, 
+navy-blue :#1176c4, 
+arrow-color: #c8c7cc, 
+grey-border: #e4e5e6, 
+scarlet: #d0011b, 
+carmine: #9e0013, 
+greyishBrownFour : #4f4a44, 
+twitter: #55acee);
+
+// main design classess
+.errorToastClass,
+.confirmToastClass {
+  .toast-wrapper {
+    border-radius: 0 !important;
+    top: 10px !important;
+  }
+  .toast-container {
+    display: table !important;
+    width: 100%;
+  }
+  .toast-message {
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    float: left;
+    text-align: center;
+    overflow: scroll;
+    word-break: break-word;
+  }
+  .toast-button {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.errorToastClass .toast-wrapper {
+  background-color: color($colors, scarlet, base) !important;
+}
+
+.errorToastClass .toast-button {
+  background-color: color($colors, carmine, base);
+}
+
+.confirmToastClass .toast-message {
+  color: #000000 !important;
+}
+
+.confirmToastClass .toast-wrapper {
+  background-color: color($colors, lighter2, base) !important;
+}
+
+.confirmToastClass .toast-button {
+  color: #ffffff !important;
+  background-color: color($colors, twitter, base);
+}
+
+.swiper-pagination-bullet {
+  border-radius: 12px !important;
+}
+.btn {
+  border-radius: 2px !important;
+  background-color: color($colors, primary, base) !important;
+  color: white !important;
+  height: 41px !important;
+  width: 100%;
+  * {
+    font-family: WorkSans-Medium;
+    font-size: 13px;
+  }
+}
+
+.btn-disabled {
+  border-radius: 2px !important;
+  background-color: color($colors, lighter2, base) !important;
+  pointer-events: none !important;
+  color: color($colors, disabled-txt, base) !important;
+  line-height: 3.15 !important;
+  width: 100%;
+  * {
+    font-family: WorkSans-Medium;
+    font-size: 13px;
+  }
+}
+
+.height-50 {
+  height: 50px !important;
+}
+
+.height-41 {
+  height: 41px !important;
+}
+
+.rotation-180 {
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+ion-header:not(.blue-header) {
+  .toolbar-title {
+    font-family: PageSans !important;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    color: color($colors, grey, base) !important;
+  }
+}
+
+#spinner {
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.85;
+  background-color: aliceblue;
+  z-index: 10000;
+  .spinner-container {
+    top: calc(50% - 30px);
+    position: absolute;
+    left: calc(50% - 15px);
+    width: 100%;
+    height: 100%;
+  }
+  .spinner-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    animation: fade 1.5s ease-in-out infinite;
+    -webkit-animation: fade 1.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+  .spinner-mid {
+    position: absolute;
+    top: 23px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    animation: fade 1.5s ease-in-out infinite;
+    -webkit-animation: fade 1.5s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+  .spinner-light {
+    position: absolute;
+    top: 23px;
+    left: 16px;
+    width: 30px;
+    height: 30px;
+    animation: fade 1.5s ease-in-out infinite;
+    -webkit-animation: fade 1.5s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+  @keyframes fade {
+    25% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    75% {
+      opacity: 0.4;
+    }
+    75% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    25% {
+      opacity: 0.8;
+    }
+  }
+  @-webkit-keyframes fade {
+    25% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    75% {
+      opacity: 0.4;
+    }
+    75% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    25% {
+      opacity: 0.8;
+    }
+  }
+}
+.red {
+  color: #f00 !important;
+}
+.green {
+  color: #080;
+}
+
+.multilineErrorToast {
+  .toast-wrapper {
+    background-color: color($colors, scarlet, base) !important;
+    border-radius: 0 !important;
+    top: 10px !important;
+  }
+  .toast-container {
+    display: table !important;
+    width: 100%;
+  }
+  .toast-message {
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    float: left;
+    text-align: center;
+    overflow: scroll;
+    word-break: break-word;
+    white-space: pre-line;
+  }
+  .toast-button {
+    width: 100%;
+    background-color: color($colors, carmine, base);
+    margin: 0;
+  }
+
+  
+}

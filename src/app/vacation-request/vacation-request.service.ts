@@ -1,27 +1,21 @@
 import {Injectable} from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../../common/AppConstants';
+import { HttpService } from 'src/common/services/http.service';
 
 
 @Injectable()
 export class VacationRequestService {
-  redirectUrl: string;
+  private vacationTypes: any[];
   baseUrl = AppConstants.API_ENDPOINT;
-  vacationTypes: any[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService, private httpClient: HttpClient) {
   }
 
-  loadVacationTypes(): Observable<any> {
-    return this.http.get(this.baseUrl + '/api/Dashboard/GetVacationTypes').pipe(map((res: any) => {
-      if (res.Success) {
-        this.vacationTypes = res.Items;
-        localStorage.setItem('vacationTypes', JSON.stringify(res.Items));
-      }
-    }));
+  loadVacationTypes(): Promise<any> {
+    const url = '/api/Dashboard/GetVacationTypes';
+    return this.http.get(url);
   }
 
   getVacationTypes() {
@@ -37,39 +31,34 @@ export class VacationRequestService {
   }
 
 
-  getVacationTypeBalance(vacationTypeId, fromDate, toDate): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetVacationTypeBalance?VacationTypeId=${vacationTypeId}&FromDate=${fromDate}&ToDate=${toDate}`;
+  getVacationTypeBalance(vacationTypeId, fromDate, toDate): Promise<any> {
+    const url = `/api/Dashboard/GetVacationTypeBalance?VacationTypeId=${vacationTypeId}&FromDate=${fromDate}&ToDate=${toDate}`;
     return this.http.get(url);
   }
 
   getReplacements(empNo, empName): Observable<any> {
     const url = this.baseUrl +
                 `/api/Dashboard/GetReplacements?empNo=${empNo}&empName=${empName}`;
+    return this.httpClient.get(url);
+  }
+
+  calculateVacationDays(data): Promise<any> {
+    const url = `/api/Dashboard/CalculateVacationDays`;
+    return this.http.post(url, data, false);
+  }
+
+  addVacationRequest(data): Promise<any> {
+    const url = `/api/Dashboard/AddVacationRequest`;
+    return this.http.post(url, data);
+  }
+
+  getMyVacationRequests(): Promise<any> {
+    const url = `/api/Dashboard/GetMyVacationRequests`;
     return this.http.get(url);
   }
 
-  calculateVacationDays(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/CalculateVacationDays`;
-    return this.http.post<any>(url, data);
-  }
-
-  addVacationRequest(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/AddVacationRequest`;
-    return this.http.post<any>(url, data);
-  }
-
-  getMyVacationRequests(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyVacationRequests`;
-    return this.http.get(url);
-  }
-
-  getVacationRequest(requestId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetVacationRequest?requestId=${requestId}`;
+  getVacationRequest(requestId): Promise<any> {
+    const url = `/api/Dashboard/GetVacationRequest?requestId=${requestId}`;
     return this.http.get(url);
   }
 

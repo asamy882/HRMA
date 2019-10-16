@@ -28,6 +28,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewLoanRequestPage, SearchLoanRequestsPage],
   declarations: [NewLoanRequestPage, SearchLoanRequestsPage],
   providers: [LoanRequestService]
 })

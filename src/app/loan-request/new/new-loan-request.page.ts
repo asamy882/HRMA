@@ -50,7 +50,7 @@ export class NewLoanRequestPage implements OnInit {
       const requestId = params['requestId'];
       if (req) {
         this.readonly = true;
-        this.title = 'app.permissionRequest.viewRequestPageTitle';
+        this.title = 'app.loanRequest.viewRequestPageTitle';
         this.request = JSON.parse(req);
         this.setFormValues(this.request);
         this.renderCloseButton = true;
@@ -58,18 +58,16 @@ export class NewLoanRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.loanRequest.taskActionRequestPageTitle';
-        this.service.getLoanRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.loanRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getLoanRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.loanRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -141,13 +139,8 @@ export class NewLoanRequestPage implements OnInit {
     const request = {... this.requestForm.value,
         LoanDate : this.formatDate(this.requestForm.get('LoanDate').value),
         };
-    this.service.addLoanRequest(request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg( res.Message, 'error');
-      }
+    this.service.addLoanRequest(request).then(res => {
+      this.navigateToSearch(true);
     });
   }
 
@@ -162,15 +155,6 @@ export class NewLoanRequestPage implements OnInit {
         window.location.reload();
       }
     });
-  }
-
-  async displayMsg(msg, cal) {
-    const toast = await this.toastController.create({
-      message: msg,
-      cssClass: cal,
-      duration: 5000
-    });
-    toast.present();
   }
 
   renderApproveAndRejectButtons() {

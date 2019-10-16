@@ -16,10 +16,9 @@ export class MytasksPage implements OnInit {
   constructor(private service: MyTasksService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyTasks().subscribe(res => {
-      if (res.Success) {
-        this.myTasks = res.Items;
-      }
+    this.myTasks = [];
+    this.service.getMyTasks().then(res => {
+      this.myTasks = this.myTasks.concat(res.Items);
     });
   }
 

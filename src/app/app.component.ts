@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-//import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LanguageService } from '../common/services/language.service';
 import { SpinnerService } from '../common/services/spinner.service';
-import { LoadingController } from '@ionic/angular';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/common/services/auth.service';
+import { LoadingService } from 'src/common/services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -91,13 +89,11 @@ export class AppComponent implements OnInit {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-  //  private statusBar: StatusBar,
     public languageService: LanguageService,
     private spinnerService: SpinnerService,
-    private loadingController: LoadingController,
     public router: Router,
-    private service: AuthService
+    public service: AuthService,
+    public loadingService: LoadingService
   ) {
     this.initializeApp();
   }
@@ -106,41 +102,31 @@ export class AppComponent implements OnInit {
     localStorage.clear();
   }
   async presentLoadingWithOptions() {
-    this.loading = await this.loadingController.create({
-      spinner: null,
-      duration: 10000,
-      message: 'Please wait...',
-      translucent: true,
-      cssClass: 'custom-class custom-loading'
-    });
-
     this.spinnerService.onLoadingChanged
       .subscribe(isLoading => {
         if (isLoading) {
-          this.loading.present();
+          this.loadingService.present();
         } else {
-          this.loading.dismiss();
+         this.loadingService.dismiss();
         }
       });
 
     this.router.events.subscribe((route) => {
         if (route instanceof NavigationStart) {
-          this.loading.present();
+         // this.loadingService.present();
         }
         if (route instanceof NavigationEnd) {
-          this.loading.dismiss();
+         // this.loadingService.dismiss();
         }
       });
 
     this.languageService.local$.subscribe(lang => {
-        this.loading.hide();
+      this.loadingService.dismiss();
       });
-
- //   return await this.loading.present();
   }
 
-  ngOnInit() {
-    this.presentLoadingWithOptions();
+  ngOnInit() { 
+    
     this.myPhoto = this.service.getMyPhoto();
     this.myInfo = this.service.getMyInfo();
 
@@ -156,6 +142,7 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.presentLoadingWithOptions();
      // this.statusBar.styleDefault();
      //this.splashScreen.hide();
     // this.statusBar.overlaysWebView(true);

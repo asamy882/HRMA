@@ -18,6 +18,7 @@ import { ListPage } from './list.page';
       }
     ])
   ],
+  entryComponents: [ListPage],
   declarations: [ListPage]
 })
 export class ListPageModule {}

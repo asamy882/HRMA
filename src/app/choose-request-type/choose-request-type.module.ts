@@ -26,6 +26,7 @@ const routes: Routes = [
     TranslateModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [ChooseRequestTypePage],
   declarations: [ChooseRequestTypePage]
 })
 export class ChooseRequestTypePageModule {}

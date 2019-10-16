@@ -30,6 +30,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewMissionRequestPage, SearchMissionRequestsPage],
   declarations: [NewMissionRequestPage, SearchMissionRequestsPage],
   providers: [MissionRequestService]
 })

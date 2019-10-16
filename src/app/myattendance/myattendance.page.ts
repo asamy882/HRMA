@@ -62,10 +62,8 @@ export class MyattendancePage implements OnInit {
     const request = { ... this.requestForm.value };
     if (request.FromDate && request.ToDate) {
       this.service.getAttendanceSheet(this.formatDate(request.FromDate),
-        this.formatDate(request.ToDate)).subscribe(res => {
-          if (res.Success) {
-            this.attendanceSheet = res.Items;
-          }
+        this.formatDate(request.ToDate)).then(res => {
+          this.attendanceSheet = res.Items;
         });
     }
   }

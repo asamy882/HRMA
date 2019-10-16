@@ -37,4 +37,12 @@ export class SpinnerService {
   private notify(): void {
     this.onLoadingChanged.emit(this.requests.length !== 0);
   }
+
+  showLoadingSpinner() {
+    document.getElementById('spinner').style.display = 'block';
+  }
+
+  hideLoadingSpinner() {
+    document.getElementById('spinner').style.display = 'none';
+  }
 }

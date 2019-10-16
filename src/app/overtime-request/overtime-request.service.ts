@@ -1,34 +1,26 @@
 import {Injectable} from '@angular/core';
+import { HttpService } from 'src/common/services/http.service';
 
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
 
 
 @Injectable()
 export class OvertimeRequestService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
-  overtimeTypes: any[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  addOvertimeRequest(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/AddOvertimeRequest`;
-    return this.http.post<any>(url, data);
+  addOvertimeRequest(data): Promise<any> {
+    const url = `/api/Dashboard/AddOvertimeRequest`;
+    return this.http.post(url, data);
   }
 
-  getMyOvertimeRequests(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyOvertimeRequests`;
+  getMyOvertimeRequests(): Promise<any> {
+    const url = `/api/Dashboard/GetMyOvertimeRequests`;
     return this.http.get(url);
   }
 
-  getOvertimeRequest(requestId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetOvertimeRequest?requestId=${requestId}`;
+  getOvertimeRequest(requestId): Promise<any> {
+    const url = `/api/Dashboard/GetOvertimeRequest?requestId=${requestId}`;
     return this.http.get(url);
   }
 

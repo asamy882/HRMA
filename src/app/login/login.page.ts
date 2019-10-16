@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
    // this.spinnerDialog.show();
     // this.spinnerDialog.show(null, 'Please wait...');
     this.service.login(companyId, username, password).subscribe(() => {
-      if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {        
+      if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         const redirect = this.service.redirectUrl ? this.service.redirectUrl : '/home';
@@ -57,10 +57,14 @@ export class LoginPage implements OnInit {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
-        this.service.loadMyPhoto();
-        this.service.loadMyInfo();
-        // Redirect the user
-        this.router.navigate([redirect], navigationExtras);
+        this.service.loadMyInfo().then(item => {
+          this.service.loadMyPhoto().subscribe(res => {
+            if (res.Success && res.Item) {
+              this.service.setMyPhoto(res.Item);
+            }
+            // Redirect the user
+            this.router.navigate([redirect], navigationExtras);
+          }); });
       }
     },
       (error) => {
@@ -97,10 +101,14 @@ export class LoginPage implements OnInit {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
-        this.service.loadMyPhoto();
-        this.service.loadMyInfo();
-        // Redirect the user
-        this.router.navigate([redirect], navigationExtras);
+        this.service.loadMyInfo().then(item => {
+          this.service.loadMyPhoto().subscribe(res => {
+            if (res.Success && res.Item) {
+              this.service.setMyPhoto(res.Item);
+            }
+            // Redirect the user
+            this.router.navigate([redirect], navigationExtras);
+          }); });
       } else {
         this.errorMsg = this.service.getErrorMsg();
         this.displayErrorMsg();

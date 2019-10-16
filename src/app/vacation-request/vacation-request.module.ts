@@ -28,6 +28,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewVacationRequestPage, SearchVacationRequestsPage],
   declarations: [NewVacationRequestPage, SearchVacationRequestsPage],
   providers: [VacationRequestService]
 })

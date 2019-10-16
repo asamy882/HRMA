@@ -10,7 +10,7 @@
                     <img src="assets/imgs/man.png" *ngIf="!myPhoto">
                     <img src="{{'data:image/png;base64,' + myPhoto}}" *ngIf="myPhoto">
                 </ion-avatar>
-                <ion-label class="text-white">{{ myInfo.EmployeeName }}</ion-label>
+                <ion-label class="text-white">{{ service.myInfo?.EmployeeName }}</ion-label>
               </ion-item>
         </ion-toolbar>
       </ion-header>
@@ -33,10 +33,10 @@
         <ion-toolbar>
             <ion-item class="p-3">
                 <ion-avatar slot="start">
-                    <img src="assets/imgs/man.png" *ngIf="!myPhoto">
-                    <img src="{{'data:image/png;base64,' + myPhoto}}" *ngIf="myPhoto">
+                    <img src="assets/imgs/man.png" *ngIf="!service.myPhoto">
+                    <img src="{{'data:image/png;base64,' + service.myPhoto}}" *ngIf="service.myPhoto">
                 </ion-avatar>
-                <ion-label class="text-white">{{ myInfo.EmployeeName }}</ion-label>
+                <ion-label class="text-white">{{ service.myInfo?.EmployeeName }}</ion-label>
               </ion-item>
         </ion-toolbar>
       </ion-header>

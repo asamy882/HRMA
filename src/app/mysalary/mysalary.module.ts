@@ -29,6 +29,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [MysalaryPage],
   declarations: [MysalaryPage],
   providers: [MySalaryService]
 })

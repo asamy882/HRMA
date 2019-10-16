@@ -15,10 +15,8 @@ export class SearchLoanRequestsPage implements OnInit {
   constructor(private service: LoanRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyLoanRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyLoanRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

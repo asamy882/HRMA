@@ -13,17 +13,15 @@ export class MysalaryPage implements OnInit {
   constructor(private service: MySalaryService) { }
 
   ngOnInit() {
-    this.service.getPayrollPeriods().subscribe(res => {
-      if (res.Success) {
-        this.periods = res.Items;
-      }
+    this.service.getPayrollPeriods().then(res => {
+      this.periods = res.Items;
     });
   }
 
   getMonthlyPayroll(periodId) {
     this.tabName = null;
-    this.service.getMonthlyPayroll(periodId).subscribe(res => {
-      if (res.Success && res.Item) {
+    this.service.getMonthlyPayroll(periodId).then(res => {
+      if (res.Item) {
         this.monthlyPayroll = res.Item;
         this.tabName = 'dues';
       }

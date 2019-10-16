@@ -1,0 +1,76 @@
+.arabic {
+  ion-tabs {
+    .tabbar {
+      direction: rtl !important;
+    }
+  }
+  ion-header {
+    direction: rtl;
+    ion-navbar {
+      ion-icon {
+        transform: rotate(180deg) !important;
+      }
+    }
+  }
+  [text-left] {
+    text-align: right !important;
+  }
+  [text-right] {
+    text-align: left !important;
+  }
+  .bar-buttons-ios[right] {
+    text-align: left !important;
+  }
+  .scroll-content {
+    direction: rtl !important;
+  }
+  .rotate {
+    transform: rotate(180deg);
+  }
+  .alert-wrapper {
+    direction: rtl;
+  }
+  .errorToastClass,
+  .confirmToastClass {
+    .toast-message {
+      direction: rtl;
+    }
+  }
+
+  ion-input {
+    text-align: right !important;
+  }
+  
+  input {
+    text-align: right !important;
+  }
+  
+}
+
+.multilineErrorToast {
+  .toast-message {
+    direction: rtl;
+  }
+}
+
+.input-item {
+  .item-inner {
+    ion-label {
+      font-family: GESSTextBold;
+      text-align: right !important;
+    }
+    input {
+      font-family: Cairo-Regular;
+      text-align: right !important;
+    }
+  }
+}
+
+.list-item,
+.list-item-white {
+  .item-inner {
+    padding-right: 0 !important;
+    padding-left: 8px;
+  }
+}
+

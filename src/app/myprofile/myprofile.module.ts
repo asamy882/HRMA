@@ -27,6 +27,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [MyprofilePage],
   declarations: [MyprofilePage]
 })
 export class MyprofilePageModule {}

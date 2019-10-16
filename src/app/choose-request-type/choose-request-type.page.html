@@ -4,56 +4,56 @@
   <div class="p-1 requests-menu">
     <ion-grid>
       <ion-row>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.VACATION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/vacation-request/search">
             <img class="logo" src="assets/imgs/vacation-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.vacationReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.PERMISSION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/permission-request/search">
             <img class="logo" src="assets/imgs/permission-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.permissionReq' | translate}}</span>
           </ion-card>
         </ion-col>
 
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.MISSION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/mission-request/search">
             <img class="logo" src="assets/imgs/mission-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.missionReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.OVERTIME_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/overtime-request/search">
             <img class="logo" src="assets/imgs/overtime-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.overtimeReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.CHANGE_SHIFT_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/change-shift-request/search">
             <img class="logo" src="assets/imgs/changeshift-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.changeShiftReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.CHANGE_DAYOFF_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/change-day-off-request/search">
             <img class="logo" src="assets/imgs/changedayoff-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.changeDayOffReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.WORK_IN_DAYOFF_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/work-in-day-off-request/search">
             <img class="logo" src="assets/imgs/workingInDayoff-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.workingInDayOffReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.LOAN_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/loan-request/search">
             <img class="logo" src="assets/imgs/loan-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.loanReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.PENALTY_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/penalty-request/search">
             <img class="logo" src="assets/imgs/penalty-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.penaltyReq' | translate}} </span>

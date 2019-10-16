@@ -62,18 +62,16 @@ export class NewChangeShiftRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.changeShiftRequest.taskActionRequestPageTitle';
-        this.service.getChangeShiftRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.changeShiftRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getChangeShiftRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.changeShiftRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -121,7 +119,7 @@ export class NewChangeShiftRequestPage implements OnInit {
   }
 
   async loadEmployeeShifts() {
-    this.service.getEmployeeShifts().subscribe((res) => {
+    this.service.getEmployeeShifts().then((res) => {
       this.employeeShifts = res.Items;
     });
   }
@@ -152,13 +150,8 @@ export class NewChangeShiftRequestPage implements OnInit {
         EmployeeShiftDate : this.formatDate(this.requestForm.get('EmployeeShiftDate').value),
         NewShift: {ShiftId: this.requestForm.get('NewShift').value}
        };
-    this.service.addChangeShiftRequest(request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg( res.Message, 'error');
-      }
+    this.service.addChangeShiftRequest(request).then(res => {
+      this.navigateToSearch(true);
     });
 
   }
@@ -174,15 +167,6 @@ export class NewChangeShiftRequestPage implements OnInit {
         window.location.reload();
       }
     });
-  }
-
-  async displayMsg(msg, cal) {
-    const toast = await this.toastController.create({
-      message: msg,
-      cssClass: cal,
-      duration: 5000
-    });
-    toast.present();
   }
 
   renderApproveAndRejectButtons() {

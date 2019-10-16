@@ -74,18 +74,16 @@ export class NewPenaltyRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.penaltyRequest.taskActionRequestPageTitle';
-        this.service.getPenaltyRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.penaltyRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getPenaltyRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.penaltyRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -131,13 +129,13 @@ export class NewPenaltyRequestPage implements OnInit {
   }
 
   async loadEmployees() {
-    this.service.getEmployeesForPenaltyRequest().subscribe((res) => {
+    this.service.getEmployeesForPenaltyRequest().then((res) => {
       this.employees = res.Items;
     });
   }
 
   async loadPenaltyReasons() {
-    this.service.getPenaltyReasons().subscribe((res) => {
+    this.service.getPenaltyReasons().then((res) => {
       this.penaltyReasons = res.Items;
     });
   }
@@ -145,7 +143,7 @@ export class NewPenaltyRequestPage implements OnInit {
   reasonChanged() {
     const request = {... this.requestForm.value};
     if (request.EmployeeId && request.PenaltyReason && request.PenaltyDate) {
-      this.service.getPenaltyReasonPolicyForEmployee(request.EmployeeId, request.PenaltyReason, request.PenaltyDate).subscribe( res => {
+      this.service.getPenaltyReasonPolicyForEmployee(request.EmployeeId, request.PenaltyReason, request.PenaltyDate).then( res => {
         if (res.Item) {
           this.requestForm.controls['PenaltyTypeId'].setValue(res.Item.PenlatyTypeId);
           this.requestForm.controls['PenaltyValue'].setValue(res.Item.PenlatyValue);
@@ -188,13 +186,8 @@ export class NewPenaltyRequestPage implements OnInit {
     const request = {... this.requestForm.value,
       PenaltyDate: this.formatDate(this.requestForm.get('PenaltyDate').value),
       PenaltyReason: {ID: this.requestForm.value.PenaltyReason}};
-    this.service.addPenaltyRequest(request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg( res.Message, 'error');
-      }
+    this.service.addPenaltyRequest(request).then(res => {
+      this.navigateToSearch(true);
     });
 
   }
@@ -210,15 +203,6 @@ export class NewPenaltyRequestPage implements OnInit {
         window.location.reload();
       }
     });
-  }
-
-  async displayMsg(msg, cal) {
-    const toast = await this.toastController.create({
-      message: msg,
-      cssClass: cal,
-      duration: 5000
-    });
-    toast.present();
   }
 
   renderApproveAndRejectButtons() {

@@ -15,10 +15,8 @@ export class SearchOvertimeRequestsPage implements OnInit {
   constructor(private service: OvertimeRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyOvertimeRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyOvertimeRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

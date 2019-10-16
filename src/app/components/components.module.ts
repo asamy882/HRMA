@@ -15,6 +15,7 @@ import { TaskActionsService } from './task-actions/task-actions.service';
     TranslateModule,
     IonicModule
   ],
+  entryComponents: [HeaderComponents, TaskActionsComponent],
   declarations: [HeaderComponents, TaskActionsComponent],
   exports: [HeaderComponents, TaskActionsComponent],
   providers: [TaskActionsService]

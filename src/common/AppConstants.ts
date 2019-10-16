@@ -29,6 +29,22 @@ export class AppConstants {
   public static APPROVE_REJECT = 3;
   public static APPROVE_REJECT_CHANGE_REQUEST = 4;
 
+  //Screens
+  public  VACATION_REQUEST_PAGE = "VacationRequest";
+  public  MISSION_REQUEST_PAGE = "MissionRequest";
+  public  PENALTY_REQUEST_PAGE = "PenaltyRequest";
+  public  LOAN_REQUEST_PAGE = "LoanRequest";
+  public  CHANGE_SHIFT_REQUEST_PAGE = "ChangeShiftRequest";
+  public  CHANGE_DAYOFF_REQUEST_PAGE = "ChangeDayOffRequest";
+  public  SHIFT_PLAN_REQUEST_PAGE = 7;
+  public  WORK_IN_DAYOFF_REQUEST_PAGE = "WorkinDayoffRequest";
+  public  OVERTIME_REQUEST_PAGE = "OverTimeRequest";
+  public  WORK_IN_WEEKLY_RESET_REQUEST_PAGE = 10;
+  public  CHANGE_WEEKLY_RESET_REQUEST_PAGE = 11;
+  public  ABSENCE_WITH_PERMISSION_REQUEST_PAGE = 12;
+  public  PERMISSION_REQUEST_PAGE = "PermissionRequest";
+
+
 }
 
 

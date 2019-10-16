@@ -72,19 +72,17 @@ export class NewVacationRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.vacationRequest.taskActionRequestPageTitle';
-        this.service.getVacationRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.vacationRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.replacement = {EmployeeId : this.request.ReplacementId, EmployeeName: this.request.ReplacementName};
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getVacationRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.vacationRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.replacement = {EmployeeId : this.request.ReplacementId, EmployeeName: this.request.ReplacementName};
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -141,8 +139,9 @@ export class NewVacationRequestPage implements OnInit {
   async loadVacationTypeList() {
     this.vacationTypeList = this.service.getVacationTypes();
     if (!this.vacationTypeList) {
-      this.service.loadVacationTypes().subscribe(() => {
-        this.vacationTypeList = this.service.getVacationTypes();
+      this.service.loadVacationTypes().then((res) => {
+        this.vacationTypeList = res.Items;
+        localStorage.setItem('vacationTypes', JSON.stringify(res.Items));
       });
     }
   }
@@ -152,11 +151,9 @@ export class NewVacationRequestPage implements OnInit {
       this.request = { ... this.requestForm.value };
       if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
         this.service.getVacationTypeBalance(this.request.VacationTypeId, this.formatDate(this.request.FromDate),
-          this.formatDate(this.request.ToDate)).subscribe(res => {
-            if (res.Success) {
-              this.requestForm.controls['Balance'].setValue(res.Item);
-              this.calculateVacationDays();
-            }
+          this.formatDate(this.request.ToDate)).then(res => {
+            this.requestForm.controls['Balance'].setValue(res.Item);
+            this.calculateVacationDays();
           });
       }
     }
@@ -168,10 +165,8 @@ export class NewVacationRequestPage implements OnInit {
       if (this.request.FromDate && this.request.ToDate && this.request.VacationTypeId) {
         this.request.FromDate = this.formatDate(this.request.FromDate);
         this.request.ToDate = this.formatDate(this.request.ToDate);
-        this.service.calculateVacationDays(this.request).subscribe(res => {
-          if (res.Success) {
-            this.requestForm.controls['VacationDays'].setValue(res.Item.VacationDays);
-          }
+        this.service.calculateVacationDays(this.request).then(res => {
+          this.requestForm.controls['VacationDays'].setValue(res.Item.VacationDays);
         });
     }
     }
@@ -237,16 +232,17 @@ export class NewVacationRequestPage implements OnInit {
   }
 
   submit() {
+    const excludeWeekend = this.requestForm.get('ExcludeWeekend').value;
+    this.request = { ... this.requestForm.value,
+      FromDate : this.formatDate(this.request.FromDate),
+      ToDate : this.formatDate(this.request.ToDate),
+      ExcludeWeekend : excludeWeekend ? excludeWeekend : true
+     };
     if (this.replacement) {
       this.request.ReplacementId = this.replacement.EmployeeId;
     }
-    this.service.addVacationRequest(this.request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg(res.Message, 'error');
-      }
+    this.service.addVacationRequest(this.request).then(res => {
+      this.navigateToSearch(true);
     });
 
   }

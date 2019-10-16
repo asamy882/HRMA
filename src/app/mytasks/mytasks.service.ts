@@ -1,23 +1,16 @@
 import {Injectable} from '@angular/core';
+import { HttpService } from 'src/common/services/http.service';
 
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
 
 
 @Injectable()
 export class MyTasksService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
-
-
-  constructor(private http: HttpClient) {
+ 
+  constructor(private http: HttpService) {
   }
 
-  getMyTasks(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyTasks`;
+  getMyTasks(): Promise<any> {
+    const url = `/api/Dashboard/GetMyTasks`;
     return this.http.get(url);
   }
 

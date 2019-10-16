@@ -70,18 +70,16 @@ export class NewWorkinDayOffRequestPage implements OnInit {
         this.backPage = '/mytasks';
         this.readonly = true;
         this.title = 'app.workinDayOffRequest.taskActionRequestPageTitle';
-        this.service.getWorkinDayOffRequest(requestId).subscribe(res => {
-            if (res.Success) {
-              this.request = res.Item;
-              this.setFormValues(this.request);
-              if (this.request.AllowedActions == AppConstants.INITIATE) {
-                this.title = 'app.workinDayOffRequest.changeRequestPageTitle';
-                this.renderSaveButton = true;
-                this.readonly = false;
-              } else {
-                this.renderTaskActions = true;
-              }
-            }
+        this.service.getWorkinDayOffRequest(requestId).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          if (this.request.AllowedActions == AppConstants.INITIATE) {
+            this.title = 'app.workinDayOffRequest.changeRequestPageTitle';
+            this.renderSaveButton = true;
+            this.readonly = false;
+          } else {
+            this.renderTaskActions = true;
+          }
           });
       } else {
         this.renderSaveButton = true;
@@ -156,13 +154,13 @@ export class NewWorkinDayOffRequestPage implements OnInit {
   }
 
   async loadEmployeeDayOffs() {
-    this.service.getEmployeeDayOffs().subscribe((res) => {
+    this.service.getEmployeeDayOffs().then((res) => {
       this.employeeDayOffs = res.Items;
     });
   }
 
   async loadEmployeeShifts() {
-    this.service.getEmployeeShifts().subscribe((res) => {
+    this.service.getEmployeeShifts().then((res) => {
       this.employeeShifts = res.Items;
     });
   }
@@ -195,13 +193,8 @@ export class NewWorkinDayOffRequestPage implements OnInit {
         EmployeeShiftDate : this.formatDate(this.requestForm.get('EmployeeShiftDate').value),
         Shift: {ShiftId: this.requestForm.get('Shift').value}
        };
-    this.service.addWorkinDayOffRequest(request).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(this.successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg( res.Message, 'error');
-      }
+    this.service.addWorkinDayOffRequest(request).then(res => {
+      this.navigateToSearch(true);
     });
 
   }
@@ -217,15 +210,6 @@ export class NewWorkinDayOffRequestPage implements OnInit {
         window.location.reload();
       }
     });
-  }
-
-  async displayMsg(msg, cal) {
-    const toast = await this.toastController.create({
-      message: msg,
-      cssClass: cal,
-      duration: 5000
-    });
-    toast.present();
   }
 
   renderApproveAndRejectButtons() {

@@ -25,6 +25,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [MyinformationsPage],
   declarations: [MyinformationsPage]
 })
 export class MyinformationsPageModule {}

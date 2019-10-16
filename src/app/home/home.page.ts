@@ -19,4 +19,8 @@ export class HomePage {
     this.languageService.setCurrentLanguage(lang);
   }
 
+  clearLocalStorage() {
+    localStorage.clear();
+  }
+
 }

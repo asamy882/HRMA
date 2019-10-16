@@ -1,26 +1,20 @@
 import {Injectable} from '@angular/core';
-
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
+import { HttpService } from 'src/common/services/http.service';
 
 
 @Injectable()
 export class MySalaryService {
-  baseUrl = AppConstants.API_ENDPOINT;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  getPayrollPeriods(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetPayrollPeriods`;
+  getPayrollPeriods(): Promise<any> {
+    const url = `/api/Dashboard/GetPayrollPeriods`;
     return this.http.get(url);
   }
 
-  getMonthlyPayroll(periodId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMonthlyPayroll?periodId=${periodId}`;
+  getMonthlyPayroll(periodId): Promise<any> {
+    const url = `/api/Dashboard/GetMonthlyPayroll?periodId=${periodId}`;
     return this.http.get(url);
   }
 

@@ -13,8 +13,9 @@ export class AuthService {
   redirectUrl: string;
   private errorMsg: string;
   private userToken: string;
-  private myInfo: string;
-  private myPhoto: string;
+  public myInfo: any;
+  public myPhoto: string;
+  public allowedScreens: string[];
   private baseUrl = AppConstants.API_ENDPOINT;
 
   constructor(private http: HttpClient) {
@@ -34,7 +35,9 @@ export class AuthService {
         if (res.Success) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.userToken = res.Item.Token;
+          this.allowedScreens = res.Item.AllowedScreens;
           localStorage.setItem('userToken', res.Item.Token);
+          localStorage.setItem('allowedScreens', JSON.stringify(res.Item.AllowedScreens));
          // localStorage['userToken'] = res.Item.Token;
         } else {
           this.errorMsg = res.Message;
@@ -114,12 +117,16 @@ export class AuthService {
   loadMyInfo() {
     const url = this.baseUrl +
                 `/api/Dashboard/GetMyInfo`;
-    this.http.get<any>(url).subscribe(res => {
-      if (res.Success) {
-        this.myInfo = res.Item;
-        localStorage.setItem('myInfo', JSON.stringify(this.myInfo));
-      }
-    });
+    return new Promise((resolve, reject) => {
+                  this.http.get<any>(url).subscribe(res => {
+                    if (res.Success) {
+                      this.myInfo = res.Item;
+                      localStorage.setItem('myInfo', JSON.stringify(this.myInfo));
+                      resolve(res.Item);
+                    }
+                  } , error => {
+                    reject([]);
+                }); });
   }
 
   getMyInfo() {
@@ -129,22 +136,30 @@ export class AuthService {
     return this.myInfo;
   }
 
-  loadMyPhoto() {
+  loadMyPhoto(): Observable<any> {
     const url = this.baseUrl +
                 `/api/Dashboard/GetMyPhoto`;
-    this.http.get<any>(url).subscribe(res => {
-      if (res.Success && res.Item) {
-        this.myPhoto = res.Item;
-        localStorage.setItem('myPhoto', this.myPhoto);
-      }
-    });
+    return this.http.get<any>(url);
   }
+
+  setMyPhoto(myPhoto) {
+    this.myPhoto = myPhoto;
+    localStorage.setItem('myPhoto', this.myPhoto);
+  }
+
 
   getMyPhoto() {
     if (!this.myPhoto || this.myPhoto == null) {
       this.myPhoto = localStorage.getItem('myPhoto');
     }
     return this.myPhoto;
+  }
+
+  getAllowedScreens() {
+    if (!this.allowedScreens) {
+      this.allowedScreens = JSON.parse(localStorage.getItem('allowedScreens'));
+    }
+    return this.allowedScreens;
   }
 
 }

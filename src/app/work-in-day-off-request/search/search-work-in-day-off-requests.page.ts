@@ -15,10 +15,8 @@ export class SearchWorkinDayOffRequestsPage implements OnInit {
   constructor(private service: WorkinDayOffRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyWorkinDayOffRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyWorkinDayOffRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

@@ -28,6 +28,7 @@ import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
     Ionic4DatepickerModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewChangeDayOffRequestPage, SearchChangeDayOffRequestsPage],
   declarations: [NewChangeDayOffRequestPage, SearchChangeDayOffRequestsPage],
   providers: [ChangeDayOffRequestService]
 })

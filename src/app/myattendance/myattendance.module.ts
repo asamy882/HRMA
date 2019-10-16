@@ -33,6 +33,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [MyattendancePage],
   declarations: [MyattendancePage],
   providers: [MyAttendanceService]
 })

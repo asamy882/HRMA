@@ -15,10 +15,8 @@ export class SearchVacationRequestsPage implements OnInit {
   constructor(private service: VacationRequestService, private router: Router, public languageService: LanguageService) { }
 
   ngOnInit() {
-    this.service.getMyVacationRequests().subscribe(res => {
-      if (res.Success) {
-        this.requests = res.Items;
-      }
+    this.service.getMyVacationRequests().then(res => {
+      this.requests = res.Items;
     });
   }
 

@@ -30,6 +30,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [NewOvertimeRequestPage, SearchOvertimeRequestsPage],
   declarations: [NewOvertimeRequestPage, SearchOvertimeRequestsPage],
   providers: [OvertimeRequestService]
 })

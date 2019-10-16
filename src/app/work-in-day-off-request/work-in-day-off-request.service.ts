@@ -1,46 +1,37 @@
 import {Injectable} from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
+
+import { HttpService } from 'src/common/services/http.service';
 
 
 @Injectable()
 export class WorkinDayOffRequestService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  getEmployeeDayOffs(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetEmployeeDayOffs`;
+  getEmployeeDayOffs(): Promise<any> {
+    const url = `/api/Dashboard/GetEmployeeDayOffs`;
     return this.http.get(url);
   }
 
-  getEmployeeShifts(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetEmployeeShifts`;
+  getEmployeeShifts(): Promise<any> {
+    const url = `/api/Dashboard/GetEmployeeShifts`;
     return this.http.get(url);
   }
 
-  addWorkinDayOffRequest(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/AddWorkinDayOffRequest`;
-    return this.http.post<any>(url, data);
+  addWorkinDayOffRequest(data): Promise<any> {
+    const url = `/api/Dashboard/AddWorkinDayOffRequest`;
+    return this.http.post(url, data);
   }
 
-  getMyWorkinDayOffRequests(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyWorkinDayOffRequests`;
+  getMyWorkinDayOffRequests(): Promise<any> {
+    const url = `/api/Dashboard/GetMyWorkinDayOffRequests`;
     return this.http.get(url);
   }
 
-  getWorkinDayOffRequest(requestId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetWorkinDayOffRequest?requestId=${requestId}`;
+  getWorkinDayOffRequest(requestId): Promise<any> {
+    const url = `/api/Dashboard/GetWorkinDayOffRequest?requestId=${requestId}`;
     return this.http.get(url);
   }
 

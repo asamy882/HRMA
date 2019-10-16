@@ -25,6 +25,7 @@ const routes: Routes = [
     TranslateModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [LoginPage],
   declarations: [LoginPage]
 })
 export class LoginPageModule {}

@@ -1,24 +1,18 @@
 import {Injectable} from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from 'src/common/AppConstants';
+import { HttpService } from 'src/common/services/http.service';
+
 
 
 
 @Injectable()
 export class TaskActionsService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
-  permissionTypes: any[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
-  doTaskAction(action): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/DoTaskAction`;
-    return this.http.post<any>(url, action);
+  doTaskAction(action): Promise<any> {
+    const url = `/api/Dashboard/DoTaskAction`;
+    return this.http.post(url, action);
   }
 
 }

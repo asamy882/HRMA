@@ -67,13 +67,8 @@ export class TaskActionsComponent implements OnInit {
       Decision: decision
     };
 
-    this.service.doTaskAction(action).subscribe(res => {
-      if (res.Success) {
-        this.displayMsg(successMsg, 'success');
-        this.navigateToSearch(true);
-      } else {
-        this.displayMsg(res.Message, 'error');
-      }
+    this.service.doTaskAction(action).then(res => {
+      this.navigateToSearch(true);
     });
   }
 
@@ -88,15 +83,6 @@ export class TaskActionsComponent implements OnInit {
         window.location.reload();
       }
     });
-  }
-
-  async displayMsg(msg, cal) {
-    const toast = await this.toastController.create({
-      message: msg,
-      cssClass: cal,
-      duration: 5000
-    });
-    toast.present();
   }
 
 }

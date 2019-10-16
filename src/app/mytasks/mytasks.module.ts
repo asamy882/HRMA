@@ -24,6 +24,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [MytasksPage],
   declarations: [MytasksPage],
   providers: [MyTasksService]
 })

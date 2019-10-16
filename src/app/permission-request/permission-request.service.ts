@@ -1,17 +1,13 @@
 import {Injectable} from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AppConstants } from '../../common/AppConstants';
+import { HttpService } from 'src/common/services/http.service';
+
 
 
 @Injectable()
 export class PermissionRequestService {
-  redirectUrl: string;
-  baseUrl = AppConstants.API_ENDPOINT;
-  permissionTypes: any[];
+  private permissionTypes: any[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
   }
 
   getPermissionTypes() {
@@ -26,30 +22,23 @@ export class PermissionRequestService {
     return null;
   }
 
-  loadPermissionTypes(): Observable<any> {
-    return this.http.get(this.baseUrl + '/api/Dashboard/GetPermissionTypes').pipe(map((res: any) => {
-      if (res.Success) {
-        this.permissionTypes = res.Items;
-        localStorage.setItem('permissionTypes', JSON.stringify(res.Items));
-      }
-    }));
-  }
-
-  addPermissionRequest(data): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/AddPermissionRequest`;
-    return this.http.post<any>(url, data);
-  }
-
-  getMyPermissionRequests(): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetMyPermissionRequests`;
+  loadPermissionTypes(): Promise<any> {
+    const url = `/api/Dashboard/GetPermissionTypes`;
     return this.http.get(url);
   }
 
-  getPermissionRequest(requestId): Observable<any> {
-    const url = this.baseUrl +
-                `/api/Dashboard/GetPermissionRequest?requestId=${requestId}`;
+  addPermissionRequest(data): Promise<any> {
+    const url = `/api/Dashboard/AddPermissionRequest`;
+    return this.http.post(url, data);
+  }
+
+  getMyPermissionRequests(): Promise<any> {
+    const url = `/api/Dashboard/GetMyPermissionRequests`;
+    return this.http.get(url);
+  }
+
+  getPermissionRequest(requestId): Promise<any> {
+    const url = `/api/Dashboard/GetPermissionRequest?requestId=${requestId}`;
     return this.http.get(url);
   }
 
