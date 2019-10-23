@@ -9,4 +9,5 @@ export class WorkinDayOffRequest {
   AllowedActions: number;
   AllowedComments: boolean;
   CommentsMandatory: boolean;
+  WorkflowInstanceId: string;
 }

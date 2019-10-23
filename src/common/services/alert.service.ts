@@ -33,7 +33,7 @@ export class AlertService {
   }
 
   async displaySuccessMessage() {
-    this.translateService.get(["common.successMessage"]).subscribe(
+    this.translateService.get(['common.successMessage']).subscribe(
       res => {
         this.displaySuccessToast(res['common.successMessage']);
       });
@@ -50,14 +50,14 @@ export class AlertService {
   }
 
   async displayErrorToast1(msg, isLogout = false) {
-    const div = document.getElementById("tempForHTML");
+    const div = document.getElementById('tempForHTML');
     div.innerHTML = msg;
     const toast = await this.toastCtrl.create({
       message: div.innerText,
       position: 'top',
       showCloseButton: true,
-      closeButtonText: "Close",
-      cssClass: "errorToastClass"
+      closeButtonText: 'Close',
+      cssClass: 'errorToastClass'
       // dismissOnPageChange: true
     });
     toast.present();

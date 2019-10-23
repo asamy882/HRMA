@@ -6,4 +6,5 @@ export class LoanRequest {
   AllowedActions: number;
   AllowedComments: boolean;
   CommentsMandatory: boolean;
+  WorkflowInstanceId: string;
 }

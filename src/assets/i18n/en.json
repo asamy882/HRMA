@@ -102,7 +102,7 @@
     },
     "mytasks": {
       "title": "My Tasks",
-      "employeeNo": "Employee Number",
+      "employeeID": "Employee ID",
       "requestType": "Request Type",
       "requestNo": "Request Number"
     },
@@ -175,12 +175,12 @@
       "errorMsg": ""
     },
     "workinDayOffRequest": {
-      "title": "Workin DayOff Requests",
-      "newRequestPageTitle": "New Workin DayOff Request",
-      "viewRequestPageTitle": "View Workin DayOff Request",
-      "changeRequestPageTitle": "Change Workin DayOff Request",
-      "taskActionRequestPageTitle": "Workin DayOff Request",
-      "myRequestsTitle": "My Workin DayOff Requests",
+      "title": "Working DayOff Requests",
+      "newRequestPageTitle": "New Working DayOff",
+      "viewRequestPageTitle": "View Working DayOff",
+      "changeRequestPageTitle": "Change Working DayOff",
+      "taskActionRequestPageTitle": "Working DayOff Request",
+      "myRequestsTitle": "My Working DayOff Requests",
       "employeeShiftDate": "Shift Date",
       "selectEmployeeShiftDate": "Select Shift Date",
       "shift": "Shift Name",
@@ -195,9 +195,9 @@
     },
     "changeDayOffRequest": {
       "title": "Change DayOff Requests",
-      "newRequestPageTitle": "New Change DayOff Request",
-      "viewRequestPageTitle": "View Change DayOff Request",
-      "changeRequestPageTitle": "Change Change DayOff Request",
+      "newRequestPageTitle": "New Change DayOff",
+      "viewRequestPageTitle": "View Change DayOff",
+      "changeRequestPageTitle": "Change Change DayOff",
       "taskActionRequestPageTitle": "Change DayOff Request",
       "myRequestsTitle": "My Change DayOff Requests",
       "oldDayOffDate": "Old Day Off Date",

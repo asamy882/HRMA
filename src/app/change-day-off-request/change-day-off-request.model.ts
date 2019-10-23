@@ -7,4 +7,5 @@ export class ChangeDayOffRequest {
   AllowedActions: number;
   AllowedComments: boolean;
   CommentsMandatory: boolean;
+  WorkflowInstanceId: string;
 }

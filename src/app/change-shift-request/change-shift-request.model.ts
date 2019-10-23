@@ -6,4 +6,5 @@ export class ChangeShiftRequest {
   AllowedActions: number;
   AllowedComments: boolean;
   CommentsMandatory: boolean;
+  WorkflowInstanceId: string;
 }

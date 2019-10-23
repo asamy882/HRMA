@@ -9,4 +9,5 @@ export class MissionRequest {
   AllowedActions: number;
   AllowedComments: boolean;
   CommentsMandatory: boolean;
+  WorkflowInstanceId: string;
 }

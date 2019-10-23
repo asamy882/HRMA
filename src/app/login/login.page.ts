@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/common/services/auth.service';
 import { NavigationExtras, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Events } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import {LanguageService} from '../../common/services/language.service';
 
@@ -20,11 +20,16 @@ export class LoginPage implements OnInit {
 
   constructor(private fb: FormBuilder, private service: AuthService, private router: Router,
               private toastController: ToastController, private languageService: LanguageService,
-              private readonly translate: TranslateService) {
+              private readonly translate: TranslateService, public events: Events, private zone: NgZone) {
     this.authForm = fb.group({
       username: [null, Validators.compose([Validators.required])],
       company: [null, Validators.compose([Validators.required])],
       password: [null, Validators.compose([Validators.required])]
+    });
+    this.events.subscribe('updateScreen', () => {
+      this.zone.run(() => {
+        console.log('force update the screen');
+      });
     });
    }
 
@@ -62,6 +67,7 @@ export class LoginPage implements OnInit {
             if (res.Success && res.Item) {
               this.service.setMyPhoto(res.Item);
             }
+            this.events.publish('updateScreen');
             // Redirect the user
             this.router.navigate([redirect], navigationExtras);
           }); });
@@ -106,6 +112,7 @@ export class LoginPage implements OnInit {
             if (res.Success && res.Item) {
               this.service.setMyPhoto(res.Item);
             }
+            this.events.publish('updateScreen');
             // Redirect the user
             this.router.navigate([redirect], navigationExtras);
           }); });
@@ -133,6 +140,5 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
 
 }

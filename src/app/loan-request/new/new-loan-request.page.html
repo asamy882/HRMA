@@ -44,7 +44,7 @@
             <button  class="btn-danger"  type="button" (click)="navigateToSearch(false)" *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>
           </ion-col>
           <ion-col size="12" *ngIf="renderTaskActions">
-              <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()" [renderRejectButton]="renderApproveAndRejectButtons()"
+              <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()" [renderRejectButton]="renderApproveAndRejectButtons()" [workflowInstanceId]="request.WorkflowInstanceId"
                 [renderOkButton]="renderOkButton()" [renderComments]="request.AllowedComments" [commentsRequired]="request.CommentsMandatory">
               </app-task-actions>
         </ion-col>

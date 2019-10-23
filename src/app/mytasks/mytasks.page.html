@@ -14,7 +14,7 @@
           </ion-buttons>
         </span>
         <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
-          <ion-icon name="contacts"></ion-icon><strong>{{ 'app.mytasks.employeeNo' | translate }}:</strong> {{task.Employee?.EmployeeNo}}
+          <ion-icon name="contacts"></ion-icon><strong>{{ 'app.mytasks.employeeID' | translate }}:</strong> {{task.Employee?.EmployeeNo}}
         </div>
         <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
           <ion-icon name="flag"></ion-icon><strong>{{ 'app.mytasks.requestNo' | translate }}:</strong> {{task.RequestNo}}

@@ -92,7 +92,7 @@
               *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>
           </ion-col>
           <ion-col size="12" *ngIf="renderTaskActions">
-            <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()"
+            <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()" [workflowInstanceId]="request.WorkflowInstanceId"
               [renderRejectButton]="renderApproveAndRejectButtons()" [renderOkButton]="renderOkButton()"
               [renderComments]="request.AllowedComments" [commentsRequired]="request.CommentsMandatory">
             </app-task-actions>
