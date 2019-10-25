@@ -13,17 +13,15 @@ export class AlertService {
   }
 
   async displayErrorToast(msg) {
-    console.log('displayErrorToast', msg);
     const toast = await this.toastCtrl.create({
       message: msg,
-      cssClass: 'errorToastClass',
-      duration: 500000
+      cssClass: 'error',
+      duration: 5000
     });
     toast.present();
   }
 
   async displaySuccessToast(msg) {
-    console.log('displaySuccessToast', msg);
     const toast = await this.toastCtrl.create({
       message: msg,
       cssClass: 'success',

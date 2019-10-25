@@ -486,26 +486,3 @@ ion-card{
   display: inline-block;
 }
 
-
-ion-content.side-menu{
-  --padding-top: 0px !important;
-  --ion-background-color:#2a4f88;
-}
-
-ion-toast.success .toast-wrapper {
-  color: #fff;
-  background: #4CAF50;
-}
-
-ion-toast.error .toast-wrapper {
-background: #e60000;
-color: #fff;
-}
-
-
-.error-box {
-  color: #e60000;
-  background: rgba(255, 255, 255, 0.82);
-  padding: 5px;
-  font-size: 10px;
-}

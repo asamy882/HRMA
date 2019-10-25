@@ -165,71 +165,21 @@ ion-toolbar .toolbar-title{font-size: 16 !important;}
     float: right;
 }
 
-ion-toast.success .toast-wrapper {
-    color: #fff;
-    background: #4CAF50;
-}
-
-ion-toast.error .toast-wrapper {
-	background: #e60000;
-	color: #fff;
-}
-
-
-.error-box {
-    color: #e60000;
-    background: rgba(255, 255, 255, 0.82);
-    padding: 5px;
-    font-size: 10px;
-}
-
-.errorToastClass,
-.confirmToastClass {
-  .toast-wrapper {
-    border-radius: 0 !important;
-    top: 10px !important;
+.error {
+    --background: #d0011b !important;
+    --color: #fff;
   }
-  .toast-container {
-    display: table !important;
-    width: 100%;
-  }
-  .toast-message {
-    vertical-align: middle;
-    display: table-cell;
-    width: 100%;
-    float: left;
-    text-align: center;
-    overflow: scroll;
-    word-break: break-word;
-  }
-  .toast-button {
-    width: 100%;
-    margin: 0;
-  }
-}
 
-.errorToastClass .toast-wrapper {
-  background-color: #d0011b !important;
-}
-
-.errorToastClass .toast-button {
-  background-color: #9e0013;
-}
-
-.confirmToastClass .toast-message {
-  color: #000000 !important;
-}
-
-.confirmToastClass .toast-wrapper {
-  background-color: #eeeeee !important;
-}
-
-.confirmToastClass .toast-button {
-  color: #ffffff !important;
-  background-color: #55acee !important;
-}
-
-.errorToastClass {
-    --border-color: #d0011b !important;
+.success {
+    --background: #4CAF50 !important;
+    --color: #fff;
   }
   
+.info {
+    --background: #55acee !important;
+    --color: #fff;
+  }
+
+.noResultFoundDiv {
+    text-align: center;
+}

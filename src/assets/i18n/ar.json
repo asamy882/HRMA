@@ -18,6 +18,7 @@
       "infoMessage": "رسالة معلومات",
       "errorMessage": "رسالة خطأ",
       "successMessage": "تم حفظ العنصر بنجاح",
+      "noResultFound": "لم يتم العثور على طلبات",
       "today": "اليوم",
       "this-month": "هذا الشهر",
       "noDataFound": "لاتوجد بيانات",
