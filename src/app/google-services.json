@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "823104125986",
+    "firebase_url": "https://hrms-kian-soft.firebaseio.com",
+    "project_id": "hrms-kian-soft",
+    "storage_bucket": "hrms-kian-soft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823104125986:android:4f4454e7cba89637f7de7b",
+        "android_client_info": {
+          "package_name": "io.ionic.kiansoft.hr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823104125986-q7ek3s5srbs4h52dj9qj58egcus4ttbi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.kiansoft.hr",
+            "certificate_hash": "1f5478c887e1817401c33f055f1362fedf7ab186"
+          }
+        },
+        {
+          "client_id": "823104125986-lvj2dcconuir8pimqff47lo5rshtrfgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArx25IG9uVqHuY7QupQXN57Ym3mTCbYQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823104125986-lvj2dcconuir8pimqff47lo5rshtrfgn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

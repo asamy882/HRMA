@@ -15,6 +15,8 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { CommonsModule } from '../common/commons.module';
 
+import { FCM } from '@ionic-native/fcm/ngx';
+
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { CommonsModule } from '../common/commons.module';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    FCM,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

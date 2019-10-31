@@ -111,7 +111,9 @@
       "title": "حسابى",
       "myProfile": "تفاصبل الوظيفة",
       "salary": "الراتب",
-      "myAttendance": "الحضور والانصراف"
+      "myAttendance": "الحضور والانصراف",
+      "myVactionBalance": "My Vaction Balance",
+      "myShifts": "My Shifts"
     },
     "myProfile": {
       "title": "تفاصبل الوظيفة",

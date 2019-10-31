@@ -111,7 +111,9 @@
       "title": "My Information",
       "myProfile": "My Profile",
       "salary": "Salery Details",
-      "myAttendance": "My Attendance"
+      "myAttendance": "My Attendance",
+      "myVactionBalance": "My Vaction Balance",
+      "myShifts": "My Shifts"
     },
     "myProfile": {
       "title": "My Profile",
