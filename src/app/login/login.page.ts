@@ -93,6 +93,7 @@ export class LoginPage implements OnInit {
     const password = this.authForm.get('password').value;
     this.service.login(companyId, username, password).subscribe(() => {
       if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {
+        this.service.enablePushNotification();
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         const redirect = this.service.redirectUrl ? this.service.redirectUrl : '/home';

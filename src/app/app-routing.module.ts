@@ -80,8 +80,12 @@ const routes: Routes = [
     loadChildren: './myinformations/myinformations.module#MyinformationsPageModule' },
   { path: 'myprofile', canActivateChild: [AuthGuard], loadChildren: './myprofile/myprofile.module#MyprofilePageModule' },
   { path: 'mysalary', canActivateChild: [AuthGuard], loadChildren: './mysalary/mysalary.module#MysalaryPageModule' },
+  { path: 'mysalary', canActivateChild: [AuthGuard], loadChildren: './mysalary/mysalary.module#MysalaryPageModule' },
   { path: 'myattendance', canActivateChild: [AuthGuard], loadChildren: './myattendance/myattendance.module#MyattendancePageModule' },
-  { path: 'top10request', canActivateChild: [AuthGuard], loadChildren: './top10request/top10request.module#Top10requestPageModule' },
+  { path: 'myshift-schedule', canActivateChild: [AuthGuard],
+    loadChildren: './myshift-schedule/myshift-schedule.module#MyShiftSchedulePageModule' },
+  { path: 'myvacations-balance', canActivateChild: [AuthGuard],
+    loadChildren: './myvacations-balance/myvacations-balance.module#MyVacationsBalancePageModule' },
   { path: 'choose-request-type', canActivateChild: [AuthGuard],
     loadChildren: './choose-request-type/choose-request-type.module#ChooseRequestTypePageModule' }
 

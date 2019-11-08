@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, Subject, from } from 'rxjs';
 import { AppConstants } from '../AppConstants';
+import { FCM } from '@ionic-native/fcm/ngx';
+
 
 
 @Injectable({
@@ -18,7 +20,7 @@ export class AuthService {
   public allowedScreens: string[];
   private baseUrl = AppConstants.API_ENDPOINT;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private fcm: FCM) {
   }
 
   getCompanies(): Observable<any> {
@@ -50,7 +52,7 @@ export class AuthService {
   }
 
   logout(): void {
-    //localStorage.clear();
+    localStorage.clear();
   }
 
   getUserToken() {
@@ -160,6 +162,28 @@ export class AuthService {
       this.allowedScreens = JSON.parse(localStorage.getItem('allowedScreens'));
     }
     return this.allowedScreens;
+  }
+
+  updateUserDeviceId(token): Observable<any> {
+    const url = this.baseUrl +
+                `/api/Authentication/UpdateUserDeviceId`;
+    const param = {deviceId: token};
+    return this.http.post<any>(url, param);
+  }
+
+  enablePushNotification() {
+    this.fcm.getToken().then(token => {
+      console.log('getToken ', token);
+      this.updateUserDeviceId(token).subscribe(res => {});
+    });
+    this.fcm.onTokenRefresh().subscribe(token => {
+      console.log('onTokenRefresh ', token);
+      this.updateUserDeviceId(token).subscribe(res => {});
+
+    });
+    this.fcm.onNotification().subscribe(data => {
+      console.log('onNotification ', data);
+    });
   }
 
 }

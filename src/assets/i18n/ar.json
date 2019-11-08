@@ -112,8 +112,8 @@
       "myProfile": "تفاصبل الوظيفة",
       "salary": "الراتب",
       "myAttendance": "الحضور والانصراف",
-      "myVactionBalance": "My Vaction Balance",
-      "myShifts": "My Shifts"
+      "myVactionBalance": "رصيد الاجازات",
+      "myShifts": "تفاصيل الورديات"
     },
     "myProfile": {
       "title": "تفاصبل الوظيفة",
@@ -297,6 +297,19 @@
       "overtimeReq": "اضافى",
       "missionReq": "مامورية",
       "permissionReq": "تصريح"
+    },
+    "myVacationsBalance": {
+      "title": "رصيد الاجازات",
+      "noOfDays": "عدد الايام",
+      "takenDays": "المستهلك",
+      "balanceDate": "تاريخ بداية الرصيد",
+      "expiryDate": "تاريخ نهاية الرصيد",
+      "vacationType": "نوع الاجازة"
+    },
+    "myShiftSchedule": {
+      "title": "جدول الورديات",
+      "shiftDescription": "تفاصيل الوردية",
+      "dayDate": "تاريخ الشفت"
     }
   }
 }

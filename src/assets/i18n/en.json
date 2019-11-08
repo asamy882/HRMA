@@ -297,6 +297,20 @@
       "overtimeReq": "Overtime",
       "missionReq": "Mission",
       "permissionReq": "Permission"
+    },
+    "myVacationsBalance": {
+      "title": "My Vacations Balance",
+      "noOfDays": "No Of Days",
+      "takenDays": "Taken Days",
+      "balanceDate": "Balance Date",
+      "expiryDate": "Expiry Date",
+      "balance": "Balance",
+      "vacationType": "Vacation Type"
+    },
+    "myShiftSchedule": {
+      "title": "My Shift Schedule",
+      "shiftDescription": "Shift Description",
+      "dayDate": "Day Date"
     }
   }
 }

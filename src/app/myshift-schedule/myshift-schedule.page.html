@@ -1,0 +1,15 @@
+<app-header [title]="'app.myShiftSchedule.title' | translate" backPage="/myinformations" renderBackButton=true></app-header>
+<ion-content>
+  <div style="height: 56px;"></div>
+  <div class="p-1">
+
+    <ion-card class="p-3 m-3 text-dark " *ngFor="let shift of myShiftSchedule">      
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+          <ion-icon name="calendar"></ion-icon><strong>{{ 'app.myShiftSchedule.dayDate' | translate }}:</strong> {{shift.DayDate}}
+        </div>
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+          <ion-icon name="document"></ion-icon><strong>{{ 'app.myShiftSchedule.shiftDescription' | translate }}:</strong> {{shift.ShiftDescription}}
+        </div>
+    </ion-card>
+  </div>
+</ion-content>

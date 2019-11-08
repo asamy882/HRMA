@@ -1,0 +1,15 @@
+<app-header [title]="'app.myVacationsBalance.title' | translate" backPage="/myinformations" renderBackButton=true></app-header>
+<ion-content>
+  <div style="height: 56px;"></div>
+  <div class="p-1">
+
+    <ion-card class="p-3 m-3 text-dark " *ngFor="let balance of myVacationsBalance">      
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+          <ion-icon name="document"></ion-icon><strong>{{ 'app.myVacationsBalance.vacationType' | translate }}:</strong> {{balance.VacationTypeName}}
+        </div>
+        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+          <ion-icon name="calendar"></ion-icon><strong>{{ 'app.myVacationsBalance.balance' | translate }}:</strong> {{balance.NoOfDays - balance.TakenDays | number}}
+        </div>
+    </ion-card>
+  </div>
+</ion-content>
