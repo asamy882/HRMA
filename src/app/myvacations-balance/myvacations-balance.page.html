@@ -3,13 +3,15 @@
   <div style="height: 56px;"></div>
   <div class="p-1">
 
-    <ion-card class="p-3 m-3 text-dark " *ngFor="let balance of myVacationsBalance">      
-        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
-          <ion-icon name="document"></ion-icon><strong>{{ 'app.myVacationsBalance.vacationType' | translate }}:</strong> {{balance.VacationTypeName}}
-        </div>
-        <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
-          <ion-icon name="calendar"></ion-icon><strong>{{ 'app.myVacationsBalance.balance' | translate }}:</strong> {{balance.NoOfDays - balance.TakenDays | number}}
-        </div>
+    <ion-card class="p-3 m-3 text-dark " *ngFor="let balance of myVacationsBalance">   
+        <ion-card-header>
+            <ion-card-title ngClass="text-align-c">{{balance.VacationTypeName}}</ion-card-title>
+          </ion-card-header>
+          <div class="border-top-dotted pt-2">       
+          <ion-card-content ngClass="text-align-c balance-c">
+              {{balance.NoOfDays - balance.TakenDays | number}}
+          </ion-card-content> 
+        </div>   
     </ion-card>
   </div>
 </ion-content>

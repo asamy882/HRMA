@@ -10,4 +10,8 @@ export class MissionRequest {
   AllowedComments: boolean;
   CommentsMandatory: boolean;
   WorkflowInstanceId: string;
+  MissionType: any;
+  MissionTypeId: string;
+  MissionDistance: any;
+  MissionDistanceId: string;
 }

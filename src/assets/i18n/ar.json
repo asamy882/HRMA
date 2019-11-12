@@ -284,7 +284,11 @@
       "toDate": "إلي تاريخ",
       "extendNextDay": "تمديد اليوم التالي",
       "successMsg": "تم اضافة الطلب بنجاح",
-      "errorMsg": ""
+      "errorMsg": "",
+      "type": "نوع المامورية",
+      "selectType": "اختر نوع المامورية",
+      "distance": "المسافة",
+      "selectDistance": "اختر المسافة"
     },
     "chooseRequest": {
       "title": "الطلبات",

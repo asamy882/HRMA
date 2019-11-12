@@ -17,7 +17,7 @@
           </ion-card>
         </ion-col>
 
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.MISSION_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.MISSION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.MISR_MISSION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/mission-request/search">
             <img class="logo" src="assets/imgs/mission-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.missionReq' | translate}}</span>

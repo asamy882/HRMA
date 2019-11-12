@@ -8,7 +8,7 @@ import { AppConstants } from 'src/common/AppConstants';
   styleUrls: ['./choose-request-type.page.scss'],
 })
 export class ChooseRequestTypePage implements OnInit {
-  public appCon: AppConstants = new AppConstants();
+  appCon: AppConstants = new AppConstants();
 
   constructor(public service: AuthService) { }
 

@@ -43,6 +43,7 @@ export class AppConstants {
   public  CHANGE_WEEKLY_RESET_REQUEST_PAGE = 11;
   public  ABSENCE_WITH_PERMISSION_REQUEST_PAGE = 12;
   public  PERMISSION_REQUEST_PAGE = "PermissionRequest";
+  public  MISR_MISSION_REQUEST_PAGE = "MissionRequestMisr";
 
 
 }

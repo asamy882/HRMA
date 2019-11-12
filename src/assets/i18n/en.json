@@ -284,7 +284,11 @@
       "toDate": "To Date",
       "extendNextDay": "Extend Next Day",
       "successMsg": "The request added Successfully",
-      "errorMsg": ""
+      "errorMsg": "",
+      "type": "Mission Type",
+      "selectType": "Select Mission Type",
+      "distance": "Mission Distance",
+      "selectDistance": "Select Mission Type"
     },
     "chooseRequest": {
       "title": "Requests",

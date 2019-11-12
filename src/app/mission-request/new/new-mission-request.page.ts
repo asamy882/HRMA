@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MissionRequestService } from '../mission-request.service';
-import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MissionRequest } from '../mission-request.model';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-new-mission-request',
@@ -16,9 +16,12 @@ import { AppConstants } from 'src/common/AppConstants';
 })
 export class NewMissionRequestPage implements OnInit {
   request: MissionRequest = new MissionRequest();
+  appCon: AppConstants = new AppConstants();
   requestForm: FormGroup;
   timePickerObj: any = {};
   datePickerObj: any = {};
+  missionTypes: any[] = [];
+  missionDistances: any[] = [];
   readonly = false;
   successMsg: string;
   errorMsg: string;
@@ -31,20 +34,33 @@ export class NewMissionRequestPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private service: MissionRequestService,
-    private toastController: ToastController,
     private route: ActivatedRoute,
     private languageService: LanguageService,
     private readonly translate: TranslateService,
+    public authService: AuthService,
     private router: Router
   ) {
-    this.requestForm = formBuilder.group({
-      MissionDate: new FormControl('', [Validators.required]),
-      MissionEndDate: new FormControl('', [Validators.required]),
-      FromTime: new FormControl('', [Validators.required]),
-      ToTime: new FormControl('', [Validators.required]),
-      ExtendNextDay: new FormControl('', []),
-      Remarks: new FormControl('', []),
-    });
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
+      this.requestForm = formBuilder.group({
+        MissionDate: new FormControl('', [Validators.required]),
+        MissionEndDate: new FormControl('', [Validators.required]),
+        MissionTypeId: new FormControl('', [Validators.required]),
+        MissionDistanceId: new FormControl('', [Validators.required]),
+        FromTime: new FormControl('', [Validators.required]),
+        ToTime: new FormControl('', [Validators.required]),
+        ExtendNextDay: new FormControl('', []),
+        Remarks: new FormControl('', []),
+      });
+    } else {
+      this.requestForm = formBuilder.group({
+        MissionDate: new FormControl('', [Validators.required]),
+        MissionEndDate: new FormControl('', [Validators.required]),
+        FromTime: new FormControl('', [Validators.required]),
+        ToTime: new FormControl('', [Validators.required]),
+        ExtendNextDay: new FormControl('', []),
+        Remarks: new FormControl('', []),
+      });
+    }
   }
 
   ngOnInit() {
@@ -139,6 +155,31 @@ export class NewMissionRequestPage implements OnInit {
        // prevArrowSrc: 'assets/imgs/previous.png'
       } // This object supports only SVG files.
     };
+
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
+      this.loadMissionTypes();
+      this.loadMissionDistances();
+    }
+  }
+
+  async loadMissionTypes() {
+    this.missionTypes = this.service.getMissionTypes();
+    if (!this.missionTypes) {
+      this.service.loadMissionTypes().then((res) => {
+        this.missionTypes = res.Items;
+        localStorage.setItem('missionTypes', JSON.stringify(res.Items));
+      });
+    }
+  }
+
+  async loadMissionDistances() {
+    this.missionDistances = this.service.getMissionDistances();
+    if (!this.missionDistances) {
+      this.service.loadMissionDistances().then((res) => {
+        this.missionDistances = res.Items;
+        localStorage.setItem('missionDistances', JSON.stringify(res.Items));
+      });
+    }
   }
 
   setFormValues(req: MissionRequest) {
@@ -148,6 +189,10 @@ export class NewMissionRequestPage implements OnInit {
     this.requestForm.controls['ToTime'].setValue(req.ToTime);
     this.requestForm.controls['Remarks'].setValue(req.Remarks);
     this.requestForm.controls['ExtendNextDay'].setValue(req.ExtendNextDay);
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
+      this.requestForm.controls['MissionTypeId'].setValue(req.MissionType.ID);
+      this.requestForm.controls['MissionDistanceId'].setValue(req.MissionDistance.ID);
+    }
   }
 
   formatDate(date) {
@@ -171,6 +216,11 @@ export class NewMissionRequestPage implements OnInit {
         MissionDate : this.formatDate(this.requestForm.get('MissionDate').value),
         MissionEndDate : this.formatDate(this.requestForm.get('MissionEndDate').value),
         ExtendNextDay: extendNextDay ? extendNextDay : false };
+
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
+          request.MissionType = {ID : this.requestForm.get('MissionTypeId').value};
+          request.MissionDistance = {ID : this.requestForm.get('MissionDistanceId').value};
+        }
     this.service.addMissionRequest(request).then(res => {
       this.navigateToSearch(true);
     });
