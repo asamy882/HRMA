@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
+import { AuthService } from 'src/common/services/auth.service';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class NewVacationRequestPage implements OnInit {
 
   constructor(private service: VacationRequestService, private toastController: ToastController,
               private route: ActivatedRoute, public formBuilder: FormBuilder, private languageService: LanguageService,
-              private readonly translate: TranslateService, private router: Router
+              private readonly translate: TranslateService, private router: Router,
+              public authService: AuthService, public appCon: AppConstants
   ) {
     this.requestForm = formBuilder.group({
       FromDate: new FormControl('', [Validators.required]),

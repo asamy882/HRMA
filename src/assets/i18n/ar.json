@@ -288,7 +288,12 @@
       "type": "نوع المامورية",
       "selectType": "اختر نوع المامورية",
       "distance": "المسافة",
-      "selectDistance": "اختر المسافة"
+      "selectDistance": "اختر المسافة",
+      "mission": "Mission",
+      "latnessPermission": "Latness Permission",
+      "permissionWithinDay": "Permission Within Day",
+      "earlyLeavePermission": "Early Leave Permission",
+      "missionDate": "Mission Date"
     },
     "chooseRequest": {
       "title": "الطلبات",

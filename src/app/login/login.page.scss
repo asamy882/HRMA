@@ -3,7 +3,7 @@ background: rgb(88,138,214);background: -moz-linear-gradient(top,  rgba(88,138,2
 background: linear-gradient(to bottom,  rgba(88,138,214,1) 0%,rgba(66,120,203,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#588ad6', endColorstr='#4278cb',GradientType=0 ) */}
 
 .login-bg{min-height: 100vh;background: #4278cb url('../../assets/imgs/bottom-bg.png') no-repeat bottom center;background-size: 800px auto;}
-.login-bg::after{content:"";position:absolute;z-index:1;background: url(../../assets/imgs/top-bar1.png) no-repeat top -100px center;top: 0;bottom: 0;left: 0;right: 0;background-size: 600px auto;}
+.login-bg::after{content:"";position:absolute;z-index:1;background: url(../../assets/imgs/top-bar.png) no-repeat top -100px center;top: 0;bottom: 0;left: 0;right: 0;background-size: 600px auto;}
 // .login-bg::before{content:"";position:absolute;z-index:1;background: url('../../assets/imgs/bottom-bar.png') no-repeat bottom center;top:0;bottom:0;left:0;right:0;background-size: auto 50%; }
 .login-container {position: relative;padding:5vw;z-index: 2;}
 .logoSection {position: relative;margin: 4px -8px 0px;text-align: center;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-animation-name: zoomIn;animation-name: zoomIn;display: block;

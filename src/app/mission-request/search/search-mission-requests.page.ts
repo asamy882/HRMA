@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MissionRequestService } from '../mission-request.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { LanguageService } from 'src/common/services/language.service';
+import { AppConstants } from 'src/common/AppConstants';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-search-vaction-requests',
@@ -12,7 +14,11 @@ export class SearchMissionRequestsPage implements OnInit {
 
   requests: any[] = [];
 
-  constructor(private service: MissionRequestService, private router: Router, public languageService: LanguageService) { }
+  constructor(private service: MissionRequestService,
+              private router: Router,
+              public languageService: LanguageService,
+              public authService: AuthService,
+              public appCon: AppConstants) { }
 
   ngOnInit() {
     this.service.getMyMissionRequests().then(res => {
@@ -39,8 +45,10 @@ export class SearchMissionRequestsPage implements OnInit {
       preserveFragment: true
     };
 
+    const url = this.authService.getAllowedScreens().includes(this.appCon.QT_MISSION_REQUEST_PAGE) ? 
+          '/mission-request/qt-new' : '/mission-request/new';
     // Redirect the user
-    this.router.navigate(['/mission-request/new'], navigationExtras);
+    this.router.navigate([url], navigationExtras);
   }
 
 }

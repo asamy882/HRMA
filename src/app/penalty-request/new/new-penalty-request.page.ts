@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PenaltyRequestService } from '../penalty-request.service';
-import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PenaltyRequest } from '../penalty-request.model';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-new-penalty-request',
@@ -34,20 +34,32 @@ export class NewPenaltyRequestPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private service: PenaltyRequestService,
-    private toastController: ToastController,
     private route: ActivatedRoute,
     private languageService: LanguageService,
     private readonly translate: TranslateService,
+    public authService: AuthService,
+    public appCon: AppConstants,
     private router: Router
   ) {
-    this.requestForm = formBuilder.group({
-      PenaltyTypeId: new FormControl('', [Validators.required]),
-      PenaltyReason: new FormControl('', [Validators.required]),
-      PenaltyValue: new FormControl('', [Validators.required]),
-      PenaltyCause: new FormControl('', [Validators.required]),
-      PenaltyDate: new FormControl('', [Validators.required]),
-      EmployeeId: new FormControl('', [Validators.required]),
-    });
+    if (authService.getAllowedScreens().includes(appCon.QT_PENALTY_REQUEST_PAGE)) {
+      this.requestForm = formBuilder.group({
+        PenaltyTypeId: new FormControl('', [Validators.required]),
+        PenaltyReason: new FormControl('', [Validators.required]),
+        PenaltyValue: new FormControl('', [Validators.required]),
+        PenaltyCause: new FormControl('', [Validators.required]),
+        PenaltyDate: new FormControl('', [Validators.required]),
+        EmployeeId: new FormControl('', [Validators.required])
+      });
+    } else {
+      this.requestForm = formBuilder.group({
+        PenaltyTypeId: new FormControl('', [Validators.required]),
+        PenaltyReason: new FormControl('', [Validators.required]),
+        PenaltyValue: new FormControl('', [Validators.required]),
+        PenaltyCause: new FormControl('', [Validators.required]),
+        PenaltyDate: new FormControl('', [Validators.required]),
+        EmployeeId: new FormControl('', [Validators.required])
+      });
+    }
   }
 
   ngOnInit() {

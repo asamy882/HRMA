@@ -3,6 +3,7 @@ import { MyTasksService } from './mytasks.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
 import { LanguageService } from 'src/common/services/language.service';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-mytasks',
@@ -13,7 +14,11 @@ export class MytasksPage implements OnInit {
 
   myTasks: any[] = [];
 
-  constructor(private service: MyTasksService, private router: Router, public languageService: LanguageService) { }
+  constructor(private service: MyTasksService,
+              private router: Router,
+              public languageService: LanguageService,
+              public appCon: AppConstants,
+              public authService: AuthService) { }
 
   ngOnInit() {
     this.myTasks = [];
@@ -31,7 +36,8 @@ export class MytasksPage implements OnInit {
     if ( task.RequestTypeId == AppConstants.VACATION_REQUEST) {
       url = '/vacation-request/new';
     } else if ( task.RequestTypeId == AppConstants.MISSION_REQUEST) {
-      url = '/mission-request/new';
+      url = this.authService.getAllowedScreens().includes(this.appCon.QT_MISSION_REQUEST_PAGE) ? 
+      '/mission-request/qt-new' : '/mission-request/new';
     } else if ( task.RequestTypeId == AppConstants.PENALTY_REQUEST) {
       url = '/penalty-request/new';
     } else if ( task.RequestTypeId == AppConstants.LOAN_REQUEST) {

@@ -1,6 +1,10 @@
+import {Injectable} from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class AppConstants {
-  public static API_ENDPOINT = 'http://api.kiansoft-eg.com';
+  public static API_ENDPOINT = 'http://196.202.101.243:9999';
 
   // Status
   public static REVIEWED = 4;
@@ -36,15 +40,18 @@ export class AppConstants {
   public  LOAN_REQUEST_PAGE = "LoanRequest";
   public  CHANGE_SHIFT_REQUEST_PAGE = "ChangeShiftRequest";
   public  CHANGE_DAYOFF_REQUEST_PAGE = "ChangeDayOffRequest";
-  public  SHIFT_PLAN_REQUEST_PAGE = 7;
   public  WORK_IN_DAYOFF_REQUEST_PAGE = "WorkinDayoffRequest";
   public  OVERTIME_REQUEST_PAGE = "OverTimeRequest";
+  public  PERMISSION_REQUEST_PAGE = "PermissionRequest";
+  public  MISR_MISSION_REQUEST_PAGE = "MissionRequestMisr";
+  public  QT_MISSION_REQUEST_PAGE = "MissionRequestQT";
+  public  QT_WORK_IN_DAYOFF_REQUEST_PAGE = "WorkinDayoffRequestQT";
+  public  QT_PENALTY_REQUEST_PAGE = "PenaltyRequestQT";
+  public  QT_VACATION_REQUEST_PAGE = "VacationRequestQT";
+  public  SHIFT_PLAN_REQUEST_PAGE = 7;
   public  WORK_IN_WEEKLY_RESET_REQUEST_PAGE = 10;
   public  CHANGE_WEEKLY_RESET_REQUEST_PAGE = 11;
   public  ABSENCE_WITH_PERMISSION_REQUEST_PAGE = 12;
-  public  PERMISSION_REQUEST_PAGE = "PermissionRequest";
-  public  MISR_MISSION_REQUEST_PAGE = "MissionRequestMisr";
-
 
 }
 

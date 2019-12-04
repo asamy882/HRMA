@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkinDayOffRequestService } from '../work-in-day-off-request.service';
-import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { WorkinDayOffRequest } from '../work-in-day-off-request.model';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-new-work-in-day-off-request',
@@ -33,11 +33,12 @@ export class NewWorkinDayOffRequestPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private service: WorkinDayOffRequestService,
-    private toastController: ToastController,
+    public authService: AuthService,
     private route: ActivatedRoute,
     private languageService: LanguageService,
     private readonly translate: TranslateService,
-    private router: Router
+    private router: Router,
+    public appCon: AppConstants
   ) {
     this.requestForm = formBuilder.group({
       EmployeeShiftDate: new FormControl('', [Validators.required]),

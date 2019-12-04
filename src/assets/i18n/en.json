@@ -281,6 +281,7 @@
       "toTime": "To Time",
       "remarks": "Remarks",
       "fromDate": "From Date",
+      "missionDate": "Mission Date",
       "toDate": "To Date",
       "extendNextDay": "Extend Next Day",
       "successMsg": "The request added Successfully",
@@ -288,7 +289,11 @@
       "type": "Mission Type",
       "selectType": "Select Mission Type",
       "distance": "Mission Distance",
-      "selectDistance": "Select Mission Type"
+      "selectDistance": "Select Mission Distance",
+      "mission": "Mission",
+      "latnessPermission": "Latness Permission",
+      "permissionWithinDay": "Permission Within Day",
+      "earlyLeavePermission": "Early Leave Permission"
     },
     "chooseRequest": {
       "title": "Requests",

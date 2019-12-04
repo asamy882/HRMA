@@ -14,6 +14,7 @@ import { SearchMissionRequestsPage } from './search/search-mission-requests.page
 import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
 import { Ionic4DatepickerModule } from '@logisticinfotech/ionic4-datepicker';
 import { ComponentsModule } from '../components/components.module';
+import { QTNewMissionRequestPage } from './qt-new/qt-new-mission-request.page';
 
 
 
@@ -30,8 +31,8 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
-  entryComponents: [NewMissionRequestPage, SearchMissionRequestsPage],
-  declarations: [NewMissionRequestPage, SearchMissionRequestsPage],
+  entryComponents: [NewMissionRequestPage, QTNewMissionRequestPage, SearchMissionRequestsPage],
+  declarations: [NewMissionRequestPage, QTNewMissionRequestPage, SearchMissionRequestsPage],
   providers: [MissionRequestService]
 })
 export class MissionRequestModule {}

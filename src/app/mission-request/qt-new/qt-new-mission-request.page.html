@@ -1,0 +1,110 @@
+<app-header [title]="'app.missionRequest.newRequestPageTitle' | translate" [backPage]="backPage" renderBackButton=true>
+</app-header>
+<ion-content>
+  <div style="height: 56px;"></div>
+  <div class="p-3">
+    <form [formGroup]="requestForm" novalidate (submit)="submit()">
+      <ion-grid fixed no-padding>
+        <ion-row>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.missionRequest.type' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-select formControlName="MissionTypeId" [disabled]="readonly" name="MissionTypeId" #MissionTypeId
+                  [selectedText]="request.MissionType?.Name" [placeholder]="'app.missionRequest.selectType' | translate"
+                  class="px-2 rounded bg-form border-1">
+                  <ion-select-option value="1">{{ 'app.missionRequest.mission' | translate }}</ion-select-option>
+                  <ion-select-option value="2">{{ 'app.missionRequest.latnessPermission' | translate }}</ion-select-option>
+                  <ion-select-option value="3">{{ 'app.missionRequest.permissionWithinDay' | translate }}</ion-select-option>
+                  <ion-select-option value="4">{{ 'app.missionRequest.earlyLeavePermission' | translate }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.missionRequest.missionDate' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                  formControlName="MissionDate" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.missionRequest.missionDate' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12"  *ngIf="!requestForm.get('MissionTypeId').value || requestForm.get('MissionTypeId').value == 1">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.missionRequest.toDate' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonic4Datepicker]="datePickerObj" class="px-2 rounded bg-form border-1"
+                  formControlName="MissionEndDate" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.missionRequest.toDate' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12" *ngIf="!requestForm.get('MissionTypeId').value || requestForm.get('MissionTypeId').value != 4">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.missionRequest.fromTime' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonicTimepicker]="timePickerObj" class="px-2 rounded bg-form border-1"
+                  formControlName="FromTime" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.missionRequest.fromTime' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12" *ngIf="!requestForm.get('MissionTypeId').value || requestForm.get('MissionTypeId').value != 2">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.missionRequest.toTime' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input readonly [liIonicTimepicker]="timePickerObj" class="px-2 rounded bg-form border-1"
+                  formControlName="ToTime" mode="md" [disabled]="readonly"
+                  [placeholder]="'app.missionRequest.toTime' | translate"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12" *ngIf="!requestForm.get('MissionTypeId').value || requestForm.get('MissionTypeId').value == 1">
+            <ion-item>
+              <ion-checkbox class="m-0 mr-3" color="dark" formControlName="ExtendNextDay" [disabled]="readonly"
+                [checked]="request.ExtendNextDay" slot="start"></ion-checkbox>
+              <ion-label class="font-weight-bold h28">{{ 'app.missionRequest.extendNextDay' | translate }}</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label><span class="font-weight-bold mb--2">{{ 'app.missionRequest.remarks' | translate }}</span>
+                </ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-textarea formControlName="Remarks" class="px-2 rounded bg-form border-1" [disabled]="readonly">
+                </ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <button class="btn-brand" type="button" *ngIf="renderSaveButton" (click)="submit()"
+              [disabled]="!isFormValide">{{ 'app.common.save' | translate }}</button>
+            <button class="btn-danger" type="button" (click)="navigateToSearch(false)"
+              *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>
+          </ion-col>
+          <ion-col size="12" *ngIf="renderTaskActions">
+            <app-task-actions [renderApproveButton]="renderApproveAndRejectButtons()"
+              [renderRejectButton]="renderApproveAndRejectButtons()" [workflowInstanceId]="request.WorkflowInstanceId"
+              [renderOkButton]="renderOkButton()" [renderComments]="request.AllowedComments"
+              [commentsRequired]="request.CommentsMandatory">
+            </app-task-actions>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

@@ -4,7 +4,7 @@
   <div class="p-1 requests-menu">
     <ion-grid>
       <ion-row>
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.VACATION_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.VACATION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.QT_VACATION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/vacation-request/search">
             <img class="logo" src="assets/imgs/vacation-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.vacationReq' | translate}}</span>
@@ -17,7 +17,7 @@
           </ion-card>
         </ion-col>
 
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.MISSION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.MISR_MISSION_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.MISSION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.MISR_MISSION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.QT_MISSION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/mission-request/search">
             <img class="logo" src="assets/imgs/mission-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.missionReq' | translate}}</span>
@@ -53,7 +53,7 @@
             <span class="font-weight-bold">{{'app.chooseRequest.penaltyReq' | translate}} </span>
           </ion-card>
         </ion-col>
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.WORK_IN_DAYOFF_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.WORK_IN_DAYOFF_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/work-in-day-off-request/search">
             <img class="logo" src="assets/imgs/workingInDayoff-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.workingInDayOffReq' | translate}}</span>

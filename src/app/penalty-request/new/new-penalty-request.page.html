@@ -33,7 +33,7 @@
               </ion-item>
             </ion-list>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" *ngIf="!authService.getAllowedScreens().includes(appCon.QT_PENALTY_REQUEST_PAGE)">
             <ion-list class="task-details-list">
               <ion-item class="border-0 h32">
                 <ion-label class="font-weight-bold mb-0">{{ 'app.penaltyRequest.penaltyReason' | translate }}

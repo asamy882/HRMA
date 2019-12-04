@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "823104125986",
-    "firebase_url": "https://hrms-kian-soft.firebaseio.com",
-    "project_id": "hrms-kian-soft",
-    "storage_bucket": "hrms-kian-soft.appspot.com"
+    "project_number": "325031919654",
+    "firebase_url": "https://quattro-kian-hrms.firebaseio.com",
+    "project_id": "quattro-kian-hrms",
+    "storage_bucket": "quattro-kian-hrms.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:823104125986:android:4f4454e7cba89637f7de7b",
+        "mobilesdk_app_id": "1:325031919654:android:6cd6e2bf9ab1d10f04a6e7",
         "android_client_info": {
-          "package_name": "io.ionic.kiansoft.hr"
+          "package_name": "quattro.kian.hrms"
         }
       },
       "oauth_client": [
         {
-          "client_id": "823104125986-q7ek3s5srbs4h52dj9qj58egcus4ttbi.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "io.ionic.kiansoft.hr",
-            "certificate_hash": "1f5478c887e1817401c33f055f1362fedf7ab186"
-          }
-        },
-        {
-          "client_id": "823104125986-lvj2dcconuir8pimqff47lo5rshtrfgn.apps.googleusercontent.com",
+          "client_id": "325031919654-blilv95ldv3jlr2d40729cegbin453d0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyArx25IG9uVqHuY7QupQXN57Ym3mTCbYQ0"
+          "current_key": "AIzaSyDbBIi4tMASvnf9PubbwgZ1ctzTPAPYX4A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "823104125986-lvj2dcconuir8pimqff47lo5rshtrfgn.apps.googleusercontent.com",
+              "client_id": "325031919654-blilv95ldv3jlr2d40729cegbin453d0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

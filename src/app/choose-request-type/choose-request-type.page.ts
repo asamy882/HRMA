@@ -8,9 +8,8 @@ import { AppConstants } from 'src/common/AppConstants';
   styleUrls: ['./choose-request-type.page.scss'],
 })
 export class ChooseRequestTypePage implements OnInit {
-  appCon: AppConstants = new AppConstants();
 
-  constructor(public service: AuthService) { }
+  constructor(public service: AuthService, public appCon: AppConstants) { }
 
   ngOnInit() {
   }

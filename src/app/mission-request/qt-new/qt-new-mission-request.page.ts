@@ -10,11 +10,11 @@ import { AppConstants } from 'src/common/AppConstants';
 import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
-  selector: 'app-new-mission-request',
-  templateUrl: './new-mission-request.page.html',
-  styleUrls: ['./new-mission-request.page.scss'],
+  selector: 'app-qt-new-mission-request',
+  templateUrl: './qt-new-mission-request.page.html',
+  styleUrls: ['./qt-new-mission-request.page.scss'],
 })
-export class NewMissionRequestPage implements OnInit {
+export class QTNewMissionRequestPage implements OnInit {
   request: MissionRequest = new MissionRequest();
   requestForm: FormGroup;
   timePickerObj: any = {};
@@ -22,6 +22,7 @@ export class NewMissionRequestPage implements OnInit {
   missionTypes: any[] = [];
   missionDistances: any[] = [];
   readonly = false;
+  isFormValide = false;
   successMsg: string;
   errorMsg: string;
   renderSaveButton: boolean;
@@ -40,30 +41,44 @@ export class NewMissionRequestPage implements OnInit {
     private router: Router,
     public appCon: AppConstants
   ) {
-    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
-      this.requestForm = formBuilder.group({
-        MissionDate: new FormControl('', [Validators.required]),
-        MissionEndDate: new FormControl('', [Validators.required]),
-        MissionTypeId: new FormControl('', [Validators.required]),
-        MissionDistanceId: new FormControl('', [Validators.required]),
-        FromTime: new FormControl('', [Validators.required]),
-        ToTime: new FormControl('', [Validators.required]),
-        ExtendNextDay: new FormControl('', []),
-        Remarks: new FormControl('', []),
-      });
-    } else {
-      this.requestForm = formBuilder.group({
-        MissionDate: new FormControl('', [Validators.required]),
-        MissionEndDate: new FormControl('', [Validators.required]),
-        FromTime: new FormControl('', [Validators.required]),
-        ToTime: new FormControl('', [Validators.required]),
-        ExtendNextDay: new FormControl('', []),
-        Remarks: new FormControl('', []),
-      });
-    }
+    this.requestForm = formBuilder.group({
+      MissionDate: new FormControl('', [Validators.required]),
+      MissionEndDate: new FormControl('', []),
+      MissionTypeId: new FormControl('', [Validators.required]),
+      FromTime: new FormControl('', []),
+      ToTime: new FormControl('', []),
+      ExtendNextDay: new FormControl('', []),
+      Remarks: new FormControl('', []),
+    });
   }
 
+  onChanges(): void {
+    this.requestForm.valueChanges.subscribe(data =>{
+      if (data.MissionTypeId == 1) {
+        if (this.requestForm.valid && data.MissionEndDate
+          && data.FromTime && data.ToTime ) {
+            this.isFormValide = true;
+          }
+      } else if (data.MissionTypeId == 2) {
+        if (this.requestForm.valid && data.FromTime) {
+            this.isFormValide = true;
+          }
+      } else if (data.MissionTypeId == 3) {
+        if (this.requestForm.valid
+            && data.FromTime && data.ToTime ) {
+            this.isFormValide = true;
+          }
+      } else if (data.MissionTypeId == 4) {
+        if (this.requestForm.valid && data.ToTime ){
+            this.isFormValide = true;
+          }
+      }
+    });
+  }
+
+  
   ngOnInit() {
+    this.onChanges();
     this.route.queryParams.subscribe(params => {
       const req = params['req'];
       const requestId = params['requestId'];
@@ -87,7 +102,7 @@ export class NewMissionRequestPage implements OnInit {
           } else {
             this.renderTaskActions = true;
           }
-          });
+        });
       } else {
         this.renderSaveButton = true;
       }
@@ -123,22 +138,22 @@ export class NewMissionRequestPage implements OnInit {
       }
     };
     this.datePickerObj = {
-       inputDate: new Date(), // default new Date()
-     // fromDate: new Date(), // default null
+      inputDate: new Date(), // default new Date()
+      // fromDate: new Date(), // default null
       //toDate: null, // default null
       showTodayButton: true, // default true
       closeOnSelect: true, // default false
-    //  disableWeekDays: [4], // default []
+      //  disableWeekDays: [4], // default []
       mondayFirst: false, // default false
       setLabel: 'Set',  // default 'Set'
       todayLabel: 'Today', // default 'Today'
       closeLabel: 'Close', // default 'Close'
       disabledDates: [], // default []
-     // titleLabel: 'Select a Date', // default null
+      // titleLabel: 'Select a Date', // default null
       monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
       weeksList: ["S", "M", "T", "W", "T", "F", "S"],
       dateFormat: 'YYYY-MM-DD', // default DD MMM YYYY 
-      clearButton : false,// !this.readonly , // default true
+      clearButton: false,// !this.readonly , // default true
       momentLocale: 'pt-BR', // Default 'en-US'
       yearInAscending: false, // Default false
       btnCloseSetInReverse: true, // Default false
@@ -151,15 +166,10 @@ export class NewMissionRequestPage implements OnInit {
         color: '' // Default ''
       },
       arrowNextPrev: {
-      //  nextArrowSrc: 'assets/imgs/next.png',
-       // prevArrowSrc: 'assets/imgs/previous.png'
+        //  nextArrowSrc: 'assets/imgs/next.png',
+        // prevArrowSrc: 'assets/imgs/previous.png'
       } // This object supports only SVG files.
     };
-
-    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
-      this.loadMissionTypes();
-      this.loadMissionDistances();
-    }
   }
 
   async loadMissionTypes() {
@@ -184,21 +194,18 @@ export class NewMissionRequestPage implements OnInit {
 
   setFormValues(req: MissionRequest) {
     this.requestForm.controls['MissionDate'].setValue(req.MissionDate);
+    this.requestForm.controls['MissionTypeId'].setValue(req.MissionType.ID);
     this.requestForm.controls['MissionEndDate'].setValue(req.MissionEndDate);
     this.requestForm.controls['FromTime'].setValue(req.FromTime);
     this.requestForm.controls['ToTime'].setValue(req.ToTime);
     this.requestForm.controls['Remarks'].setValue(req.Remarks);
     this.requestForm.controls['ExtendNextDay'].setValue(req.ExtendNextDay);
-    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
-      this.requestForm.controls['MissionTypeId'].setValue(req.MissionType.ID);
-      this.requestForm.controls['MissionDistanceId'].setValue(req.MissionDistance.ID);
-    }
   }
 
   formatDate(date) {
     const d = new Date(date),
       year = d.getFullYear();
-    let  month = '' + (d.getMonth() + 1),
+    let month = '' + (d.getMonth() + 1),
       day = '' + d.getDate();
 
     if (month.length < 2) {
@@ -211,16 +218,22 @@ export class NewMissionRequestPage implements OnInit {
   }
 
   submit() {
-    const extendNextDay = this.requestForm.get('ExtendNextDay').value;
-    const request = {... this.requestForm.value,
-        MissionDate : this.formatDate(this.requestForm.get('MissionDate').value),
-        MissionEndDate : this.formatDate(this.requestForm.get('MissionEndDate').value),
-        ExtendNextDay: extendNextDay ? extendNextDay : false };
+    let extendNextDay = null;
+    let missionEndDate = null;
 
-    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
-          request.MissionType = {ID : this.requestForm.get('MissionTypeId').value};
-          request.MissionDistance = {ID : this.requestForm.get('MissionDistanceId').value};
-        }
+    if (this.requestForm.get('MissionTypeId').value == 1) {
+      extendNextDay = this.requestForm.get('ExtendNextDay').value;
+      missionEndDate = this.formatDate(this.requestForm.get('MissionEndDate').value);
+    }
+
+    const request = {
+      ... this.requestForm.value,
+      MissionDate: this.formatDate(this.requestForm.get('MissionDate').value),
+      MissionEndDate: missionEndDate,
+      MissionType: { ID: this.requestForm.get('MissionTypeId').value },
+      ExtendNextDay: extendNextDay ? extendNextDay : false
+    };
+
     this.service.addMissionRequest(request).then(res => {
       this.navigateToSearch(true);
     });

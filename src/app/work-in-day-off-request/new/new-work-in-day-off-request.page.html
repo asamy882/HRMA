@@ -41,7 +41,7 @@
               </ion-item>
               <ion-item class="border-0">
                 <ion-input readonly [liIonicTimepicker]="timePickerObj" class="px-2 rounded bg-form border-1"
-                  formControlName="SignIn" mode="md" [disabled]="readonly"
+                  formControlName="SignIn" mode="md" [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"
                   [placeholder]="'app.workinDayOffRequest.signIn' | translate"></ion-input>
               </ion-item>
             </ion-list>
@@ -54,7 +54,7 @@
               </ion-item>
               <ion-item class="border-0">
                 <ion-input readonly [liIonicTimepicker]="timePickerObj" class="px-2 rounded bg-form border-1"
-                  formControlName="SignOut" mode="md" [disabled]="readonly"
+                  formControlName="SignOut" mode="md" [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"
                   [placeholder]="'app.workinDayOffRequest.signOut' | translate"></ion-input>
               </ion-item>
             </ion-list>
