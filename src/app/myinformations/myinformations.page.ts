@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from 'src/common/services/auth.service';
 import { LanguageService } from 'src/common/services/language.service';
+import { AppConstants } from 'src/common/AppConstants';
 
 @Component({
   selector: 'app-myinformations',
@@ -11,7 +12,7 @@ import { LanguageService } from 'src/common/services/language.service';
 export class MyinformationsPage implements OnInit {
   myInfo: any;
   myPhoto: any;
-  constructor(private service: AuthService, public languageService: LanguageService) { }
+  constructor(public service: AuthService, public languageService: LanguageService, public appCon: AppConstants) { }
 
   ngOnInit() {
     this.myInfo = this.service.getMyInfo();
