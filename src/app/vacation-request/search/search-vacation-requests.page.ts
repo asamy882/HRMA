@@ -35,7 +35,7 @@ export class SearchVacationRequestsPage implements OnInit {
 
   goToDetails(req) {
     const navigationExtras: NavigationExtras = {
-      queryParams: {req: JSON.stringify(req)},
+      queryParams: {req: req.RequestId},
       preserveFragment: true
     };
 

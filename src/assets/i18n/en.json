@@ -147,7 +147,8 @@
       "selectFromDate": "Select From Date",
       "selectToDate": "Select To Date",
       "successMsg": "The request added Successfully",
-      "errorMsg": ""
+      "errorMsg": "",
+      "attachment":"Attachment"
     },
     "overtimeRequest": {
       "title": "Overtime Requests",

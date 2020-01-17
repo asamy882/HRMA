@@ -35,6 +35,7 @@ export class NewVacationRequestPage implements OnInit {
   backPage = '/vacation-request/search';
   title = 'app.vacationRequest.newRequestPageTitle';
   selectReplacement: string;
+  attachment = {};
 
   constructor(private service: VacationRequestService, private toastController: ToastController,
               private route: ActivatedRoute, public formBuilder: FormBuilder, private languageService: LanguageService,
@@ -67,9 +68,12 @@ export class NewVacationRequestPage implements OnInit {
       if (req) {
         this.readonly = true;
         this.title = 'app.vacationRequest.viewRequestPageTitle';
-        this.request = JSON.parse(req);
-        this.setFormValues(this.request);
+        this.service.getVacationRequest(req).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          });
         this.renderCloseButton = true;
+        this.renderSaveButton = false;
       } else if (requestId) {
         this.backPage = '/mytasks';
         this.readonly = true;
@@ -243,6 +247,7 @@ export class NewVacationRequestPage implements OnInit {
     if (this.replacement) {
       this.request.ReplacementId = this.replacement.EmployeeId;
     }
+    this.request.Attachment = this.attachment;
     this.service.addVacationRequest(this.request).then(res => {
       this.navigateToSearch(true);
     });
@@ -278,5 +283,27 @@ export class NewVacationRequestPage implements OnInit {
 
   renderOkButton() {
     return this.renderTaskActions && this.request.AllowedActions == AppConstants.REVIEW;
+  }
+
+  uploadFile() {
+    this.attachment = {};
+    const attachment: any = {};
+    this.attachment = attachment;
+    const d: any = document.querySelector('input[type=file]');
+    const file = d.files[0];
+    const reader = new FileReader();
+    attachment.AttachmentName = file.name;
+
+    reader.addEventListener('load', function() {
+      // convert image file to base64 string
+     // console.log(reader.result);
+      attachment.AttachmentContent = reader.result.replace('data:image/jpeg;base64,', '');
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    this.attachment = attachment;
+    //console.log('**** uploadFile', this.request);
   }
 }

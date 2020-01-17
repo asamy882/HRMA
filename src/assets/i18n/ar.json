@@ -147,7 +147,8 @@
       "selectFromDate": "من تاريخ",
       "selectToDate": "إلي تاريخ",
       "successMsg": "تم اضافة الطلب بنجاح",
-      "errorMsg": ""
+      "errorMsg": "",
+      "attachment":"المرفق"
     },
     "overtimeRequest": {
       "title": "طلبات العمل الإضافي",
