@@ -25,7 +25,8 @@
       "save": "حفظ",
       "close": "أغلق",
       "login": "تسجيل الدخول",
-      "logout": "تسجيل خروج"
+      "logout": "تسجيل خروج",
+      "download": "تنزيل المرفقات"
     },
     "taskAction": {
       "approveSuccessMsg": "تمت الموافقة على الطلب بنجاح",

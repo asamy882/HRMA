@@ -25,7 +25,8 @@
       "save": "Save",
       "close": "Close",
       "login": "Login",
-      "logout": "Logout"
+      "logout": "Logout",
+      "download": "Download Attachment"
     },
     "taskAction": {
       "approveSuccessMsg": "The request approved Successfully",
