@@ -39,6 +39,7 @@
     "cordova-plugin-ionic-webview": "^3.1.2",
     "cordova-plugin-statusbar": "2.4.3",
     "core-js": "^2.5.4",
+    "crypto-js": "^3.1.9-1",
     "ionic-selectable": "4.4.1",
     "moment": "^2.24.0",
     "rxjs": "~6.5.1",
