@@ -1,43 +1,42 @@
 {
   "project_info": {
-    "project_number": "823104125986",
-    "firebase_url": "https://hrms-kian-soft.firebaseio.com",
-    "project_id": "hrms-kian-soft",
-    "storage_bucket": "hrms-kian-soft.appspot.com"
+    "project_number": "847330435835",
+    "firebase_url": "https://misr-kian-hrms.firebaseio.com",
+    "project_id": "misr-kian-hrms",
+    "storage_bucket": "misr-kian-hrms.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:823104125986:android:4f4454e7cba89637f7de7b",
+        "mobilesdk_app_id": "1:847330435835:android:923507f80ba50f7d4f865e",
         "android_client_info": {
-          "package_name": "io.ionic.kiansoft.hr"
+          "package_name": "misr.kian.hrms"
         }
       },
       "oauth_client": [
         {
-          "client_id": "823104125986-q7ek3s5srbs4h52dj9qj58egcus4ttbi.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "io.ionic.kiansoft.hr",
-            "certificate_hash": "1f5478c887e1817401c33f055f1362fedf7ab186"
-          }
-        },
-        {
-          "client_id": "823104125986-lvj2dcconuir8pimqff47lo5rshtrfgn.apps.googleusercontent.com",
+          "client_id": "847330435835-fo5bq1iibofgkaf2j5okouodftr3a8oc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyArx25IG9uVqHuY7QupQXN57Ym3mTCbYQ0"
+          "current_key": "AIzaSyB_jSLA4zDfjYFExR5dNIMPcPSYZiWVnhA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "823104125986-lvj2dcconuir8pimqff47lo5rshtrfgn.apps.googleusercontent.com",
+              "client_id": "847330435835-fo5bq1iibofgkaf2j5okouodftr3a8oc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "847330435835-gt1m0trabqjf7u0a1teqjih301hm77i3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "misr.kian.hrms"
+              }
             }
           ]
         }

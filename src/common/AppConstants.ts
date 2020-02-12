@@ -1,6 +1,6 @@
 
 export class AppConstants {
-  public static API_ENDPOINT = 'http://api.kiansoft-eg.com';
+  public static API_ENDPOINT = 'http://41.38.81.26:2222';
 
   // Status
   public static REVIEWED = 4;
