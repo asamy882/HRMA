@@ -34,8 +34,7 @@ export class AuthService {
     //localStorage.clear();
     const passwordEncrypt = this.encryptData(password);
     console.log('passwordEncrypt', this.decryptData(passwordEncrypt));
-    const loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=` 
-    + passwordEncrypt;
+    const loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
     return this.http.post<any>(loginUrl, null)
       .pipe(map(res => {
         // login successful if there's a jwt token in the response
