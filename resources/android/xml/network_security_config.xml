@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain>http://41.38.81.26:2222</domain>
+        <domain>41.38.81.26</domain>
     </domain-config>
 </network-security-config>
