@@ -5,6 +5,8 @@ import { SpinnerService } from '../common/services/spinner.service';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/common/services/auth.service';
 import { LoadingService } from 'src/common/services/loading.service';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+
 
 @Component({
   selector: 'app-root',
@@ -93,7 +95,8 @@ export class AppComponent implements OnInit {
     private spinnerService: SpinnerService,
     public router: Router,
     public service: AuthService,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    private splashScreen: SplashScreen
   ) {
     this.initializeApp();
   }
@@ -146,7 +149,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.presentLoadingWithOptions();
      // this.statusBar.styleDefault();
-     //this.splashScreen.hide();
+     this.splashScreen.hide();
     // this.statusBar.overlaysWebView(true);
     // this.statusBar.backgroundColorByHexString('#3880ff');
      //this.statusBar.hide();
