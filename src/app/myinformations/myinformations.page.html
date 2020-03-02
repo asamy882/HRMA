@@ -16,9 +16,9 @@
   <div class="personal-menu">
     <ion-card routerLink='/myprofile'><img class="logo" src="assets/imgs/information-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myProfile' | translate }}</span></ion-card>
-    <ion-card routerLink='/mysalary'><img class="logo" src="assets/imgs/salary-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+    <ion-card routerLink='/mysalary' *ngIf="service.getAllowedScreens().includes(appCon.SALARY_DETAILS_PAGE)"><img class="logo" src="assets/imgs/salary-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.salary' | translate }}</span></ion-card>
-    <ion-card routerLink='/myattendance'><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+    <ion-card routerLink='/myattendance' *ngIf="service.getAllowedScreens().includes(appCon.ATTENDANCE_SHEET_PAGE)"><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myAttendance' | translate }}</span></ion-card>
     <ion-card routerLink='/myvacations-balance'><img class="logo" src="assets/imgs/vacation-balance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{ 'app.myInfo.myVactionBalance' | translate }}</span></ion-card>
