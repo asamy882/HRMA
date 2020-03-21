@@ -4,7 +4,8 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class AppConstants {
-  public static API_ENDPOINT = 'http://196.202.101.243:9999';
+  public static API_ENDPOINT = 'https://hrapi.quattro-trading.com';
+ 
 
   // Status
   public static REVIEWED = 4;
