@@ -32,8 +32,8 @@ export class AuthService {
 
   login(companyId, username, password): Observable<any> {
     //localStorage.clear();
-    const passwordEncrypt = this.encryptData(password);
-    console.log('passwordEncrypt', this.decryptData(passwordEncrypt));
+    //const passwordEncrypt = this.encryptData(password);
+    //console.log('passwordEncrypt', this.decryptData(passwordEncrypt));
     const loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
     return this.http.post<any>(loginUrl, null)
       .pipe(map(res => {
