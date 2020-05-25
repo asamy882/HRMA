@@ -1,10 +1,13 @@
+import { LoadingService } from 'src/common/services/loading.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/common/services/auth.service';
-import { NavigationExtras, Router } from '@angular/router';
-import { ToastController, Events } from '@ionic/angular';
+import { NavigationExtras,  NavigationEnd, Router } from '@angular/router';
+import { ToastController, Events, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import {LanguageService} from '../../common/services/language.service';
+import { Subscription } from 'rxjs/Subscription';
+
 
 
 @Component({
@@ -17,9 +20,10 @@ export class LoginPage implements OnInit {
   companyList: any [];
   errorMsg: string;
   loading: any;
+  subscription: Subscription;
 
-  constructor(private fb: FormBuilder, private service: AuthService, private router: Router,
-              private toastController: ToastController, private languageService: LanguageService,
+  constructor(private fb: FormBuilder, private service: AuthService, private router: Router, public platform: Platform,
+              private toastController: ToastController, private languageService: LanguageService,public loadingService: LoadingService,
               private readonly translate: TranslateService, public events: Events, private zone: NgZone) {
     this.authForm = fb.group({
       username: [null, Validators.compose([Validators.required])],
@@ -31,9 +35,21 @@ export class LoginPage implements OnInit {
         console.log('force update the screen');
       });
     });
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/login') {
+        console.log('nav end called ')
+        this.onEnter();
+    }
+  });
    }
 
   ngOnInit() {
+    
+  }
+
+  onEnter(){
+    this.platform.ready().then( () => {
+    console.log('platform ready fired  ');
     this.translate.use(this.languageService.currentLang);
     const companyId = localStorage.getItem('companyId');
     const username = localStorage.getItem('username');
@@ -42,10 +58,14 @@ export class LoginPage implements OnInit {
       this.keepMeLoginFun(companyId, username, password);
      // this.navCtrl.setRoot('HomePage');
     } else {
-      this.service.getCompanies().subscribe(res => {
-        this.companyList = res.Items;
-      });
+      this.loadingService.present();
+         console.log('get companies ')
+         this.service.getCompanies().subscribe(res => {
+          this.companyList = res.Items;
+          this.loadingService.dismiss();
+        }); 
     }
+    })
   }
 
   async keepMeLoginFun(companyId, username, password) {
@@ -141,5 +161,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
 }

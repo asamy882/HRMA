@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { LanguageService } from '../common/services/language.service';
@@ -95,7 +96,7 @@ export class AppComponent implements OnInit {
     public router: Router,
     public service: AuthService,
     public loadingService: LoadingService,
-    private splashScreen: SplashScreen
+    public splashScreen: SplashScreen
   ) {
     this.initializeApp();
   }
@@ -113,21 +114,22 @@ export class AppComponent implements OnInit {
         }
       });
 
-   /* this.router.events.subscribe((route) => {
+    this.router.events.subscribe((route) => {
         if (route instanceof NavigationStart) {
          // this.loadingService.present();
         }
         if (route instanceof NavigationEnd) {
          // this.loadingService.dismiss();
         }
-      });*/
+      });
 
     this.languageService.local$.subscribe(lang => {
       this.loadingService.dismiss();
       });
   }
 
-  ngOnInit() {
+  ngOnInit() { 
+    
     this.myPhoto = this.service.getMyPhoto();
     this.myInfo = this.service.getMyInfo();
 
@@ -147,7 +149,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.presentLoadingWithOptions();
      // this.statusBar.styleDefault();
-      this.splashScreen.hide();
+    this.splashScreen.hide();
     // this.statusBar.overlaysWebView(true);
     // this.statusBar.backgroundColorByHexString('#3880ff');
      //this.statusBar.hide();
