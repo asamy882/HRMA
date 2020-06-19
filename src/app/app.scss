@@ -253,7 +253,7 @@ ion-header {
   z-index: 10;
   display: block;
   width: 100%;
-  background: #fff;
+  background: #024166;
   border-bottom: 0px solid #E0F7FA;
 }
 
@@ -486,3 +486,6 @@ ion-card{
   display: inline-block;
 }
 
+.ios ion-list{
+  margin-bottom: 0;
+}

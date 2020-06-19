@@ -96,17 +96,17 @@ ion-select {
 }
 
 .h29 {
-    height: 29px !important;
+    height: 0px !important;
 }
 
 .h32 {
-    height: 32px !important;
+    height: 0px !important;
 }
 
 // .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{height: 100%;}
 
 .h28 {
-    height: 28px !important;
+    height: 0px !important;
 }
 
 .li-ionic4-datePicker {
@@ -193,3 +193,7 @@ ion-toolbar .toolbar-title{font-size: 16 !important;}
     color: #4CAF50;
     font-weight: bold;
 }
+
+.ios ion-list{
+    margin-bottom: 0;
+  }

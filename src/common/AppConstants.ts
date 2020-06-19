@@ -1,6 +1,7 @@
 
 export class AppConstants {
-  public static API_ENDPOINT = 'http://41.38.81.26:2222';
+  //public static API_ENDPOINT = 'http://41.38.81.26:2222';
+  public static API_ENDPOINT = 'https://hr.misrelhegaz.com:10516';
 
   // Status
   public static REVIEWED = 4;
