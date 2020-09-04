@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>325031919654-gq52q4a5jj431m8ijgkcldhkacrb4455.apps.googleusercontent.com</string>
+	<string>910996857485-c0kgu8qb1hhsl4pn8lrp7cm6i5osftcj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.325031919654-gq52q4a5jj431m8ijgkcldhkacrb4455</string>
+	<string>com.googleusercontent.apps.910996857485-c0kgu8qb1hhsl4pn8lrp7cm6i5osftcj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD5R0cFJ5zdv4f0Bv3Yj8GdCbQ4Cx_dbKI</string>
+	<string>AIzaSyD8aRGkTMJBSKJPuKvi2ZwWaXfIhn3I_c8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>325031919654</string>
+	<string>910996857485</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>quattro.kian.hrms</string>
+	<string>kian.hrms</string>
 	<key>PROJECT_ID</key>
-	<string>quattro-kian-hrms</string>
+	<string>kian-hrms</string>
 	<key>STORAGE_BUCKET</key>
-	<string>quattro-kian-hrms.appspot.com</string>
+	<string>kian-hrms.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:325031919654:ios:129bdf6393f421fb04a6e7</string>
+	<string>1:910996857485:ios:89c6f178e49b38b7fd38c4</string>
 	<key>DATABASE_URL</key>
-	<string>https://quattro-kian-hrms.firebaseio.com</string>
+	<string>https://kian-hrms.firebaseio.com</string>
 </dict>
 </plist>
