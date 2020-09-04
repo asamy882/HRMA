@@ -4,7 +4,16 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class AppConstants {
-  public static API_ENDPOINT = 'https://hrapi.quattro-trading.com';
+  public static API_ENDPOINT;// = 'https://hrapi.quattro-trading.com';
+
+  public static getApiEndpoin(){
+    if(!this.API_ENDPOINT){
+      this.API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
+      return this.API_ENDPOINT;      
+    } else {
+      return this.API_ENDPOINT;
+    }
+  }
  
 
   // Status

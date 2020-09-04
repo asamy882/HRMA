@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppConstants } from 'src/common/AppConstants';
 
 @Component({
   selector: 'app-about',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+    if(AppConstants.getApiEndpoin()){
+      this.router.navigate(['/login']);
+    }
+   }
 
   ngOnInit() {
   }

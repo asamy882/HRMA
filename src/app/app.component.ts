@@ -102,7 +102,9 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
     localStorage.clear();
+    localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
   }
   async presentLoadingWithOptions() {
     this.spinnerService.onLoadingChanged

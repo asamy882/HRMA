@@ -1,12 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>about</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <ion-content fullscreen class="ion-padding" scroll-y="false">
+    <ion-slides>
 
-<ion-content>
+      <ion-slide>
+        <div class="slide">
+          <img src="assets/imgs/TASKS-MANAGEMENT.png"/>
+          <h2>{{ 'app.about.tasksManagement' | translate }}</h2>
+          <p>{{ 'app.about.tasksManagementDesc' | translate }}</p>
+        </div>
+      </ion-slide>
 
-</ion-content>
+      <ion-slide>
+        <img src="assets/imgs/EMPLOYEES-SELF-SERVICE.png"/>
+        <h2>{{ 'app.about.employeeSelfSerice' | translate }}</h2>
+        <p>{{ 'app.about.employeeSelfSericeDesc' | translate }}</p>
+      </ion-slide>
+
+      <ion-slide>
+        <img src="assets/imgs/MANAGE-YOUR-INFORMATIONS.png"/>
+        <h2>{{ 'app.about.manageYourInfo' | translate }}</h2>
+        <p>{{ 'app.about.manageYourInfoDesc' | translate }}</p>
+      </ion-slide>
+
+    </ion-slides>
+    <ion-col size="12">
+      <button  class="btn-brand"  type="button" routerLink="/endpoint">{{ 'app.about.register' | translate }}</button>
+    </ion-col>
+
+  </ion-content>
+</ion-app>

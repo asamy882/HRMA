@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     canActivateChild: [AuthGuard],
-    redirectTo: 'home',
+    redirectTo: 'about',
     pathMatch: 'full'
   },
   {
@@ -74,6 +74,7 @@ const routes: Routes = [
     loadChildren: './permission-request/permission-request.module#PermissionRequestModule'
   },
   { path: 'about', canActivateChild: [AuthGuard], loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'endpoint', canActivateChild: [AuthGuard], loadChildren: './endpoint/endpoint.module#EndpointPageModule' },
   { path: 'mytasks', canActivateChild: [AuthGuard], loadChildren: './mytasks/mytasks.module#MytasksPageModule' },
   { path: 'requests', canActivateChild: [AuthGuard], loadChildren: './requests/requests.module#RequestsPageModule' },
   { path: 'myinformations', canActivateChild: [AuthGuard],

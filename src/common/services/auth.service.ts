@@ -19,19 +19,25 @@ export class AuthService {
   public myInfo: any;
   public myPhoto: string;
   public allowedScreens: string[];
-  private baseUrl = AppConstants.API_ENDPOINT;
+  private baseUrl = AppConstants.getApiEndpoin();
   private encryptSecretKey = 'c027d14c026a3fa74f7cef1a1c93c0a3';
 
   constructor(private http: HttpClient, private fcm: FCM) {
   }
 
   getCompanies(): Observable<any> {
+    if(!this.baseUrl){
+      this.baseUrl = AppConstants.getApiEndpoin();
+    }
     return this.http.get(this.baseUrl + '/api/Lookups/GetCompanies');
   }
 
 
   login(companyId, username, password): Observable<any> {
     //localStorage.clear();
+    if(!this.baseUrl){
+      this.baseUrl = AppConstants.getApiEndpoin();
+    }
     const passwordEncrypt = this.encryptData(password);
     console.log('passwordEncrypt', this.decryptData(passwordEncrypt));
     const loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
@@ -77,7 +83,9 @@ export class AuthService {
   }
 
   logout(): void {
+    const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
     localStorage.clear();
+    localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
   }
 
   getUserToken() {

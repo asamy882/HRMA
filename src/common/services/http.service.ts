@@ -10,7 +10,7 @@ import { AlertService } from './alert.service';
   providedIn: 'root',
 })
 export class HttpService {
-  private baseUrl = AppConstants.API_ENDPOINT;
+  private baseUrl = AppConstants.getApiEndpoin();
 
   constructor(private http: HttpClient, private alertService: AlertService) {
   }

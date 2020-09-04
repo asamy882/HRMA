@@ -20,7 +20,9 @@ export class HomePage {
   }
 
   clearLocalStorage() {
+    const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
     localStorage.clear();
-  }
+    localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
+   }
 
 }

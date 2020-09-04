@@ -321,6 +321,21 @@
       "title": "جدول الورديات",
       "shiftDescription": "تفاصيل الوردية",
       "dayDate": "تاريخ الشفت"
+    },
+    "endpoint": {
+      "title": "Endpoint",
+      "endpoint": "Endpoint",
+      "register": "Register",
+      "companyKey": "Company Key"
+    },
+    "about": {
+      "tasksManagement": "TASKS MANAGEMENT",
+      "tasksManagementDesc": "You can manage your tasks in eazy way in some steps.",
+      "employeeSelfSerice": "EMPLOYEES SELF-SERVICE",
+      "employeeSelfSericeDesc": "EMPLOYEES SELF-SERVICE",
+      "manageYourInfo":"MANAGE YOUR INFORMATIONS",
+      "manageYourInfoDesc":"Allowing employees to change their contact details, banking information, and benefits.",
+      "register": "Register"
     }
   }
 }
