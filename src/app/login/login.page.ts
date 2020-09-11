@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   constructor(private fb: FormBuilder, private service: AuthService, private router: Router, public platform: Platform,
               private toastController: ToastController, private languageService: LanguageService,public loadingService: LoadingService,
               private readonly translate: TranslateService, public events: Events, private zone: NgZone) {
-    this.companyList = [{
+   /*  this.companyList = [{
                 Code: '43350743-210d-49ad-817b-4c74a9f5d507',
                 Name: 'QARETAIL'
             },
@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
             {
                 Code: 'a93ceba6-d746-4cc1-8c35-d3c819bbd25a',
                 Name: 'QUATTRO'
-            }] ;
+            }] ; */
     this.authForm = fb.group({
       username: [null, Validators.compose([Validators.required])],
       company: [null, Validators.compose([Validators.required])],
@@ -70,12 +70,12 @@ export class LoginPage implements OnInit {
       this.keepMeLoginFun(companyId, username, password);
      // this.navCtrl.setRoot('HomePage');
     } else {
-      /*this.loadingService.present();
+      this.loadingService.present();
          console.log('get companies ')
          this.service.getCompanies().subscribe(res => {
           this.companyList = res.Items;
           this.loadingService.dismiss();
-        }); */
+        });
     }
     })
   }
