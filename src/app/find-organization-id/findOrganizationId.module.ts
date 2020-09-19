@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from '../components/components.module';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Top10requestPage } from './top10request.page';
+import { FindOrganizationIdPage } from './findOrganizationId.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: Top10requestPage
+    component: FindOrganizationIdPage
   }
 ];
 
@@ -19,8 +21,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
+    ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [Top10requestPage]
+  declarations: [FindOrganizationIdPage]
 })
-export class Top10requestPageModule {}
+export class FindOrganizationIdPageModule {}

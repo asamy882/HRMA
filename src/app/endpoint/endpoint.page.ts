@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { EndpointService } from './endpoint.service';
 import { AlertService } from 'src/common/services/alert.service';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/common/services/loading.service';
 
 @Component({
   selector: 'app-endpoint',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class EndpointPage implements OnInit {
   requestForm: FormGroup;
   title = 'app.endpoint.title';
-  constructor(public formBuilder: FormBuilder,    private router: Router,
+  constructor(public formBuilder: FormBuilder,    private router: Router, public loadingService: LoadingService,
     private service: EndpointService, private alertService: AlertService) { 
       this.requestForm = formBuilder.group({
         CompanyKey: new FormControl('', [Validators.required])
@@ -23,11 +24,16 @@ export class EndpointPage implements OnInit {
   }
 
   submit() {
+    debugger;
+    this.loadingService.present();
     this.service.getEndpoint(this.requestForm.get('CompanyKey').value).then(res => {
       if(res.Success == true){
         localStorage.setItem('API_ENDPOINT', res.Item);
+        this.loadingService.dismiss();
+        alert('You have registered successfully');
         this.router.navigate(['/login']);
       } else {
+        this.loadingService.dismiss();
         this.alertService.displayErrorToast(res.Message);
       }
     });

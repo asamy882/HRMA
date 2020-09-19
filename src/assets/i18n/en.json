@@ -327,7 +327,8 @@
       "title": "Endpoint",
       "endpoint": "Endpoint",
       "register": "Register",
-      "companyKey": "Company Key"
+      "companyKey": "Organization ID",
+      "findOrganizationId": "Find Organization ID"
     },
     "about": {
       "tasksManagement": "TASKS MANAGEMENT",

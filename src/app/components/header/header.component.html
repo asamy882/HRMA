@@ -1,8 +1,8 @@
 <ion-header class="absolute header-background">
-    <ion-toolbar>
-        <ion-buttons slot="start"  *ngIf="renderMenuButton">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
+    <ion-toolbar class="header-background-color">
+      <ion-buttons slot="start"  *ngIf="renderMenuButton">
+        <ion-menu-button class="ion-menu-button-color"></ion-menu-button>
+      </ion-buttons>
       <ion-buttons slot="start" (click)="goToBack()" *ngIf="renderBackButton">
           <img [src]="languageService.currentLanguageIsEnglish() ? 'assets/imgs/back.png' : 'assets/imgs/forward.png'" class="icon-in-toolbar"/>
       </ion-buttons>

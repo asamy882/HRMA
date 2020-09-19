@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   checkLogin(url: string): boolean {
     if (this.authService.isUserAuthenticated() || url.indexOf("about") > -1
-    || url.indexOf("endpoint") > -1) {
+    || url.indexOf("endpoint") > -1 || url.indexOf("findOrganizationId") > -1) {
       return true;
     }
 

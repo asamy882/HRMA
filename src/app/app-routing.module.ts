@@ -77,19 +77,15 @@ const routes: Routes = [
   { path: 'endpoint', canActivateChild: [AuthGuard], loadChildren: './endpoint/endpoint.module#EndpointPageModule' },
   { path: 'mytasks', canActivateChild: [AuthGuard], loadChildren: './mytasks/mytasks.module#MytasksPageModule' },
   { path: 'requests', canActivateChild: [AuthGuard], loadChildren: './requests/requests.module#RequestsPageModule' },
-  { path: 'myinformations', canActivateChild: [AuthGuard],
-    loadChildren: './myinformations/myinformations.module#MyinformationsPageModule' },
+  { path: 'myinformations', canActivateChild: [AuthGuard], loadChildren: './myinformations/myinformations.module#MyinformationsPageModule' },
   { path: 'myprofile', canActivateChild: [AuthGuard], loadChildren: './myprofile/myprofile.module#MyprofilePageModule' },
   { path: 'mysalary', canActivateChild: [AuthGuard], loadChildren: './mysalary/mysalary.module#MysalaryPageModule' },
   { path: 'mysalary', canActivateChild: [AuthGuard], loadChildren: './mysalary/mysalary.module#MysalaryPageModule' },
   { path: 'myattendance', canActivateChild: [AuthGuard], loadChildren: './myattendance/myattendance.module#MyattendancePageModule' },
-  { path: 'myshift-schedule', canActivateChild: [AuthGuard],
-    loadChildren: './myshift-schedule/myshift-schedule.module#MyShiftSchedulePageModule' },
-  { path: 'myvacations-balance', canActivateChild: [AuthGuard],
-    loadChildren: './myvacations-balance/myvacations-balance.module#MyVacationsBalancePageModule' },
-  { path: 'choose-request-type', canActivateChild: [AuthGuard],
-    loadChildren: './choose-request-type/choose-request-type.module#ChooseRequestTypePageModule' }
-
+  { path: 'myshift-schedule', canActivateChild: [AuthGuard], loadChildren: './myshift-schedule/myshift-schedule.module#MyShiftSchedulePageModule' },
+  { path: 'myvacations-balance', canActivateChild: [AuthGuard], loadChildren: './myvacations-balance/myvacations-balance.module#MyVacationsBalancePageModule' },
+  { path: 'choose-request-type', canActivateChild: [AuthGuard], loadChildren: './choose-request-type/choose-request-type.module#ChooseRequestTypePageModule' },
+  { path: 'findOrganizationId', canActivateChild: [AuthGuard], loadChildren: './find-organization-id/findOrganizationId.module#FindOrganizationIdPageModule' }
 
 ];
 

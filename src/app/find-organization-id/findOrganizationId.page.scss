@@ -1,0 +1,28 @@
+b {
+    font-weight: 500;
+  }
+  
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ion-color-step-600, #60646b);
+  }
+  
+  p b {
+    color: var(--ion-text-color, #000000);
+    font-size: 16px;
+    font-family: verdana;
+    font-weight: bold;
+  }
+
+.icon-in-toolbar{width:24px; height: 24px; margin-right:10px; margin-left: 10px;}
+.title-md {font-size: 18px;}
+
+.header-background-color{
+    --background: #2b5492;
+}
+
+.ion-menu-button-color{
+    --color : #ffffff;
+}
