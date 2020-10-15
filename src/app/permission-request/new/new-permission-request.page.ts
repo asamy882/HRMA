@@ -43,6 +43,8 @@ export class NewPermissionRequestPage implements OnInit {
       PermissionDate: new FormControl('', [Validators.required]),
       FromTime: new FormControl('', [Validators.required]),
       ToTime: new FormControl('', [Validators.required]),
+      Ext: new FormControl('', [Validators.required]),
+      Mobile: new FormControl('', [Validators.required]),
       Remarks: new FormControl('', []),
     });
   }
@@ -159,6 +161,8 @@ export class NewPermissionRequestPage implements OnInit {
     this.requestForm.controls['ToTime'].setValue(req.ToTime);
     this.requestForm.controls['Remarks'].setValue(req.Remarks);
     this.requestForm.controls['PermissionTypeId'].setValue(req.PermissionType.ID);
+    this.requestForm.controls['Ext'].setValue(req.Ext);
+    this.requestForm.controls['Mobile'].setValue(req.Mobile);
   }
 
   formatDate(date) {

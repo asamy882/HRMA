@@ -44,6 +44,8 @@ export class NewVacationRequestPage implements OnInit {
       ToDate: new FormControl('', [Validators.required]),
       VacationDays: new FormControl('', [Validators.required]),
       VacationTypeId: new FormControl('', [Validators.required]),
+      Ext: new FormControl('', [Validators.required]),
+      Mobile: new FormControl('', [Validators.required]),
       Balance: new FormControl('', []),
       ExcludeWeekend: new FormControl('', []),
       Remarks: new FormControl('', [])
@@ -133,7 +135,8 @@ export class NewVacationRequestPage implements OnInit {
     this.requestForm.controls['ToDate'].setValue(req.ToDate);
     this.requestForm.controls['VacationDays'].setValue(req.VacationDays);
     this.requestForm.controls['VacationTypeId'].setValue(req.VacationTypeId);
-    //this.requestForm.controls['Replacement'].setValue(req.Balance);
+    this.requestForm.controls['Ext'].setValue(req.Ext);
+    this.requestForm.controls['Mobile'].setValue(req.Mobile);
   }
 
   async loadVacationTypeList() {

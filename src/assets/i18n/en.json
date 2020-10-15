@@ -147,6 +147,8 @@
       "selectFromDate": "Select From Date",
       "selectToDate": "Select To Date",
       "successMsg": "The request added Successfully",
+      "mobile": "Mobile",
+      "ext": "Ext",
       "errorMsg": ""
     },
     "overtimeRequest": {
@@ -268,6 +270,8 @@
       "requestDate": "Permission Date",
       "extendNextDay": "Extend Next Day",
       "successMsg": "The request added Successfully",
+      "mobile": "Mobile",
+      "ext": "Ext",
       "errorMsg": ""
     },
     "missionRequest": {
@@ -288,7 +292,9 @@
       "type": "Mission Type",
       "selectType": "Select Mission Type",
       "distance": "Mission Distance",
-      "selectDistance": "Select Mission Type"
+      "selectDistance": "Select Mission Type",
+      "mobile": "Mobile",
+      "ext": "Ext"
     },
     "chooseRequest": {
       "title": "Requests",
