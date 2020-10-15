@@ -13,4 +13,6 @@ export class VactionRequest {
   AllowedComments: boolean;
   CommentsMandatory: boolean;
   WorkflowInstanceId: string;
+  Ext: string;
+  Mobile: string;
 }

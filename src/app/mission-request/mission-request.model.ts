@@ -14,4 +14,6 @@ export class MissionRequest {
   MissionTypeId: string;
   MissionDistance: any;
   MissionDistanceId: string;
+  Ext: string;
+  Mobile: string;
 }

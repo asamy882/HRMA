@@ -147,7 +147,9 @@
       "selectFromDate": "من تاريخ",
       "selectToDate": "إلي تاريخ",
       "successMsg": "تم اضافة الطلب بنجاح",
-      "errorMsg": ""
+      "errorMsg": "",
+      "mobile": "الموبيل",
+      "ext": "الرقم الداخلي"
     },
     "overtimeRequest": {
       "title": "طلبات العمل الإضافي",
@@ -268,7 +270,9 @@
       "requestDate": "تاريخ التصريح",
       "extendNextDay": "تمديد اليوم التالي",
       "successMsg": "تم اضافة الطلب بنجاح",
-      "errorMsg": ""
+      "errorMsg": "",
+      "mobile": "الموبيل",
+      "ext": "الرقم الداخلي"
     },
     "missionRequest": {
       "title": "طلبات الماموريات",
@@ -288,7 +292,9 @@
       "type": "نوع المامورية",
       "selectType": "اختر نوع المامورية",
       "distance": "المسافة",
-      "selectDistance": "اختر المسافة"
+      "selectDistance": "اختر المسافة",
+      "mobile": "الموبيل",
+      "ext": "الرقم الداخلي"
     },
     "chooseRequest": {
       "title": "الطلبات",
