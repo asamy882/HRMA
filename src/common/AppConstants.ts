@@ -45,6 +45,7 @@ export class AppConstants {
 
   //Screens
   public  VACATION_REQUEST_PAGE = 'VacationRequest';
+  public  MISR_VACATION_REQUEST_PAGE = 'VacationRequestMisr';
   public  MISSION_REQUEST_PAGE = 'MissionRequest';
   public  PENALTY_REQUEST_PAGE = 'PenaltyRequest';
   public  LOAN_REQUEST_PAGE = 'LoanRequest';
@@ -53,6 +54,7 @@ export class AppConstants {
   public  WORK_IN_DAYOFF_REQUEST_PAGE = 'WorkinDayoffRequest';
   public  OVERTIME_REQUEST_PAGE = 'OverTimeRequest';
   public  PERMISSION_REQUEST_PAGE = 'PermissionRequest';
+  public  MISR_PERMISSION_REQUEST_PAGE = 'PermissionRequestMisr';
   public  MISR_MISSION_REQUEST_PAGE = 'MissionRequestMisr';
   public  QT_MISSION_REQUEST_PAGE = 'MissionRequestQT';
   public  QT_WORK_IN_DAYOFF_REQUEST_PAGE = 'WorkinDayoffRequestQT';

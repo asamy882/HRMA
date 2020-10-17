@@ -14,4 +14,6 @@ export class VactionRequest {
   CommentsMandatory: boolean;
   WorkflowInstanceId: string;
   Attachment: any;
+  Ext: string;
+  Mobile: string;
 }

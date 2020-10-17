@@ -149,7 +149,9 @@
       "selectToDate": "إلي تاريخ",
       "successMsg": "تم اضافة الطلب بنجاح",
       "errorMsg": "",
-      "attachment":"المرفق"
+      "attachment":"المرفق",
+      "mobile": "الموبيل",
+      "ext": "الرقم الداخلي"
     },
     "overtimeRequest": {
       "title": "طلبات العمل الإضافي",
@@ -270,7 +272,9 @@
       "requestDate": "تاريخ التصريح",
       "extendNextDay": "تمديد اليوم التالي",
       "successMsg": "تم اضافة الطلب بنجاح",
-      "errorMsg": ""
+      "errorMsg": "",
+      "mobile": "الموبيل",
+      "ext": "الرقم الداخلي"
     },
     "missionRequest": {
       "title": "طلبات الماموريات",
@@ -295,7 +299,9 @@
       "latnessPermission": "Latness Permission",
       "permissionWithinDay": "Permission Within Day",
       "earlyLeavePermission": "Early Leave Permission",
-      "missionDate": "Mission Date"
+      "missionDate": "Mission Date",
+      "mobile": "الموبيل",
+      "ext": "الرقم الداخلي"
     },
     "chooseRequest": {
       "title": "الطلبات",

@@ -54,6 +54,26 @@
                   [placeholder]="'app.permissionRequest.toTime' | translate"></ion-input>
               </ion-item>
             </ion-list>
+          </ion-col>
+          <ion-col size="12" *ngIf="authService.getAllowedScreens().includes(appCon.MISR_PERMISSION_REQUEST_PAGE)">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.ext' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input formControlName="Ext" [disabled]="readonly" class="px-2 rounded bg-form border-1"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>   
+          <ion-col size="12" *ngIf="authService.getAllowedScreens().includes(appCon.MISR_PERMISSION_REQUEST_PAGE)">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label class="font-weight-bold mb--2">{{ 'app.vacationRequest.mobile' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-input formControlName="Mobile" [disabled]="readonly" class="px-2 rounded bg-form border-1"></ion-input>
+              </ion-item>
+            </ion-list>
           </ion-col>           
           <ion-col size="12">
             <ion-list class="task-details-list">

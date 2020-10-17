@@ -46,16 +46,29 @@ export class NewVacationRequestPage implements OnInit {
               private readonly translate: TranslateService, private router: Router, private platform: Platform, 
               public authService: AuthService, public appCon: AppConstants
   ) {
-    this.requestForm = formBuilder.group({
-      FromDate: new FormControl('', [Validators.required]),
-      ToDate: new FormControl('', [Validators.required]),
-      VacationDays: new FormControl('', [Validators.required]),
-      VacationTypeId: new FormControl('', [Validators.required]),
-      Balance: new FormControl('', []),
-      ExcludeWeekend: new FormControl('', []),
-      Remarks: new FormControl('', [])
-    //  Replacement: new FormControl('', []),
-    });
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_VACATION_REQUEST_PAGE)) {
+      this.requestForm = formBuilder.group({
+        FromDate: new FormControl('', [Validators.required]),
+        ToDate: new FormControl('', [Validators.required]),
+        VacationDays: new FormControl('', [Validators.required]),
+        VacationTypeId: new FormControl('', [Validators.required]),
+        Balance: new FormControl('', []),
+        ExcludeWeekend: new FormControl('', []),
+        Ext: new FormControl('', [Validators.required]),
+        Mobile: new FormControl('', [Validators.required]),
+        Remarks: new FormControl('', [])
+      });
+    } else {
+      this.requestForm = formBuilder.group({
+        FromDate: new FormControl('', [Validators.required]),
+        ToDate: new FormControl('', [Validators.required]),
+        VacationDays: new FormControl('', [Validators.required]),
+        VacationTypeId: new FormControl('', [Validators.required]),
+        Balance: new FormControl('', []),
+        ExcludeWeekend: new FormControl('', []),
+        Remarks: new FormControl('', [])
+      });
+    }
   }
 
   ngOnInit() {
@@ -143,7 +156,10 @@ export class NewVacationRequestPage implements OnInit {
     this.requestForm.controls['ToDate'].setValue(req.ToDate);
     this.requestForm.controls['VacationDays'].setValue(req.VacationDays);
     this.requestForm.controls['VacationTypeId'].setValue(req.VacationTypeId);
-    //this.requestForm.controls['Replacement'].setValue(req.Balance);
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_VACATION_REQUEST_PAGE)) {
+      this.requestForm.controls['Ext'].setValue(req.Ext);
+       this.requestForm.controls['Mobile'].setValue(req.Mobile);
+    }
   }
 
   async loadVacationTypeList() {

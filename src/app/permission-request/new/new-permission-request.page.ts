@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
+import { AuthService } from 'src/common/services/auth.service';
 
 @Component({
   selector: 'app-new-permission-request',
@@ -36,15 +37,30 @@ export class NewPermissionRequestPage implements OnInit {
     private route: ActivatedRoute,
     private languageService: LanguageService,
     private readonly translate: TranslateService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService, 
+    public appCon: AppConstants
   ) {
-    this.requestForm = formBuilder.group({
-      PermissionTypeId: new FormControl('', [Validators.required]),
-      PermissionDate: new FormControl('', [Validators.required]),
-      FromTime: new FormControl('', [Validators.required]),
-      ToTime: new FormControl('', [Validators.required]),
-      Remarks: new FormControl('', []),
-    });
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_PERMISSION_REQUEST_PAGE)) {
+      this.requestForm = formBuilder.group({
+        PermissionTypeId: new FormControl('', [Validators.required]),
+        PermissionDate: new FormControl('', [Validators.required]),
+        FromTime: new FormControl('', [Validators.required]),
+        ToTime: new FormControl('', [Validators.required]),
+        Ext: new FormControl('', [Validators.required]),
+        Mobile: new FormControl('', [Validators.required]),
+        Remarks: new FormControl('', [])
+      });
+    } else {
+      this.requestForm = formBuilder.group({
+        PermissionTypeId: new FormControl('', [Validators.required]),
+        PermissionDate: new FormControl('', [Validators.required]),
+        FromTime: new FormControl('', [Validators.required]),
+        ToTime: new FormControl('', [Validators.required]),
+        Remarks: new FormControl('', [])
+      });
+    }
+    
   }
 
   ngOnInit() {
@@ -159,6 +175,10 @@ export class NewPermissionRequestPage implements OnInit {
     this.requestForm.controls['ToTime'].setValue(req.ToTime);
     this.requestForm.controls['Remarks'].setValue(req.Remarks);
     this.requestForm.controls['PermissionTypeId'].setValue(req.PermissionType.ID);
+    if (this.authService.getAllowedScreens().includes(this.appCon.MISR_PERMISSION_REQUEST_PAGE)) {
+      this.requestForm.controls['Ext'].setValue(req.Ext);
+      this.requestForm.controls['Mobile'].setValue(req.Mobile);
+    }
   }
 
   formatDate(date) {

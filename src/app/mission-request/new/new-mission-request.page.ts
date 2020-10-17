@@ -49,6 +49,8 @@ export class NewMissionRequestPage implements OnInit {
         FromTime: new FormControl('', [Validators.required]),
         ToTime: new FormControl('', [Validators.required]),
         ExtendNextDay: new FormControl('', []),
+        Ext: new FormControl('', [Validators.required]),        
+        Mobile: new FormControl('', [Validators.required]),
         Remarks: new FormControl('', []),
       });
     } else {
@@ -192,6 +194,8 @@ export class NewMissionRequestPage implements OnInit {
     if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
       this.requestForm.controls['MissionTypeId'].setValue(req.MissionType.ID);
       this.requestForm.controls['MissionDistanceId'].setValue(req.MissionDistance.ID);
+      this.requestForm.controls['Ext'].setValue(req.Ext);
+      this.requestForm.controls['Mobile'].setValue(req.Mobile);  
     }
   }
 

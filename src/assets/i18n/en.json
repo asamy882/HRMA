@@ -149,6 +149,8 @@
       "selectToDate": "Select To Date",
       "successMsg": "The request added Successfully",
       "errorMsg": "",
+      "mobile": "Mobile",
+      "ext": "Ext",
       "attachment":"Attachment"
     },
     "overtimeRequest": {
@@ -269,6 +271,8 @@
       "remarks": "Remarks",
       "requestDate": "Permission Date",
       "extendNextDay": "Extend Next Day",
+      "mobile": "Mobile",
+      "ext": "Ext",
       "successMsg": "The request added Successfully",
       "errorMsg": ""
     },
@@ -295,6 +299,8 @@
       "mission": "Mission",
       "latnessPermission": "Latness Permission",
       "permissionWithinDay": "Permission Within Day",
+      "mobile": "Mobile",
+      "ext": "Ext",
       "earlyLeavePermission": "Early Leave Permission"
     },
     "chooseRequest": {
