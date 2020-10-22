@@ -307,7 +307,7 @@ export class NewVacationRequestPage implements OnInit {
 
   renderAttachment() {
     const username = localStorage.getItem('username');
-    return username != 'testapp';
+    return username != 'testapp' && username != 'Testapp';
   }
 
   uploadFile() {
