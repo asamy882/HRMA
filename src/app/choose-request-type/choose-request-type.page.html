@@ -4,13 +4,13 @@
   <div class="p-1 requests-menu">
     <ion-grid>
       <ion-row>
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.VACATION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.QT_VACATION_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.VACATION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.QT_VACATION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.MISR_VACATION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/vacation-request/search">
             <img class="logo" src="assets/imgs/vacation-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.vacationReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.PERMISSION_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.PERMISSION_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.MISR_PERMISSION_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/permission-request/search">
             <img class="logo" src="assets/imgs/permission-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.permissionReq' | translate}}</span>
