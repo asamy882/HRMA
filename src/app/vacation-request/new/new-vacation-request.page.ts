@@ -305,6 +305,11 @@ export class NewVacationRequestPage implements OnInit {
     return this.renderTaskActions && this.request.AllowedActions == AppConstants.REVIEW;
   }
 
+  renderAttachment() {
+    const username = localStorage.getItem('username');
+    return username != 'testapp';
+  }
+
   uploadFile() {
     this.attachment = {};
     const attachment: any = {};
