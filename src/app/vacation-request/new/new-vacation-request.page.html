@@ -97,7 +97,18 @@
                 </ion-textarea>
               </ion-item>
             </ion-list>
-          </ion-col>          
+          </ion-col>    
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label><span class="font-weight-bold mb--2">{{ 'app.vacationRequest.attachment' | translate }}</span></ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <input *ngIf="renderSaveButton" type="file" (change)="uploadFile()">
+                <button  class="btn-brand" type="button" *ngIf="!renderSaveButton && request.Attachment" (click)="downloadFile()">{{ 'app.common.download' | translate }}</button>
+              </ion-item>
+            </ion-list>
+          </ion-col>      
           <ion-col size="12">
                 <button  class="btn-brand" type="submit" *ngIf="renderSaveButton" [disabled]="requestForm.invalid">{{ 'app.common.save' | translate }}</button>
                 <button  class="btn-danger"  type="button" (click)="navigateToSearch(false)" *ngIf="renderCloseButton">{{ 'app.common.close' | translate }}</button>

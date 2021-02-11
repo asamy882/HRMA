@@ -26,7 +26,8 @@
       "save": "حفظ",
       "close": "أغلق",
       "login": "تسجيل الدخول",
-      "logout": "تسجيل خروج"
+      "logout": "تسجيل خروج",
+      "download": "تنزيل المرفقات"
     },
     "taskAction": {
       "approveSuccessMsg": "تمت الموافقة على الطلب بنجاح",
@@ -148,7 +149,8 @@
       "selectFromDate": "من تاريخ",
       "selectToDate": "إلي تاريخ",
       "successMsg": "تم اضافة الطلب بنجاح",
-      "errorMsg": ""
+      "errorMsg": "",
+      "attachment":"المرفق"
     },
     "overtimeRequest": {
       "title": "طلبات العمل الإضافي",

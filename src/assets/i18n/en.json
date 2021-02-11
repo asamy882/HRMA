@@ -26,7 +26,8 @@
       "save": "Save",
       "close": "Close",
       "login": "Login",
-      "logout": "Logout"
+      "logout": "Logout",
+      "download": "Download Attachment"
     },
     "taskAction": {
       "approveSuccessMsg": "The request approved Successfully",
@@ -90,7 +91,7 @@
       "totalDebit": "Total Debit",
       "netTotal": "Net Salary",
       "dues": "DUES",
-      "dedections": "DEDECTIONS"
+      "dedections": "DEDUCTIONS"
     },
     "myAttendance": {
       "title": "Attendance Sheet",
@@ -111,7 +112,7 @@
     "myInfo": {
       "title": "My Information",
       "myProfile": "My Profile",
-      "salary": "Salery Details",
+      "salary": "Salary Details",
       "myAttendance": "My Attendance",
       "myVactionBalance": "My Vaction Balance",
       "myShifts": "My Shifts"
@@ -148,7 +149,8 @@
       "selectFromDate": "Select From Date",
       "selectToDate": "Select To Date",
       "successMsg": "The request added Successfully",
-      "errorMsg": ""
+      "errorMsg": "",
+      "attachment":"Attachment"
     },
     "overtimeRequest": {
       "title": "Overtime Requests",

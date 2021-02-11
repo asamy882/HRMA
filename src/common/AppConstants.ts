@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class AppConstants {
-  public static API_ENDPOINT = 'http://196.202.101.246:5557';
+  public static API_ENDPOINT = 'https://hrapi.quattro-trading.com';
 
   // Status
   public static REVIEWED = 4;
@@ -53,6 +53,9 @@ export class AppConstants {
   public  WORK_IN_WEEKLY_RESET_REQUEST_PAGE = 10;
   public  CHANGE_WEEKLY_RESET_REQUEST_PAGE = 11;
   public  ABSENCE_WITH_PERMISSION_REQUEST_PAGE = 12;
+  public  SALARY_DETAILS_PAGE = 'SalaryDetails';
+  public  ATTENDANCE_SHEET_PAGE = 'AttendanceSheet';
+
 
 }
 

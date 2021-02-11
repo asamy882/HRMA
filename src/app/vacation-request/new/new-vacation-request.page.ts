@@ -3,7 +3,7 @@ import { VacationRequestService } from '../vacation-request.service';
 import { VactionRequest } from '../vacation-request.model';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { Subscription } from 'rxjs';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Platform } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,6 +11,8 @@ import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
 import { AuthService } from 'src/common/services/auth.service';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 
 @Component({
@@ -35,10 +37,13 @@ export class NewVacationRequestPage implements OnInit {
   backPage = '/vacation-request/search';
   title = 'app.vacationRequest.newRequestPageTitle';
   selectReplacement: string;
+  attachment = {};
+  private opener: FileOpener = new FileOpener();
+  private file: File = new File();
 
   constructor(private service: VacationRequestService, private toastController: ToastController,
               private route: ActivatedRoute, public formBuilder: FormBuilder, private languageService: LanguageService,
-              private readonly translate: TranslateService, private router: Router,
+              private readonly translate: TranslateService, private router: Router, private platform: Platform, 
               public authService: AuthService, public appCon: AppConstants
   ) {
     this.requestForm = formBuilder.group({
@@ -67,9 +72,12 @@ export class NewVacationRequestPage implements OnInit {
       if (req) {
         this.readonly = true;
         this.title = 'app.vacationRequest.viewRequestPageTitle';
-        this.request = JSON.parse(req);
-        this.setFormValues(this.request);
+        this.service.getVacationRequest(req).then(res => {
+          this.request = res.Item;
+          this.setFormValues(this.request);
+          });
         this.renderCloseButton = true;
+        this.renderSaveButton = false;
       } else if (requestId) {
         this.backPage = '/mytasks';
         this.readonly = true;
@@ -243,6 +251,7 @@ export class NewVacationRequestPage implements OnInit {
     if (this.replacement) {
       this.request.ReplacementId = this.replacement.EmployeeId;
     }
+    this.request.Attachment = this.attachment;
     this.service.addVacationRequest(this.request).then(res => {
       this.navigateToSearch(true);
     });
@@ -279,4 +288,79 @@ export class NewVacationRequestPage implements OnInit {
   renderOkButton() {
     return this.renderTaskActions && this.request.AllowedActions == AppConstants.REVIEW;
   }
+
+  uploadFile() {
+    this.attachment = {};
+    const attachment: any = {};
+    this.attachment = attachment;
+    const d: any = document.querySelector('input[type=file]');
+    const file = d.files[0];
+    const reader = new FileReader();
+    attachment.AttachmentName = file.name;
+
+    // reader.addEventListener('load', function() {
+    //   // convert image file to base64 string
+    //  // console.log(reader.result);
+    //   attachment.AttachmentContent = reader.result;
+    //   attachment.AttachmentType = attachment.AttachmentContent.substring(0, attachment.AttachmentContent.indexOf(','));
+    //   attachment.AttachmentContent = attachment.AttachmentContent.substring(attachment.AttachmentContent.indexOf(',') + 1);
+    // }, false);
+
+    reader.onloadend = (event) => {
+      if (reader.error) {
+        console.log(reader.error);
+      } else {
+        attachment.AttachmentContent = reader.result;
+        attachment.AttachmentType = attachment.AttachmentContent.substring(0, attachment.AttachmentContent.indexOf(','));
+        attachment.AttachmentContent = attachment.AttachmentContent.substring(attachment.AttachmentContent.indexOf(',') + 1);
+      }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    this.attachment = attachment;
+    //console.log('**** uploadFile', this.request);
+  }
+
+  downloadFile(){
+    this.saveAndOpenPdf(this.request.Attachment.AttachmentContent, this.request.Attachment.AttachmentName,
+      this.request.Attachment.AttachmentType);
+  }
+
+  saveAndOpenPdf(fileContent: string, fileName: string, fileType: string) {
+    const writeDirectory = this.platform.is('ios') ? this.file.dataDirectory : this.file.externalDataDirectory;
+    this.file.writeFile(writeDirectory, fileName, this.convertBaseb64ToBlob(fileContent, fileType), {replace: true})
+      .then(() => {
+         // this.loading.dismiss();
+          this.opener.open(writeDirectory + fileName, fileType.substring(fileType.indexOf(':') + 1))
+              .catch(() => {
+                  console.log('Error opening pdf file');
+                 // this.loading.dismiss();
+              });
+      })
+      .catch(() => {
+          console.error('Error writing pdf file');
+        //  this.loading.dismiss();
+      });
+  }
+
+  convertBaseb64ToBlob(b64Data, contentType): Blob {
+    contentType = contentType || '';
+    const sliceSize = 512;
+    b64Data = b64Data.replace(/^[^,]+,/, '');
+    b64Data = b64Data.replace(/\s/g, '');
+    const byteCharacters = window.atob(b64Data);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+         const slice = byteCharacters.slice(offset, offset + sliceSize);
+         const byteNumbers = new Array(slice.length);
+         for (let i = 0; i < slice.length; i++) {
+             byteNumbers[i] = slice.charCodeAt(i);
+         }
+         const byteArray = new Uint8Array(byteNumbers);
+         byteArrays.push(byteArray);
+    }
+   return new Blob(byteArrays, {type: contentType});
+}
 }
