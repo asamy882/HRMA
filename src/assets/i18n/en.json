@@ -9,7 +9,8 @@
       "home": "Home",
       "mytasks": "My Tasks",
       "requests": "Requests",
-      "myinformations": "My Information"
+      "myinformations": "My Information",
+      "signInOut":"Sign In & Out"
     },
     "common": {
       "info": "info",
@@ -320,6 +321,18 @@
       "title": "My Shift Schedule",
       "shiftDescription": "Shift Description",
       "dayDate": "Day Date"
+    },
+    "SignInOut": {
+      "title": "Time Attendance",
+      "branch": "Sites",
+      "direction": "Action",
+      "signIn": "Check In",
+      "signOut": "Check Out",
+      "location": "Get My Location",
+      "selectBranch": "Select Site",
+      "selectDirection": "Select Action",
+      "signInSuccessMsg": "Check In Success",
+      "signOutSuccessMsg": "Check Out Success"
     }
   }
 }

@@ -9,7 +9,8 @@
       "home": "الصفحة الرئيسية",
       "mytasks": "المهام",
       "requests": "الطلبات",
-      "myinformations": "حسابى"
+      "myinformations": "حسابى",
+      "signInOut":"تسجيل الحضور"
     },
     "common": {
       "info": "info",
@@ -319,6 +320,18 @@
       "title": "جدول الورديات",
       "shiftDescription": "تفاصيل الوردية",
       "dayDate": "تاريخ الشفت"
+    },
+    "SignInOut": {
+      "title": "الحضور",
+      "branch": "المواقع",
+      "direction": "الحالة",
+      "signIn": "تسجيل الدخول",
+      "signOut": "تسجيل الخروج",
+      "location": "الحصول على الموقع",
+      "selectBranch": "اختر الموقع",
+      "selectDirection": "اختر الحالة",
+      "signInSuccessMsg": "تم تسجيل الدخول بنجاح",
+      "signOutSuccessMsg": "تم تسجيل الخروج بنجاح"
     }
   }
 }

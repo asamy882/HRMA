@@ -5,6 +5,7 @@ import { SpinnerService } from '../common/services/spinner.service';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/common/services/auth.service';
 import { LoadingService } from 'src/common/services/loading.service';
+import { AppConstants } from 'src/common/AppConstants';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +33,8 @@ export class AppComponent implements OnInit {
       title: 'app.menu.myinformations',
       url: '/myinformations',
       icon: 'information-circle-outline'
-        },
+    }
+    
     //mine end
    /*  {
       title: 'app.vacationRequest.myRequestsTitle',
@@ -54,11 +56,7 @@ export class AppComponent implements OnInit {
       url: '/overtime-request/search',
       icon: 'football'
     },*/
-    {
-      title: 'app.logout',
-      url: '/logout',
-      icon: 'log-out'
-    }
+    
   ];
   /*
   pages = [
@@ -93,9 +91,24 @@ export class AppComponent implements OnInit {
     private spinnerService: SpinnerService,
     public router: Router,
     public service: AuthService,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    public appCon: AppConstants
   ) {
     this.initializeApp();
+
+    if(service.getAllowedScreens().includes(appCon.SIGN_IN_OUT_PAGE)){
+      this.appPages.push({
+        title: 'app.menu.signInOut',
+        url: '/sign-in-out',
+        icon: 'log-out'
+      });
+    }
+
+    this.appPages.push({
+      title: 'app.logout',
+      url: '/logout',
+      icon: 'log-out'
+    });
   }
 
   logout() {

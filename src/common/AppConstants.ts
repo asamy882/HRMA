@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class AppConstants {
-  public static API_ENDPOINT = 'http://196.202.101.243:9999';
+  public static API_ENDPOINT = 'http://196.202.101.246:5557';
 
   // Status
   public static REVIEWED = 4;
@@ -48,6 +48,7 @@ export class AppConstants {
   public  QT_WORK_IN_DAYOFF_REQUEST_PAGE = "WorkinDayoffRequestQT";
   public  QT_PENALTY_REQUEST_PAGE = "PenaltyRequestQT";
   public  QT_VACATION_REQUEST_PAGE = "VacationRequestQT";
+  public  SIGN_IN_OUT_PAGE = "SignInOut";
   public  SHIFT_PLAN_REQUEST_PAGE = 7;
   public  WORK_IN_WEEKLY_RESET_REQUEST_PAGE = 10;
   public  CHANGE_WEEKLY_RESET_REQUEST_PAGE = 11;
