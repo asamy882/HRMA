@@ -85,8 +85,8 @@ const routes: Routes = [
   { path: 'myshift-schedule', canActivateChild: [AuthGuard], loadChildren: './myshift-schedule/myshift-schedule.module#MyShiftSchedulePageModule' },
   { path: 'myvacations-balance', canActivateChild: [AuthGuard], loadChildren: './myvacations-balance/myvacations-balance.module#MyVacationsBalancePageModule' },
   { path: 'choose-request-type', canActivateChild: [AuthGuard], loadChildren: './choose-request-type/choose-request-type.module#ChooseRequestTypePageModule' },
-  { path: 'findOrganizationId', canActivateChild: [AuthGuard], loadChildren: './find-organization-id/findOrganizationId.module#FindOrganizationIdPageModule' }
-
+  { path: 'findOrganizationId', canActivateChild: [AuthGuard], loadChildren: './find-organization-id/findOrganizationId.module#FindOrganizationIdPageModule' },
+  { path: 'sign-in-out', canActivateChild: [AuthGuard], loadChildren: './sign-in-out/sign-in-out.module#SignInOutModule'}
 ];
 
 @NgModule({

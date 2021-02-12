@@ -9,7 +9,8 @@
       "home": "الصفحة الرئيسية",
       "mytasks": "المهام",
       "requests": "الطلبات",
-      "myinformations": "حسابى"
+      "myinformations": "حسابى",
+      "signInOut":"تسجيل الحضور"
     },
     "common": {
       "info": "info",
@@ -343,6 +344,18 @@
       "manageYourInfo":"MANAGE YOUR INFORMATIONS",
       "manageYourInfoDesc":"Allowing employees to change their contact details, banking information, and benefits.",
       "register": "Register"
+    },
+    "SignInOut": {
+      "title": "الحضور",
+      "branch": "المواقع",
+      "direction": "الحالة",
+      "signIn": "تسجيل الدخول",
+      "signOut": "تسجيل الخروج",
+      "location": "الحصول على الموقع",
+      "selectBranch": "اختر الموقع",
+      "selectDirection": "اختر الحالة",
+      "signInSuccessMsg": "تم تسجيل الدخول بنجاح",
+      "signOutSuccessMsg": "تم تسجيل الخروج بنجاح"
     }
   }
 }

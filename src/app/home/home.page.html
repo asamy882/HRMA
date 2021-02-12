@@ -25,5 +25,8 @@
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.requests' | translate}}</span></ion-card>
     <ion-card routerLink='/myinformations'><img class="logo" src="assets/imgs/information-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.myinformations' | translate}}</span></ion-card>
-  </div>
+    <ion-card routerLink='/sign-in-out' *ngIf="service.getAllowedScreens().includes(appCon.SIGN_IN_OUT_PAGE)"><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+        <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.signInOut' | translate}}</span></ion-card>
+
+    </div>
 </ion-content>
