@@ -66,6 +66,7 @@ export class AppConstants {
   public  ABSENCE_WITH_PERMISSION_REQUEST_PAGE = 12;
   public  SALARY_DETAILS_PAGE = 'SalaryDetails';
   public  ATTENDANCE_SHEET_PAGE = 'AttendanceSheet';
+  public  SIGN_IN_OUT_PAGE = 'SignInOut';
 
 
 }

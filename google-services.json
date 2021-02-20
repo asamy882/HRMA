@@ -1,35 +1,42 @@
 {
   "project_info": {
-    "project_number": "325031919654",
-    "firebase_url": "https://quattro-kian-hrms.firebaseio.com",
-    "project_id": "quattro-kian-hrms",
-    "storage_bucket": "quattro-kian-hrms.appspot.com"
+    "project_number": "910996857485",
+    "firebase_url": "https://kian-hrms.firebaseio.com",
+    "project_id": "kian-hrms",
+    "storage_bucket": "kian-hrms.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:325031919654:android:6cd6e2bf9ab1d10f04a6e7",
+        "mobilesdk_app_id": "1:910996857485:android:7d41f017e911ac94fd38c4",
         "android_client_info": {
-          "package_name": "quattro.kian.hrms"
+          "package_name": "kian.hrms"
         }
       },
       "oauth_client": [
         {
-          "client_id": "325031919654-blilv95ldv3jlr2d40729cegbin453d0.apps.googleusercontent.com",
+          "client_id": "910996857485-eq21kjp0l373rqgdbseteb92l1nm91sp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDbBIi4tMASvnf9PubbwgZ1ctzTPAPYX4A"
+          "current_key": "AIzaSyCHiCxo7RCYclm1rFGZ_pso9uM1z-bMCiQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "325031919654-blilv95ldv3jlr2d40729cegbin453d0.apps.googleusercontent.com",
+              "client_id": "910996857485-eq21kjp0l373rqgdbseteb92l1nm91sp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "910996857485-c0kgu8qb1hhsl4pn8lrp7cm6i5osftcj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kian.hrms"
+              }
             }
           ]
         }
