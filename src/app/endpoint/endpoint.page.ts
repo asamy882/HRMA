@@ -24,7 +24,6 @@ export class EndpointPage implements OnInit {
   }
 
   submit() {
-    debugger;
     this.loadingService.present();
     this.service.getEndpoint(this.requestForm.get('CompanyKey').value).then(res => {
       if(res.Success == true){

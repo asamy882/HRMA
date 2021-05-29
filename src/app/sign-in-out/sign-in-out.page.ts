@@ -61,6 +61,7 @@ export class SignInOutPage implements OnInit {
   }
 
   getLoc(){
+    this.disabledSaveButton = true;
     this.geolocation.getCurrentPosition(
       {maximumAge: 1000, timeout: 5000,
        enableHighAccuracy: true }
@@ -85,26 +86,7 @@ export class SignInOutPage implements OnInit {
 
   
   submit() {
-    if(!this.lat){
-      this.displayMsg('You should press get my location first','error');
-      return false;
-    }
-    const request = {
-        LocationId: this.requestForm.get('LocationId').value,
-        Direction: this.requestForm.get('Direction').value,
-        DeviceId: this.uuid,
-        CheckinLocation: this.lat + ',' + this.lng
-       };
-     //  alert(JSON.stringify(request));
-    this.service.addLocationAttendance(request).then(res => {
-      this.renderSaveButton = false;
-      if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
-        this.displayMsg(this.signInSuccessMsg,'success');
-      } else {
-        this.displayMsg(this.signOutSuccessMsg,'success');
-      }
-    });
-
+    (<any>window).plugins.mockgpschecker.check((a) => this.successCallback(a), (b) => this.errorCallback(b));
   }
 
   async displayMsg(msg, cal) {
@@ -115,5 +97,44 @@ export class SignInOutPage implements OnInit {
     });
     toast.present();
   }
+
+  
+
+
+  successCallback(result) {
+    if(result.isMock == false){
+      if(!this.lat){
+        this.displayMsg('You should press get my location first','error');
+        return false;
+      }
+      const request = {
+          LocationId: this.requestForm.get('LocationId').value,
+          Direction: this.requestForm.get('Direction').value,
+          DeviceId: this.uuid,
+          CheckinLocation: this.lat + ',' + this.lng
+         };
+       //  alert(JSON.stringify(request));
+      this.service.addLocationAttendance(request).then(res => {
+        this.renderSaveButton = false;
+        if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
+          this.displayMsg(this.signInSuccessMsg,'success');
+        } else {
+          this.displayMsg(this.signOutSuccessMsg,'success');
+        }
+      });
+  
+    } else {
+      this.displayMsg('Plaese disable fake location app','error');
+      return false;
+    }
+  }
+
+  errorCallback(error) {
+    console.log(error);
+    this.displayMsg(error,'error');
+    return false;
+
+  }
+
 
 }
