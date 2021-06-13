@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { Observable, Subject, from } from 'rxjs';
 import { AppConstants } from '../AppConstants';
 import { FCM } from '@ionic-native/fcm/ngx';
-import * as CryptoJS from 'crypto-js';
 
 
 
@@ -38,8 +37,6 @@ export class AuthService {
     if(!this.baseUrl){
       this.baseUrl = AppConstants.getApiEndpoin();
     }
-    const passwordEncrypt = this.encryptData(password);
-    console.log('passwordEncrypt', this.decryptData(passwordEncrypt));
     const loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
     return this.http.post<any>(loginUrl, null)
       .pipe(map(res => {
@@ -57,27 +54,6 @@ export class AuthService {
       }));
   }
 
-    encryptData(data) {
-
-      try {
-        return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
-    decryptData(data) {
-
-      try {
-        const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
-        if (bytes.toString()) {
-          return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        }
-        return data;
-      } catch (e) {
-        console.log(e);
-      }
-    }
   getErrorMsg() {
     return this.errorMsg;
   }

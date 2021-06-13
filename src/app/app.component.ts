@@ -110,9 +110,9 @@ export class AppComponent implements OnInit {
     this.spinnerService.onLoadingChanged
       .subscribe(isLoading => {
         if (isLoading) {
-          this.loadingService.present();
+          this.loadingService.present().catch((res) => {});
         } else {
-         this.loadingService.dismiss();
+         this.loadingService.dismiss().catch((res) => {});
         }
       });
 
@@ -126,7 +126,7 @@ export class AppComponent implements OnInit {
       });
 
     this.languageService.local$.subscribe(lang => {
-      this.loadingService.dismiss();
+      this.loadingService.dismiss().catch((res) => {});
       });
   }
 

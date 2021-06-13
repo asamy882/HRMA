@@ -70,11 +70,11 @@ export class LoginPage implements OnInit {
       this.keepMeLoginFun(companyId, username, password);
      // this.navCtrl.setRoot('HomePage');
     } else {
-      this.loadingService.present();
+      this.loadingService.present().catch((res) => {});
          console.log('get companies ')
          this.service.getCompanies().subscribe(res => {
           this.companyList = res.Items;
-          this.loadingService.dismiss();
+          this.loadingService.dismiss().catch((res) => {});
         });
     }
     })
@@ -83,7 +83,7 @@ export class LoginPage implements OnInit {
   async keepMeLoginFun(companyId, username, password) {
    // this.spinnerDialog.show();
     // this.spinnerDialog.show(null, 'Please wait...');
-    this.loadingService.present();
+    this.loadingService.present().catch((res) => {});
     this.service.login(companyId, username, password).subscribe(() => {
       if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {
         // Get the redirect URL from our auth service
@@ -101,14 +101,14 @@ export class LoginPage implements OnInit {
               this.service.setMyPhoto(res.Item);
             }
             this.events.publish('updateScreen');
-            this.loadingService.dismiss();
+            this.loadingService.dismiss().catch((res) => {});
             // Redirect the user
             this.router.navigate([redirect], navigationExtras);
           }); });
       }
     },
       (error) => {
-        this.loadingService.dismiss();
+        this.loadingService.dismiss().catch((res) => {});
       /*  this.translate.get(['app.common.error', 'app.common.errorMessage']).subscribe(res => {
           this.messageService.add({
             severity: res['app.common.error'],
@@ -123,7 +123,7 @@ export class LoginPage implements OnInit {
 
   async login() {
     //this.loading.present();
-    this.loadingService.present();
+    this.loadingService.present().catch((res) => {});
     const companyId = this.authForm.get('company').value;
     const username = this.authForm.get('username').value;
     const password = this.authForm.get('password').value;
@@ -151,17 +151,17 @@ export class LoginPage implements OnInit {
             }
             this.events.publish('updateScreen');
             // Redirect the user
-            this.loadingService.dismiss();
+            this.loadingService.dismiss().catch((res) => {});
             this.router.navigate([redirect], navigationExtras);
           }); });
       } else {
-        this.loadingService.dismiss();
+        this.loadingService.dismiss().catch((res) => {});
         this.errorMsg = this.service.getErrorMsg();
         this.displayErrorMsg();
       }
     },
       (error) => {
-        this.loadingService.dismiss();
+        this.loadingService.dismiss().catch((res) => {});
       /*  this.translate.get(['app.common.error', 'app.common.errorMessage']).subscribe(res => {
           this.messageService.add({
             severity: res['app.common.error'],

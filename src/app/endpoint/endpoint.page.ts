@@ -24,15 +24,15 @@ export class EndpointPage implements OnInit {
   }
 
   submit() {
-    this.loadingService.present();
+    this.loadingService.present().catch((res) => {});
     this.service.getEndpoint(this.requestForm.get('CompanyKey').value).then(res => {
       if(res.Success == true){
         localStorage.setItem('API_ENDPOINT', res.Item);
-        this.loadingService.dismiss();
+        this.loadingService.dismiss().catch((res) => {});
         alert('You have registered successfully');
         this.router.navigate(['/login']);
       } else {
-        this.loadingService.dismiss();
+        this.loadingService.dismiss().catch((res) => {});
         this.alertService.displayErrorToast(res.Message);
       }
     });
