@@ -226,13 +226,11 @@ export class NewMissionRequestPage implements OnInit {
           request.MissionDistance = {ID : this.requestForm.get('MissionDistanceId').value};
         }
     this.service.addMissionRequest(request).then(res => {
-      debugger;
       this.navigateToSearch(true);
     });
   }
 
   navigateToSearch(reload) {
-    debugger;
     const navigationExtras: NavigationExtras = {
       queryParamsHandling: 'preserve',
       preserveFragment: true,

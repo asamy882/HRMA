@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/common/services/language.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import { UUID } from 'angular2-uuid';
 
 
 @Component({
@@ -110,7 +111,7 @@ export class SignInOutPage implements OnInit {
       const request = {
           LocationId: this.requestForm.get('LocationId').value,
           Direction: this.requestForm.get('Direction').value,
-          DeviceId: this.uuid,
+          DeviceId: this.getDeviceId(),
           CheckinLocation: this.lat + ',' + this.lng
          };
        //  alert(JSON.stringify(request));
@@ -127,6 +128,21 @@ export class SignInOutPage implements OnInit {
       this.displayMsg('Plaese disable fake location app','error');
       return false;
     }
+  }
+
+  getDeviceId(){
+    if(this.uuid){
+      return this.uuid
+    } else {
+      if(localStorage.getItem('deviceId') && localStorage.getItem('deviceId') != null){
+        this.uuid = localStorage.getItem('deviceId');
+        return this.uuid
+      } else {
+        this.uuid = UUID.UUID();
+        localStorage.setItem('deviceId', this.uuid);
+        return this.uuid
+      }
+    }    
   }
 
   errorCallback(error) {

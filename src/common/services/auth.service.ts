@@ -60,8 +60,10 @@ export class AuthService {
 
   logout(): void {
     const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
+    const deviceId = localStorage.getItem("deviceId");
     localStorage.clear();
     localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
+    localStorage.setItem('deviceId', deviceId);
   }
 
   getUserToken() {
@@ -183,6 +185,7 @@ export class AuthService {
   enablePushNotification() {
     this.fcm.getToken().then(token => {
       console.log('getToken ', token);
+      localStorage.setItem('fcmToken',token);
       this.updateUserDeviceId(token).subscribe(res => {});
     });
     this.fcm.onTokenRefresh().subscribe(token => {

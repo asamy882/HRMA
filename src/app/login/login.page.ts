@@ -56,7 +56,11 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
-    
+    this.loadingService.present().catch((res) => {});
+    this.service.getCompanies().subscribe(res => {
+     this.companyList = res.Items;
+     this.loadingService.dismiss().catch((res) => {});
+   });
   }
 
   onEnter(){
@@ -86,6 +90,13 @@ export class LoginPage implements OnInit {
     this.loadingService.present().catch((res) => {});
     this.service.login(companyId, username, password).subscribe(() => {
       if (this.service.isUserAuthenticated() /*&& localStorage.getItem('rememberMe')*/) {
+        var fcmToken = localStorage.getItem('fcmToken');
+        if(!fcmToken || fcmToken == null){
+          this.service.enablePushNotification();
+        } else {
+          this.service.updateUserDeviceId(fcmToken).subscribe(res => {});
+        }
+        
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         const redirect = this.service.redirectUrl ? this.service.redirectUrl : '/home';
@@ -180,8 +191,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
-  
-
-
 }

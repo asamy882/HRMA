@@ -27,8 +27,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const url: string = state.url;
     if (url == '/logout') {
       const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
+      const deviceId = localStorage.getItem("deviceId");
       localStorage.clear();
       localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
+      localStorage.setItem('deviceId', deviceId);
     }
     return this.checkLogin(url);
   }
@@ -66,8 +68,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     };
 
     const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
+    const deviceId = localStorage.getItem("deviceId");
     localStorage.clear();
     localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
+    localStorage.setItem('deviceId', deviceId);
     // Navigate to the login page with extras
     this.router.navigate(['/login'], navigationExtras).then(() => {
       window.location.reload();
