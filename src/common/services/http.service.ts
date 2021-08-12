@@ -23,6 +23,7 @@ export class HttpService {
                       resolve(res);
                     } else {
                       this.alertService.displayErrorToast(res.Message);
+                      reject([]);
                     }
                   } , error => {
                     reject([]);
@@ -40,6 +41,7 @@ export class HttpService {
                       resolve(res);
                     } else {
                       this.alertService.displayErrorToast(res.Message);
+                      reject([]);
                     }
                   }  , error => {
                     reject([]);

@@ -136,11 +136,15 @@ export class NewLoanRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const request = {... this.requestForm.value,
         LoanDate : this.formatDate(this.requestForm.get('LoanDate').value),
         };
     this.service.addLoanRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
   }
 

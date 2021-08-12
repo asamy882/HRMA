@@ -146,12 +146,16 @@ export class NewChangeShiftRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const request = {... this.requestForm.value,
         EmployeeShiftDate : this.formatDate(this.requestForm.get('EmployeeShiftDate').value),
         NewShift: {ShiftId: this.requestForm.get('NewShift').value}
        };
     this.service.addChangeShiftRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
 
   }

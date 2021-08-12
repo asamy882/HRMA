@@ -173,12 +173,16 @@ export class NewOvertimeRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const extendNextDay = this.requestForm.get('ExtendNextDay').value;
     const request = {... this.requestForm.value,
         OvertimeDate : this.formatDate(this.requestForm.get('OvertimeDate').value),
         ExtendNextDay: extendNextDay ? extendNextDay : false };
     this.service.addOvertimeRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
 
   }

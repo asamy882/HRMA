@@ -8,6 +8,9 @@ import { LanguageService } from 'src/common/services/language.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppConstants } from 'src/common/AppConstants';
 import { AuthService } from 'src/common/services/auth.service';
+import { ModalController, ToastController } from '@ionic/angular';
+import { LocationMissionRequestPage } from '../location/location-mission-request.page';
+import { SignInOutService } from 'src/app/sign-in-out/sign-in-out.service';
 
 @Component({
   selector: 'app-new-mission-request',
@@ -27,8 +30,12 @@ export class NewMissionRequestPage implements OnInit {
   renderSaveButton: boolean;
   renderCloseButton: boolean;
   renderTaskActions: boolean;
+  branchs: any[];
   backPage = '/mission-request/search';
   title = 'app.missionRequest.newRequestPageTitle';
+  workMissionText: string;
+  workFromHomeText: string;
+  emptyLocationErrorMsg: string;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -38,7 +45,10 @@ export class NewMissionRequestPage implements OnInit {
     private readonly translate: TranslateService,
     public authService: AuthService,
     private router: Router,
-    public appCon: AppConstants
+    public appCon: AppConstants,
+    private signInOutService: SignInOutService,
+    private toastController: ToastController,
+    public modalController: ModalController
   ) {
     if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
       this.requestForm = formBuilder.group({
@@ -49,9 +59,19 @@ export class NewMissionRequestPage implements OnInit {
         FromTime: new FormControl('', [Validators.required]),
         ToTime: new FormControl('', [Validators.required]),
         ExtendNextDay: new FormControl('', []),
-        Ext: new FormControl('', [Validators.required]),        
+        Ext: new FormControl('', [Validators.required]),
         Mobile: new FormControl('', [Validators.required]),
-        Remarks: new FormControl('', []),
+        Remarks: new FormControl('', [])
+      });
+    } else if (this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)) {
+      this.requestForm = formBuilder.group({
+        MissionDate: new FormControl('', [Validators.required]),
+        MissionEndDate: new FormControl('', [Validators.required]),
+        MissionTypeId: new FormControl('', [Validators.required]),
+        FromTime: new FormControl('', [Validators.required]),
+        ToTime: new FormControl('', [Validators.required]),
+        ExtendNextDay: new FormControl('', []),
+        Remarks: new FormControl('', [])
       });
     } else {
       this.requestForm = formBuilder.group({
@@ -60,7 +80,7 @@ export class NewMissionRequestPage implements OnInit {
         FromTime: new FormControl('', [Validators.required]),
         ToTime: new FormControl('', [Validators.required]),
         ExtendNextDay: new FormControl('', []),
-        Remarks: new FormControl('', []),
+        Remarks: new FormControl('', [])
       });
     }
   }
@@ -89,15 +109,18 @@ export class NewMissionRequestPage implements OnInit {
           } else {
             this.renderTaskActions = true;
           }
-          });
+        });
       } else {
         this.renderSaveButton = true;
       }
     });
     this.translate.use(this.languageService.currentLang);
-    this.translate.get(['app.missionRequest.successMsg', 'app.missionRequest.errorMsg']).subscribe(res => {
+    this.translate.get(['app.missionRequest.successMsg', 'app.missionRequest.errorMsg', 'app.missionRequest.workMission', 'app.missionRequest.workFromHome', 'app.missionRequest.EmptyLocationErrorMsg']).subscribe(res => {
       this.successMsg = res['app.missionRequest.successMsg'];
       this.errorMsg = res['app.missionRequest.errorMsg'];
+      this.workMissionText = res['app.missionRequest.workMission'];
+      this.workFromHomeText = res['app.missionRequest.workFromHome'];
+      this.emptyLocationErrorMsg = res['app.missionRequest.EmptyLocationErrorMsg'];
     });
     // EXAMPLE OBJECT
     this.timePickerObj = {
@@ -125,22 +148,22 @@ export class NewMissionRequestPage implements OnInit {
       }
     };
     this.datePickerObj = {
-       inputDate: new Date(), // default new Date()
-     // fromDate: new Date(), // default null
+      inputDate: new Date(), // default new Date()
+      // fromDate: new Date(), // default null
       //toDate: null, // default null
       showTodayButton: true, // default true
       closeOnSelect: true, // default false
-    //  disableWeekDays: [4], // default []
+      //  disableWeekDays: [4], // default []
       mondayFirst: false, // default false
       setLabel: 'Set',  // default 'Set'
       todayLabel: 'Today', // default 'Today'
       closeLabel: 'Close', // default 'Close'
       disabledDates: [], // default []
-     // titleLabel: 'Select a Date', // default null
+      // titleLabel: 'Select a Date', // default null
       monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
       weeksList: ["S", "M", "T", "W", "T", "F", "S"],
       dateFormat: 'YYYY-MM-DD', // default DD MMM YYYY 
-      clearButton : false,// !this.readonly , // default true
+      clearButton: false,// !this.readonly , // default true
       momentLocale: 'pt-BR', // Default 'en-US'
       yearInAscending: false, // Default false
       btnCloseSetInReverse: true, // Default false
@@ -153,8 +176,8 @@ export class NewMissionRequestPage implements OnInit {
         color: '' // Default ''
       },
       arrowNextPrev: {
-      //  nextArrowSrc: 'assets/imgs/next.png',
-       // prevArrowSrc: 'assets/imgs/previous.png'
+        //  nextArrowSrc: 'assets/imgs/next.png',
+        // prevArrowSrc: 'assets/imgs/previous.png'
       } // This object supports only SVG files.
     };
 
@@ -162,7 +185,19 @@ export class NewMissionRequestPage implements OnInit {
       this.loadMissionTypes();
       this.loadMissionDistances();
     }
+
+    if (this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)) {
+      this.loadOutsideLocations();
+    }
+
   }
+
+  async loadOutsideLocations() {
+    this.signInOutService.getOutsideLocations().then((res) => {
+      this.branchs = res.Items;
+    });
+  }
+
 
   async loadMissionTypes() {
     this.missionTypes = this.service.getMissionTypes();
@@ -195,14 +230,17 @@ export class NewMissionRequestPage implements OnInit {
       this.requestForm.controls['MissionTypeId'].setValue(req.MissionType.ID);
       this.requestForm.controls['MissionDistanceId'].setValue(req.MissionDistance.ID);
       this.requestForm.controls['Ext'].setValue(req.Ext);
-      this.requestForm.controls['Mobile'].setValue(req.Mobile);  
+      this.requestForm.controls['Mobile'].setValue(req.Mobile);
+    }
+    if (this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)) {
+      this.requestForm.controls['MissionTypeId'].setValue(req.MissionTypeId);
     }
   }
 
   formatDate(date) {
     const d = new Date(date),
       year = d.getFullYear();
-    let  month = '' + (d.getMonth() + 1),
+    let month = '' + (d.getMonth() + 1),
       day = '' + d.getDate();
 
     if (month.length < 2) {
@@ -215,18 +253,35 @@ export class NewMissionRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
+    
     const extendNextDay = this.requestForm.get('ExtendNextDay').value;
-    const request = {... this.requestForm.value,
-        MissionDate : this.formatDate(this.requestForm.get('MissionDate').value),
-        MissionEndDate : this.formatDate(this.requestForm.get('MissionEndDate').value),
-        ExtendNextDay: extendNextDay ? extendNextDay : false };
+    const request = {
+      ... this.requestForm.value,
+      MissionDate: this.formatDate(this.requestForm.get('MissionDate').value),
+      MissionEndDate: this.formatDate(this.requestForm.get('MissionEndDate').value),
+      ExtendNextDay: extendNextDay ? extendNextDay : false
+    };
 
     if (this.authService.getAllowedScreens().includes(this.appCon.MISR_MISSION_REQUEST_PAGE)) {
-          request.MissionType = {ID : this.requestForm.get('MissionTypeId').value};
-          request.MissionDistance = {ID : this.requestForm.get('MissionDistanceId').value};
-        }
+      request.MissionType = { ID: this.requestForm.get('MissionTypeId').value };
+      request.MissionDistance = { ID: this.requestForm.get('MissionDistanceId').value };
+    }
+    if (this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)) {
+      if(this.requestForm.get('MissionTypeId').value == this.appCon.WORK_MISSION && (!this.request.Locations || this.request.Locations.length == 0))
+      {
+        this.displayErrorMsg(this.emptyLocationErrorMsg);
+        this.renderSaveButton = true;
+        return;
+      }
+     // request.MissionType = { ID: this.requestForm.get('MissionTypeId').value };
+      request.Locations = this.request.Locations;
+    }
     this.service.addMissionRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
   }
 
@@ -250,5 +305,65 @@ export class NewMissionRequestPage implements OnInit {
 
   renderOkButton() {
     return this.renderTaskActions && this.request.AllowedActions == AppConstants.REVIEW;
+  }
+
+  renderAddLocationButton() {
+    return this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE) 
+            && this.requestForm.get('MissionTypeId').value == this.appCon.WORK_MISSION && this.renderSaveButton
+            && (!this.request.Locations || this.request.Locations.length < this.appCon.MAX_MISSION_LOCATIONS);
+  }
+
+  renderLocationsGrid() {
+    return this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE) 
+            && this.requestForm.get('MissionTypeId').value == this.appCon.WORK_MISSION
+            && this.request.Locations && this.request.Locations.length > 0;
+  }
+
+  removeLocation(location){
+    this.request.Locations = this.request.Locations.filter(l => l.LocationId != location.LocationId);
+  }
+
+
+  async presentModal() {
+    const locations = this.request.Locations ? this.request.Locations.map(l => parseInt(l.LocationId)) : [];
+    const sits = this.branchs.filter(b => !locations.includes(b.ID));
+    const modal = await this.modalController.create({
+      component: LocationMissionRequestPage,
+      componentProps: {
+        'branchs': sits
+      }  
+    });
+
+    modal.onDidDismiss().then((modalDataResponse) => {
+      if (modalDataResponse !== null && modalDataResponse.data && modalDataResponse.data.LocationId != "") {
+        if(!this.request.Locations){
+          this.request.Locations = [modalDataResponse.data];
+        } else {
+          this.request.Locations.push(modalDataResponse.data);
+        }
+        
+      }
+    });
+
+    return await modal.present();
+  }
+
+  typeChanged(){
+  }
+  
+  getMissionTypeText(){
+    if(this.request.MissionTypeId == this.appCon.WORK_MISSION)
+      return this.workMissionText;
+    if(this.request.MissionTypeId == this.appCon.WORK_FROM_HOME)
+      return this.workFromHomeText;
+  }
+
+  async displayErrorMsg(errorMsg) {
+    const toast = await this.toastController.create({
+      message: errorMsg,
+      cssClass: 'error',
+      duration: 5000
+    });
+    toast.present();
   }
 }

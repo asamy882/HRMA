@@ -1,3 +1,5 @@
+import { MissionRequestLocation } from "./mission-location.model";
+
 export class MissionRequest {
   RequestId: number;
   MissionDate: string;
@@ -11,9 +13,10 @@ export class MissionRequest {
   CommentsMandatory: boolean;
   WorkflowInstanceId: string;
   MissionType: any;
-  MissionTypeId: string;
+  MissionTypeId: number;
   MissionDistance: any;
   MissionDistanceId: string;
   Ext: string;
   Mobile: string;
+  Locations: MissionRequestLocation[];
 }

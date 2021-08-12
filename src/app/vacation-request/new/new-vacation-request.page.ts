@@ -258,6 +258,7 @@ export class NewVacationRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const excludeWeekend = this.requestForm.get('ExcludeWeekend').value;
     this.request = { ... this.requestForm.value,
       FromDate : this.formatDate(this.request.FromDate),
@@ -270,6 +271,9 @@ export class NewVacationRequestPage implements OnInit {
     this.request.Attachment = this.attachment;
     this.service.addVacationRequest(this.request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
 
   }

@@ -18,7 +18,7 @@
       <form [formGroup]="authForm">
         <ion-list>
           <!-- <ion-label>{{ 'app.login.company' | translate }}</ion-label> -->
-          <ion-item class="inputform">
+          <ion-item class="inputform" *ngIf="ShowCompanyList">
             <!-- <ion-label>{{ 'app.login.selectCompany' | translate }}</ion-label> -->
             <ion-select class="w-60" [formControl]="authForm.controls['company']" [placeholder]="'app.login.selectCompany' | translate"
               [ngClass]="{'error-border':!authForm.controls['company'].valid}">

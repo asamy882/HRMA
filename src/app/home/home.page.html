@@ -27,6 +27,8 @@
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.myinformations' | translate}}</span></ion-card>
     <ion-card routerLink='/sign-in-out' *ngIf="service.getAllowedScreens().includes(appCon.SIGN_IN_OUT_PAGE)"><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
         <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.signInOut' | translate}}</span></ion-card>
-
+    <ion-card routerLink='/mission-sign-in-out' *ngIf="service.getAllowedScreens().includes(appCon.ARABIA_MISSION_ATTENDnACE_PAGE)"><img class="logo" src="assets/imgs/attendance-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
+          <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.missionSignInOut' | translate}}</span></ion-card>
+  
     </div>
 </ion-content>

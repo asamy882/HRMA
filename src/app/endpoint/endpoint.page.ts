@@ -27,7 +27,8 @@ export class EndpointPage implements OnInit {
     this.loadingService.present().catch((res) => {});
     this.service.getEndpoint(this.requestForm.get('CompanyKey').value).then(res => {
       if(res.Success == true){
-        localStorage.setItem('API_ENDPOINT', res.Item);
+        localStorage.setItem('API_ENDPOINT', res.Item.URL);
+        localStorage.setItem('ShowCompanyList', res.Item.ShowCompanyList);
         this.loadingService.dismiss().catch((res) => {});
         alert('You have registered successfully');
         this.router.navigate(['/login']);

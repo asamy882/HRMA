@@ -10,7 +10,8 @@
       "mytasks": "المهام",
       "requests": "الطلبات",
       "myinformations": "حسابى",
-      "signInOut":"تسجيل الحضور"
+      "signInOut":"تسجيل الحضور",
+      "missionSignInOut":"حضور المأموريات"
     },
     "common": {
       "info": "info",
@@ -302,7 +303,13 @@
       "earlyLeavePermission": "Early Leave Permission",
       "missionDate": "Mission Date",
       "mobile": "الموبيل",
-      "ext": "الرقم الداخلي"
+      "ext": "الرقم الداخلي",
+      "workMission":"مأمورية عمل",
+      "workFromHome":"عمل من المنزل",
+      "comments":"تعليقات",
+      "addLocation":"إضافة موقع",
+      "branch": "المواقع",
+      "EmptyLocationErrorMsg": "يجب عليك إضافة موقع واحد على الأقل"
     },
     "chooseRequest": {
       "title": "الطلبات",
@@ -355,7 +362,12 @@
       "selectBranch": "اختر الموقع",
       "selectDirection": "اختر الحالة",
       "signInSuccessMsg": "تم تسجيل الدخول بنجاح",
-      "signOutSuccessMsg": "تم تسجيل الخروج بنجاح"
+      "signOutSuccessMsg": "تم تسجيل الخروج بنجاح",
+      "mission": "الماموريات",
+      "selectMission": "اختر المامورية"
+    },
+    "MissionSignInOut": {
+      "title": "حضور المأموريات"
     }
   }
 }

@@ -195,11 +195,15 @@ export class NewPenaltyRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const request = {... this.requestForm.value,
       PenaltyDate: this.formatDate(this.requestForm.get('PenaltyDate').value),
       PenaltyReason: {ID: this.requestForm.value.PenaltyReason}};
     this.service.addPenaltyRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
 
   }

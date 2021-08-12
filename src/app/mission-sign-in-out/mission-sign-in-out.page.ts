@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignInOutService } from './sign-in-out.service';
+import { MissionSignInOutService } from './mission-sign-in-out.service';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,26 +11,28 @@ import { NavigationExtras, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-sign-in-out',
-  templateUrl: './sign-in-out.page.html',
-  styleUrls: ['./sign-in-out.page.scss'],
+  selector: 'app-mission-sign-in-out',
+  templateUrl: './mission-sign-in-out.page.html',
+  styleUrls: ['./mission-sign-in-out.page.scss'],
 })
-export class SignInOutPage implements OnInit {
+export class MissionSignInOutPage implements OnInit {
   requestForm: FormGroup;
   signInSuccessMsg: string;
   signOutSuccessMsg: string;
   lat: number;
   lng: number;
   branchs: any[];
+  missions: any[];
+  selectedMission: any = {};
   renderSaveButton: boolean = true;
   disabledSaveButton: boolean = true;
   backPage = '/home';
-  title = 'app.SignInOut.title';
+  title = 'app.MissionSignInOut.title';
   uuid: string;
 
   constructor(
     public formBuilder: FormBuilder,
-    private service: SignInOutService,
+    private service: MissionSignInOutService,
     private toastController: ToastController,
     private languageService: LanguageService,
     private readonly translate: TranslateService,
@@ -43,13 +45,14 @@ export class SignInOutPage implements OnInit {
   .catch((error: any) => console.log(error));
     this.requestForm = formBuilder.group({
       LocationId: new FormControl('', [Validators.required]),
+      MissionId: new FormControl('', [Validators.required]),
       Direction: new FormControl('', [Validators.required])
     });
   }
 
   
   ngOnInit() {    
-    this.loadOutsideLocations();
+    this.loadMyMissionRequestsForAttendance();
     this.translate.use(this.languageService.currentLang);
     this.translate.get(['app.SignInOut.signInSuccessMsg', 'app.SignInOut.signOutSuccessMsg']).subscribe(res => {
       this.signInSuccessMsg = res['app.SignInOut.signInSuccessMsg'];
@@ -57,9 +60,9 @@ export class SignInOutPage implements OnInit {
     });    
   }
 
-  async loadOutsideLocations() {
-    this.service.getOutsideLocations().then((res) => {
-      this.branchs = res.Items;
+  async loadMyMissionRequestsForAttendance() {
+    this.service.getMyMissionRequestsForAttendance().then((res) => {
+      this.missions = res.Items;
     });
   }
 
@@ -112,6 +115,7 @@ export class SignInOutPage implements OnInit {
         return false;
       }
       const request = {
+          MissionRequestId: this.requestForm.get('MissionId').value,
           LocationId: this.requestForm.get('LocationId').value,
           Direction: this.requestForm.get('Direction').value,
           DeviceId: this.getDeviceId(),
@@ -151,11 +155,22 @@ export class SignInOutPage implements OnInit {
   }
 
   errorCallback(error) {
-    this.renderSaveButton = true;
     console.log(error);
+    this.renderSaveButton = true;
     this.displayMsg(error,'error');
     return false;
 
+  }
+
+  changeMission(){
+    this.selectedMission = this.missions.filter(m => m.RequestId == this.requestForm.get('MissionId').value)[0];
+    if(this.selectedMission.Locations && this.selectedMission.Locations.length > 0){
+      this.requestForm.controls['LocationId'].setValidators(Validators.required);
+      this.requestForm.controls['LocationId'].enable();
+    } else {
+      this.requestForm.controls['LocationId'].clearValidators();
+      this.requestForm.controls['LocationId'].disable();
+    }
   }
 
   navigateToHome() {

@@ -1,0 +1,46 @@
+<app-header [title]="'app.missionRequest.newRequestPageTitle' | translate"  renderBackButton=false>
+</app-header>
+<ion-content>
+  <div style="height: 56px;"></div>
+  <div class="p-3">
+    <form [formGroup]="requestForm" novalidate (submit)="dismiss()">
+      <ion-grid fixed class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.missionRequest.branch' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-select formControlName="LocationId" name="LocationId"                   
+                  [placeholder]="'app.SignInOut.selectBranch' | translate"
+                  class="px-2 rounded bg-form border-1">
+                  <ion-select-option *ngFor="let e of branchs" value="{{e.ID}}">{{e.Name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h29">
+                <ion-label><span class="font-weight-bold mb--2">{{ 'app.missionRequest.comments' | translate }}</span>
+                </ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-textarea formControlName="Comments" class="px-2 rounded bg-form border-1" [disabled]="readonly">
+                </ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-col>        
+          <ion-col size="12">
+            <button class="btn-brand" type="submit"  [disabled]="requestForm.invalid">{{
+              'app.common.save' | translate }}</button>
+            <button class="btn-danger" type="button" (click)="dismiss()" >{{
+              'app.common.close' | translate }}</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

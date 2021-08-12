@@ -43,6 +43,11 @@ export class AppConstants {
   public static APPROVE_REJECT = 3;
   public static APPROVE_REJECT_CHANGE_REQUEST = 4;
 
+  //Mission Type
+  public WORK_MISSION = 1;
+  public WORK_FROM_HOME = 2;
+  public MAX_MISSION_LOCATIONS = 5;
+
   //Screens
   public  VACATION_REQUEST_PAGE = 'VacationRequest';
   public  MISR_VACATION_REQUEST_PAGE = 'VacationRequestMisr';
@@ -67,7 +72,8 @@ export class AppConstants {
   public  SALARY_DETAILS_PAGE = 'SalaryDetails';
   public  ATTENDANCE_SHEET_PAGE = 'AttendanceSheet';
   public  SIGN_IN_OUT_PAGE = 'SignInOut';
-
+  public  ARABIA_MISSION_REQUEST_PAGE = 'MissionRequestArabia';
+  public  ARABIA_MISSION_ATTENDnACE_PAGE = 'MissionAttendnace';
 
 }
 

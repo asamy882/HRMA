@@ -10,7 +10,8 @@
       "mytasks": "My Tasks",
       "requests": "Requests",
       "myinformations": "My Information",
-      "signInOut":"Sign In & Out"
+      "signInOut":"Sign In & Out",
+      "missionSignInOut":"Mission Attendance"
     },
     "common": {
       "info": "info",
@@ -302,7 +303,13 @@
       "permissionWithinDay": "Permission Within Day",
       "mobile": "Mobile",
       "ext": "Ext",
-      "earlyLeavePermission": "Early Leave Permission"
+      "earlyLeavePermission": "Early Leave Permission",
+      "workMission":"Work Mission",
+      "workFromHome":"Work From Home",
+      "comments":"Comments",
+      "addLocation":"Add Site",
+      "branch": "Sites",
+      "EmptyLocationErrorMsg": "You must add at least one sit"
     },
     "chooseRequest": {
       "title": "Requests",
@@ -349,14 +356,19 @@
     "SignInOut": {
       "title": "Time Attendance",
       "branch": "Sites",
+      "mission": "Missions",
       "direction": "Action",
       "signIn": "Check In",
       "signOut": "Check Out",
       "location": "Get My Location",
       "selectBranch": "Select Site",
+      "selectMission": "Select Mission",
       "selectDirection": "Select Action",
       "signInSuccessMsg": "Check In Success",
       "signOutSuccessMsg": "Check Out Success"
+    },
+    "MissionSignInOut": {
+      "title": "Mission Attendance"
     }
   }
 }

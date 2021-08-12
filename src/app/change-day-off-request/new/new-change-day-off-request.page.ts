@@ -159,6 +159,7 @@ export class NewChangeDayOffRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const request = {... this.requestForm.value,
         OldDayOffDate : this.formatDate(this.requestForm.get('OldDayOffDate').value),
         NewDayOffDate : this.formatDate(this.requestForm.get('NewDayOffDate').value),
@@ -166,6 +167,9 @@ export class NewChangeDayOffRequestPage implements OnInit {
        };
     this.service.addChangeDayOffRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
 
   }

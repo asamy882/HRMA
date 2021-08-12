@@ -197,12 +197,16 @@ export class NewPermissionRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const request = {... this.requestForm.value,
         PermissionType: {ID: this.requestForm.get('PermissionTypeId').value},
         PermissionDate: this.formatDate(this.requestForm.get('PermissionDate').value)
        };
     this.service.addPermissionRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
   }
 

@@ -104,9 +104,11 @@ export class AppComponent implements OnInit {
   logout() {
     const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
     const deviceId = localStorage.getItem("deviceId");
+    const ShowCompanyList = localStorage.getItem("ShowCompanyList");
     localStorage.clear();
     localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
     localStorage.setItem('deviceId', deviceId);
+    localStorage.setItem('ShowCompanyList', ShowCompanyList);
   }
   async presentLoadingWithOptions() {
     this.spinnerService.onLoadingChanged

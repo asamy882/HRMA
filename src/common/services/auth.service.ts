@@ -37,7 +37,12 @@ export class AuthService {
     if(!this.baseUrl){
       this.baseUrl = AppConstants.getApiEndpoin();
     }
-    const loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
+    let loginUrl = "";
+    if(companyId && companyId != "" && companyId != null){
+      loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
+    } else {
+      loginUrl = this.baseUrl + `/api/Authentication/Login?username=${username}&password=${password}`;
+    }
     return this.http.post<any>(loginUrl, null)
       .pipe(map(res => {
         // login successful if there's a jwt token in the response
@@ -61,9 +66,11 @@ export class AuthService {
   logout(): void {
     const API_ENDPOINT = localStorage.getItem("API_ENDPOINT");
     const deviceId = localStorage.getItem("deviceId");
+    const ShowCompanyList = localStorage.getItem("ShowCompanyList");
     localStorage.clear();
     localStorage.setItem('API_ENDPOINT', API_ENDPOINT);
     localStorage.setItem('deviceId', deviceId);
+    localStorage.setItem('ShowCompanyList', ShowCompanyList);
   }
 
   getUserToken() {

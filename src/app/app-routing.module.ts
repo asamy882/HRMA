@@ -86,7 +86,8 @@ const routes: Routes = [
   { path: 'myvacations-balance', canActivateChild: [AuthGuard], loadChildren: './myvacations-balance/myvacations-balance.module#MyVacationsBalancePageModule' },
   { path: 'choose-request-type', canActivateChild: [AuthGuard], loadChildren: './choose-request-type/choose-request-type.module#ChooseRequestTypePageModule' },
   { path: 'findOrganizationId', canActivateChild: [AuthGuard], loadChildren: './find-organization-id/findOrganizationId.module#FindOrganizationIdPageModule' },
-  { path: 'sign-in-out', canActivateChild: [AuthGuard], loadChildren: './sign-in-out/sign-in-out.module#SignInOutModule'}
+  { path: 'sign-in-out', canActivateChild: [AuthGuard], loadChildren: './sign-in-out/sign-in-out.module#SignInOutModule'},
+  { path: 'mission-sign-in-out', canActivateChild: [AuthGuard], loadChildren: './mission-sign-in-out/mission-sign-in-out.module#MissionSignInOutModule'}
 ];
 
 @NgModule({

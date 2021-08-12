@@ -190,12 +190,16 @@ export class NewWorkinDayOffRequestPage implements OnInit {
   }
 
   submit() {
+    this.renderSaveButton = false;
     const request = {... this.requestForm.value,
         EmployeeShiftDate : this.formatDate(this.requestForm.get('EmployeeShiftDate').value),
         Shift: {ShiftId: this.requestForm.get('Shift').value}
        };
     this.service.addWorkinDayOffRequest(request).then(res => {
       this.navigateToSearch(true);
+    },
+    error => {
+      this.renderSaveButton = true;
     });
 
   }

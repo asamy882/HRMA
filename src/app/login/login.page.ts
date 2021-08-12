@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
   errorMsg: string;
   loading: any;
   subscription: Subscription;
+  ShowCompanyList: boolean;
 
   constructor(private fb: FormBuilder, private service: AuthService, private router: Router, public platform: Platform,
               private toastController: ToastController, private languageService: LanguageService,public loadingService: LoadingService,
@@ -37,11 +38,20 @@ export class LoginPage implements OnInit {
                 Code: 'a93ceba6-d746-4cc1-8c35-d3c819bbd25a',
                 Name: 'QUATTRO'
             }] ; */
-    this.authForm = fb.group({
-      username: [null, Validators.compose([Validators.required])],
-      company: [null, Validators.compose([Validators.required])],
-      password: [null, Validators.compose([Validators.required])]
-    });
+    var ShowCompany = localStorage.getItem('ShowCompanyList');
+    this.ShowCompanyList = (ShowCompany && (ShowCompany == 'true' || ShowCompany == 'True'));
+    if(this.ShowCompanyList){
+      this.authForm = fb.group({
+        username: [null, Validators.compose([Validators.required])],
+        company: [null, Validators.compose([Validators.required])],
+        password: [null, Validators.compose([Validators.required])]
+      });  
+    } else {
+      this.authForm = fb.group({
+        username: [null, Validators.compose([Validators.required])],
+        password: [null, Validators.compose([Validators.required])]
+      });  
+    }
     this.events.subscribe('updateScreen', () => {
       this.zone.run(() => {
         console.log('force update the screen');
@@ -56,11 +66,14 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
-    this.loadingService.present().catch((res) => {});
-    this.service.getCompanies().subscribe(res => {
-     this.companyList = res.Items;
-     this.loadingService.dismiss().catch((res) => {});
-   });
+    if(this.ShowCompanyList){
+      this.loadingService.present().catch((res) => {});
+      this.service.getCompanies().subscribe(res => {
+       this.companyList = res.Items;
+       this.loadingService.dismiss().catch((res) => {});
+     });
+  
+    }
   }
 
   onEnter(){
@@ -70,16 +83,18 @@ export class LoginPage implements OnInit {
     const companyId = localStorage.getItem('companyId');
     const username = localStorage.getItem('username');
     const password = localStorage.getItem('password');
-    if (companyId && username && password) {
+    if (username && password) {
       this.keepMeLoginFun(companyId, username, password);
      // this.navCtrl.setRoot('HomePage');
     } else {
-      this.loadingService.present().catch((res) => {});
-         console.log('get companies ')
-         this.service.getCompanies().subscribe(res => {
-          this.companyList = res.Items;
-          this.loadingService.dismiss().catch((res) => {});
-        });
+      if(this.ShowCompanyList){
+        this.loadingService.present().catch((res) => {});
+        console.log('get companies ')
+        this.service.getCompanies().subscribe(res => {
+         this.companyList = res.Items;
+         this.loadingService.dismiss().catch((res) => {});
+       });
+      }
     }
     })
   }
@@ -135,7 +150,9 @@ export class LoginPage implements OnInit {
   async login() {
     //this.loading.present();
     this.loadingService.present().catch((res) => {});
-    const companyId = this.authForm.get('company').value;
+    let companyId = "";
+    if(this.ShowCompanyList)
+     companyId = this.authForm.get('company').value;
     const username = this.authForm.get('username').value;
     const password = this.authForm.get('password').value;
     this.service.login(companyId, username, password).subscribe(() => {

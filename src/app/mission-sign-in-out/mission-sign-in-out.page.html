@@ -1,0 +1,65 @@
+<app-header [title]="title | translate" [backPage]="backPage" renderBackButton=true></app-header>
+<ion-content>
+  <div style="height: 56px;"></div>
+  <div class="p-3">
+    <form [formGroup]="requestForm" novalidate (submit)="submit()">
+      <ion-grid  fixed class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.SignInOut.mission' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-select formControlName="MissionId" name="MissionId"                   
+                  [placeholder]="'app.SignInOut.selectMission' | translate" (ionChange) ="changeMission()"
+                  class="px-2 rounded bg-form border-1">
+                  <ion-select-option *ngFor="let m of missions" value="{{m.RequestId}}">{{m.RequestId}} - {{m.MissionDate}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12" *ngIf="selectedMission.Locations && selectedMission.Locations.length > 0">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.SignInOut.branch' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-select formControlName="LocationId" name="LocationId"  [disabled]="!selectedMission.Locations"                 
+                  [placeholder]="'app.SignInOut.selectBranch' | translate"
+                  class="px-2 rounded bg-form border-1">
+                  <ion-select-option *ngFor="let l of selectedMission.Locations" value="{{l.LocationId}}">{{l.LocationName}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <ion-list class="task-details-list">
+              <ion-item class="border-0 h32">
+                <ion-label class="font-weight-bold mb-0">{{ 'app.SignInOut.direction' | translate }}</ion-label>
+              </ion-item>
+              <ion-item class="border-0">
+                <ion-select formControlName="Direction" name="Direction"                   
+                  [placeholder]="'app.SignInOut.selectDirection' | translate"
+                  class="px-2 rounded bg-form border-1">
+                  <ion-select-option value="1">{{ 'app.SignInOut.signIn' | translate }}</ion-select-option>
+                  <ion-select-option value="2">{{ 'app.SignInOut.signOut' | translate }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size="12">
+            <button class="btn-brand" (click)="getLoc()" type="button">{{ 'app.SignInOut.location' | translate }}</button>
+          </ion-col>
+         
+          <ion-col size="12">
+            <button class="btn-brand" type="submit" *ngIf="renderSaveButton"
+              [disabled]="requestForm.invalid && disabledSaveButton">{{ 'app.common.save' | translate }}</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
