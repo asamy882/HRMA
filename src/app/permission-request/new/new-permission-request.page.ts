@@ -92,7 +92,7 @@ export class NewPermissionRequestPage implements OnInit {
         this.renderSaveButton = true;
       }
     });
-    this.loadVacationTypeList();
+    this.loadPermissionTypeList();
     this.translate.use(this.languageService.currentLang);
     this.translate.get(['app.permissionRequest.successMsg', 'app.permissionRequest.errorMsg']).subscribe(res => {
       this.successMsg = res['app.permissionRequest.successMsg'];
@@ -158,12 +158,12 @@ export class NewPermissionRequestPage implements OnInit {
     };
   }
 
-  async loadVacationTypeList() {
+  async loadPermissionTypeList() {
     this.permissionTypeList = this.service.getPermissionTypes();
     if (!this.permissionTypeList) {
       this.service.loadPermissionTypes().then((res) => {
         this.permissionTypeList = res.Items;
-        localStorage.setItem('permissionTypes', JSON.stringify(res.Items));
+      //  localStorage.setItem('permissionTypes', JSON.stringify(res.Items));
       });
     }
   }

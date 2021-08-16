@@ -33,6 +33,11 @@ export class AuthService {
 
 
   login(companyId, username, password): Observable<any> {
+    this.errorMsg = null;
+    this.userToken = null;
+    this.myInfo = null;
+    this.myPhoto = null;
+    this.allowedScreens = [];
     //localStorage.clear();
     if(!this.baseUrl){
       this.baseUrl = AppConstants.getApiEndpoin();
