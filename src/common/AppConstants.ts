@@ -73,7 +73,7 @@ export class AppConstants {
   public  ATTENDANCE_SHEET_PAGE = 'AttendanceSheet';
   public  SIGN_IN_OUT_PAGE = 'SignInOut';
   public  ARABIA_MISSION_REQUEST_PAGE = 'MissionRequestArabia';
-  public  ARABIA_MISSION_ATTENDnACE_PAGE = 'MissionAttendnace';
+  public  ARABIA_MISSION_ATTENDNACE_PAGE = 'MissionAttendnace';
 
 }
 

@@ -8,6 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { UUID } from 'angular2-uuid';
 import { NavigationExtras, Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class MissionSignInOutPage implements OnInit {
     private readonly translate: TranslateService,
     private geolocation: Geolocation,
     private router: Router,
-    private uniqueDeviceID: UniqueDeviceID
+    private uniqueDeviceID: UniqueDeviceID,
+    public platform: Platform
   ) {
     this.uniqueDeviceID.get()
   .then((uuid: any) => this.uuid = uuid)
@@ -75,14 +77,14 @@ export class MissionSignInOutPage implements OnInit {
             // resp.coords.latitude
             // resp.coords.longitude
             //alert("r succ"+resp.coords.latitude)
-           // alert(JSON.stringify( resp.coords));
+            // alert(JSON.stringify(resp.coords));
       
             this.lat=resp.coords.latitude;
             this.lng=resp.coords.longitude;
             this.disabledSaveButton = false;
             },er=>{
               //alert("error getting location")
-              console.log('Can not retrieve Location')
+              console.log('Can not retrieve Location');
             }).catch((error) => {
             //alert('Error getting location'+JSON.stringify(error));
                console.log('Error getting location - '+JSON.stringify(error))
@@ -93,7 +95,15 @@ export class MissionSignInOutPage implements OnInit {
   
   submit() {
     this.renderSaveButton = false;
-    (<any>window).plugins.mockgpschecker.check((a) => this.successCallback(a), (b) => this.errorCallback(b));
+    //alert('submit');
+    //alert(this.platform.is('ios'));
+    //alert(this.platform.is('android'));
+    if(this.platform.is('ios')){
+      this.process();
+    } else {
+      (<any>window).plugins.mockgpschecker.check((a) => this.successCallback(a), (b) => this.errorCallback(b));
+    }
+    
   }
 
   async displayMsg(msg, cal) {
@@ -110,33 +120,39 @@ export class MissionSignInOutPage implements OnInit {
 
   successCallback(result) {
     if(result.isMock == false){
-      if(!this.lat){
-        this.displayMsg('You should press get my location first','error');
-        return false;
-      }
-      const request = {
-          MissionRequestId: this.requestForm.get('MissionId').value,
-          LocationId: this.requestForm.get('LocationId').value,
-          Direction: this.requestForm.get('Direction').value,
-          DeviceId: this.getDeviceId(),
-          CheckinLocation: this.lat + ',' + this.lng
-         };
-       //  alert(JSON.stringify(request));
-      this.service.addLocationAttendance(request).then(res => {
-        this.renderSaveButton = false;
-        if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
-          this.displayMsg(this.signInSuccessMsg,'success');
-          this.navigateToHome();
-        } else {
-          this.displayMsg(this.signOutSuccessMsg,'success');
-          this.navigateToHome();
-        }
-      });
-  
+      this.process();  
     } else {
+      this.renderSaveButton = true;
       this.displayMsg('Plaese disable fake location app','error');
       return false;
     }
+  }
+
+  process(){
+    if(!this.lat){
+      this.renderSaveButton = true;
+      this.displayMsg('You should press get my location first','error');
+      return false;
+    }
+    const request = {
+        MissionRequestId: this.requestForm.get('MissionId').value,
+        LocationId: this.requestForm.get('LocationId').value,
+        Direction: this.requestForm.get('Direction').value,
+        DeviceId: this.getDeviceId(),
+        CheckinLocation: this.lat + ',' + this.lng
+       };
+      // alert(JSON.stringify(request));
+    this.service.addLocationAttendance(request).then(res => {        if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
+        this.displayMsg(this.signInSuccessMsg,'success');
+        this.navigateToHome();
+      } else {
+        this.displayMsg(this.signOutSuccessMsg,'success');
+        this.navigateToHome();
+      }
+    },
+    error => {
+      this.renderSaveButton = true;
+    });
   }
 
   getDeviceId(){
@@ -151,7 +167,7 @@ export class MissionSignInOutPage implements OnInit {
         localStorage.setItem('deviceId', this.uuid);
         return this.uuid
       }
-    }    
+    }  
   }
 
   errorCallback(error) {
