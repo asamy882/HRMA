@@ -40,9 +40,15 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.workinDayOffRequest.signIn' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input readonly [liIonicTimepicker]="timePickerObj" class="px-2 rounded bg-form border-1"
-                  formControlName="SignIn" mode="md" [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"
-                  [placeholder]="'app.workinDayOffRequest.signIn' | translate"></ion-input>
+                <ion-datetime formControlName="SignIn" displayFormat="h:mm A" style="padding: 10px !important;" 
+                *ngIf="!(readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE))"
+                [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"  [placeholder]="'app.workinDayOffRequest.signIn' | translate"
+                class="native-input sc-ion-input-md px-2 rounded bg-form border-1 ng-untouched ng-pristine ng-invalid ion-untouched ion-pristine ion-invalid sc-ion-input-md-h sc-ion-input-md-s md hydrated"></ion-datetime>
+                
+                <ion-input readonly  class="px-2 rounded bg-form border-1"
+                formControlName="SignIn" [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)" 
+                *ngIf="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"
+                [placeholder]="'app.workinDayOffRequest.signIn' | translate"></ion-input>  
               </ion-item>
             </ion-list>
           </ion-col>
@@ -53,9 +59,16 @@
                 </ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input readonly [liIonicTimepicker]="timePickerObj" class="px-2 rounded bg-form border-1"
-                  formControlName="SignOut" mode="md" [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"
-                  [placeholder]="'app.workinDayOffRequest.signOut' | translate"></ion-input>
+                <ion-datetime formControlName="SignOut" displayFormat="h:mm A" style="padding: 10px !important;" 
+                *ngIf="!(readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE))"
+                [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"  [placeholder]="'app.workinDayOffRequest.signOut' | translate"
+                class="native-input sc-ion-input-md px-2 rounded bg-form border-1 ng-untouched ng-pristine ng-invalid ion-untouched ion-pristine ion-invalid sc-ion-input-md-h sc-ion-input-md-s md hydrated"></ion-datetime>
+               
+                <ion-input readonly  class="px-2 rounded bg-form border-1"
+                formControlName="SignOut" [disabled]="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)" 
+                *ngIf="readonly || authService.getAllowedScreens().includes(appCon.QT_WORK_IN_DAYOFF_REQUEST_PAGE)"
+                [placeholder]="'app.workinDayOffRequest.signOut' | translate"></ion-input>
+ 
               </ion-item>
             </ion-list>
           </ion-col>

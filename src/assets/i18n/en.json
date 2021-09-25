@@ -309,7 +309,8 @@
       "comments":"Comments",
       "addLocation":"Add Site",
       "branch": "Sites",
-      "EmptyLocationErrorMsg": "You must add at least one sit"
+      "EmptyLocationErrorMsg": "You must add at least one sit",
+      "noShiftErrorMsg": "No shift found in selected day"
     },
     "chooseRequest": {
       "title": "Requests",

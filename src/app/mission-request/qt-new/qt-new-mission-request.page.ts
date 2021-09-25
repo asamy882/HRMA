@@ -112,31 +112,7 @@ export class QTNewMissionRequestPage implements OnInit {
       this.successMsg = res['app.missionRequest.successMsg'];
       this.errorMsg = res['app.missionRequest.errorMsg'];
     });
-    // EXAMPLE OBJECT
-    this.timePickerObj = {
-      // inputTime: new Date().setHours(24, 0, 0), // default currentTime
-      // inputTime: '11:01 PM', // for 12 hour time in timePicker
-      // inputTime: '23:01', // for 24 hour time in timePicker
-
-      // momentLocale: 'pt-BR', // default 'en-US'
-      // timeFormat: 'kk:mm:ss', // default 'hh:mm A'
-      // step: '3', // default 5
-      // setLabel: 'S', // default 'Set'
-      // closeLabel: 'C', // default 'Close'
-      titleLabel: 'Select a Time', // default 'Time'
-      // clearButton: false, // default true
-      // btnCloseSetInReverse: true, // default false
-
-      btnProperties: {
-        expand: 'block', // "block" | "full"
-        fill: '', // "clear" | "default" | "outline" | "solid"
-        size: '', // "default" | "large" | "small"
-        disabled: '', // boolean (default false)
-        strong: '', // boolean (default false)
-        color: ''
-        // "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", "dark" , and give color in string
-      }
-    };
+    
     this.datePickerObj = {
       inputDate: new Date(), // default new Date()
       // fromDate: new Date(), // default null
@@ -218,6 +194,25 @@ export class QTNewMissionRequestPage implements OnInit {
   }
 
   submit() {
+    var fromTime="";
+    var fromHours = new Date(this.requestForm.controls['FromTime'].value).getHours();
+    var fromMinutes = new Date(this.requestForm.controls['FromTime'].value).getMinutes();    
+    if(fromHours > 12){
+      fromHours = fromHours - 12;
+      fromTime = (fromHours < 10 ? "0" : "") + fromHours + ":" + (fromMinutes > 10 ? fromMinutes : "0" + fromMinutes) + " PM";
+    } else {
+      fromTime = (fromHours < 10 ? "0" : "" )+ fromHours + ":" + (fromMinutes > 10 ? fromMinutes : "0" + fromMinutes) + " AM";
+    }
+
+    var toTime="";
+    var toHours = new Date(this.requestForm.controls['ToTime'].value).getHours();
+    var toMinutes = new Date(this.requestForm.controls['ToTime'].value).getMinutes();    
+    if(toHours > 12){
+      toHours = toHours - 12;
+      toTime = (toHours < 10 ? "0" : "") + toHours + ":" + (toMinutes > 10 ? toMinutes : "0" + toMinutes) + " PM";
+    } else {
+      toTime = (toHours < 10 ? "0" : "") + toHours + ":" + (toMinutes > 10 ? toMinutes : "0" + toMinutes) + " AM";
+    }
     let extendNextDay = null;
     let missionEndDate = null;
 
@@ -228,6 +223,8 @@ export class QTNewMissionRequestPage implements OnInit {
 
     const request = {
       ... this.requestForm.value,
+      FromTime: fromTime,
+      ToTime: toTime,
       MissionDate: this.formatDate(this.requestForm.get('MissionDate').value),
       MissionEndDate: missionEndDate,
       MissionType: { ID: this.requestForm.get('MissionTypeId').value },

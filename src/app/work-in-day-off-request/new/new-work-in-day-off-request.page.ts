@@ -52,8 +52,26 @@ export class NewWorkinDayOffRequestPage implements OnInit {
 
   shiftChanged(shiftId) {
     const shift =  this.employeeShifts.filter(s => s.ShiftId == shiftId)[0];
-    this.requestForm.controls['SignIn'].setValue(shift.SignInTime);
-    this.requestForm.controls['SignOut'].setValue(shift.SignOffTime);
+    var signIn = new Date();
+    var signInTime = shift.SignInTime.split(":");
+    var signInHours = parseInt(signInTime[0]);
+    if(signInTime[1].split(" ")[1] == "PM"){
+      signInHours = signInHours + 12;
+    }
+    signIn.setHours(signInHours);
+    signIn.setMinutes(signInTime[1].split(" ")[0]);
+
+    var signOff = new Date();
+    var signOffTime = shift.SignOffTime.split(":");
+    var signOffHours = parseInt(signOffTime[0]);
+    if(signOffTime[1].split(" ")[1] == "PM"){
+      signOffHours = signOffHours + 12;
+    }
+    signOff.setHours(signOffHours);
+    signOff.setMinutes(signOffTime[1].split(" ")[0]);
+
+    this.requestForm.controls['SignIn'].setValue(signIn.toISOString());
+    this.requestForm.controls['SignOut'].setValue(signOff.toISOString());
     this.request.ExtendNextDay =  shift.SignOffNextDay;
 
   }
@@ -72,15 +90,15 @@ export class NewWorkinDayOffRequestPage implements OnInit {
         this.readonly = true;
         this.title = 'app.workinDayOffRequest.taskActionRequestPageTitle';
         this.service.getWorkinDayOffRequest(requestId).then(res => {
-          this.request = res.Item;
-          this.setFormValues(this.request);
-          if (this.request.AllowedActions == AppConstants.INITIATE) {
+        this.request = res.Item;
+        this.setFormValues(this.request);
+        if (this.request.AllowedActions == AppConstants.INITIATE) {
             this.title = 'app.workinDayOffRequest.changeRequestPageTitle';
             this.renderSaveButton = true;
             this.readonly = false;
-          } else {
+        } else {
             this.renderTaskActions = true;
-          }
+        }
           });
       } else {
         this.renderSaveButton = true;
@@ -126,32 +144,7 @@ export class NewWorkinDayOffRequestPage implements OnInit {
       // prevArrowSrc: 'assets/imgs/previous.png'
      } // This object supports only SVG files.
    };
-    // EXAMPLE OBJECT
-    this.timePickerObj = {
-      // inputTime: new Date().setHours(24, 0, 0), // default currentTime
-      // inputTime: '11:01 PM', // for 12 hour time in timePicker
-      // inputTime: '23:01', // for 24 hour time in timePicker
-
-      // momentLocale: 'pt-BR', // default 'en-US'
-      // timeFormat: 'kk:mm:ss', // default 'hh:mm A'
-      // step: '3', // default 5
-      // setLabel: 'S', // default 'Set'
-      // closeLabel: 'C', // default 'Close'
-      titleLabel: 'Select a Time', // default 'Time'
-      // clearButton: false, // default true
-      // btnCloseSetInReverse: true, // default false
-
-      btnProperties: {
-        expand: 'block', // "block" | "full"
-        fill: '', // "clear" | "default" | "outline" | "solid"
-        size: '', // "default" | "large" | "small"
-        disabled: '', // boolean (default false)
-        strong: '', // boolean (default false)
-        color: ''
-        // "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", "dark" , and give color in string
-      }
-    };
-
+    
   }
 
   async loadEmployeeDayOffs() {
@@ -191,7 +184,30 @@ export class NewWorkinDayOffRequestPage implements OnInit {
 
   submit() {
     this.renderSaveButton = false;
+
+    var fromTime="";
+    var fromHours = new Date(this.requestForm.controls['SignIn'].value).getHours();
+    var fromMinutes = new Date(this.requestForm.controls['SignIn'].value).getMinutes();    
+    if(fromHours > 12){
+      fromHours = fromHours - 12;
+      fromTime = (fromHours < 10 ? "0" : "") + fromHours + ":" + (fromMinutes > 10 ? fromMinutes : "0" + fromMinutes) + " PM";
+    } else {
+      fromTime = (fromHours < 10 ? "0" : "") + fromHours + ":" + (fromMinutes > 10 ? fromMinutes : "0" + fromMinutes) + " AM";
+    }
+
+    var toTime="";
+    var toHours = new Date(this.requestForm.controls['SignOut'].value).getHours();
+    var toMinutes = new Date(this.requestForm.controls['SignOut'].value).getMinutes();    
+    if(toHours > 12){
+      toHours = toHours - 12;
+      toTime = (toHours < 10 ? "0" : "") + toHours + ":" + (toMinutes > 10 ? toMinutes : "0" + toMinutes) + " PM";
+    } else {
+      toTime = (toHours < 10 ? "0" : "") + toHours + ":" + (toMinutes > 10 ? toMinutes : "0" + toMinutes) + " AM";
+    }
+
     const request = {... this.requestForm.value,
+        SignIn: fromTime,
+        SignOut: toTime,
         EmployeeShiftDate : this.formatDate(this.requestForm.get('EmployeeShiftDate').value),
         Shift: {ShiftId: this.requestForm.get('Shift').value}
        };

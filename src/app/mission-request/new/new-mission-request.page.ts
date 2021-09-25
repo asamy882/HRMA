@@ -36,6 +36,8 @@ export class NewMissionRequestPage implements OnInit {
   workMissionText: string;
   workFromHomeText: string;
   emptyLocationErrorMsg: string;
+  noShiftErrorMsg: string;
+
 
   constructor(
     public formBuilder: FormBuilder,
@@ -83,6 +85,8 @@ export class NewMissionRequestPage implements OnInit {
         Remarks: new FormControl('', [])
       });
     }
+
+
   }
 
   ngOnInit() {
@@ -115,38 +119,16 @@ export class NewMissionRequestPage implements OnInit {
       }
     });
     this.translate.use(this.languageService.currentLang);
-    this.translate.get(['app.missionRequest.successMsg', 'app.missionRequest.errorMsg', 'app.missionRequest.workMission', 'app.missionRequest.workFromHome', 'app.missionRequest.EmptyLocationErrorMsg']).subscribe(res => {
+    this.translate.get(['app.missionRequest.successMsg', 'app.missionRequest.errorMsg', 'app.missionRequest.workMission', 'app.missionRequest.workFromHome', 'app.missionRequest.EmptyLocationErrorMsg'
+    ,'app.missionRequest.noShiftErrorMsg']).subscribe(res => {
       this.successMsg = res['app.missionRequest.successMsg'];
       this.errorMsg = res['app.missionRequest.errorMsg'];
       this.workMissionText = res['app.missionRequest.workMission'];
       this.workFromHomeText = res['app.missionRequest.workFromHome'];
       this.emptyLocationErrorMsg = res['app.missionRequest.EmptyLocationErrorMsg'];
+      this.noShiftErrorMsg = res['app.missionRequest.noShiftErrorMsg'];
     });
-    // EXAMPLE OBJECT
-    this.timePickerObj = {
-      // inputTime: new Date().setHours(24, 0, 0), // default currentTime
-      // inputTime: '11:01 PM', // for 12 hour time in timePicker
-      // inputTime: '23:01', // for 24 hour time in timePicker
-
-      // momentLocale: 'pt-BR', // default 'en-US'
-      // timeFormat: 'kk:mm:ss', // default 'hh:mm A'
-      // step: '3', // default 5
-      // setLabel: 'S', // default 'Set'
-      // closeLabel: 'C', // default 'Close'
-      titleLabel: 'Select a Time', // default 'Time'
-      // clearButton: false, // default true
-      // btnCloseSetInReverse: true, // default false
-
-      btnProperties: {
-        expand: 'block', // "block" | "full"
-        fill: '', // "clear" | "default" | "outline" | "solid"
-        size: '', // "default" | "large" | "small"
-        disabled: '', // boolean (default false)
-        strong: '', // boolean (default false)
-        color: ''
-        // "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", "dark" , and give color in string
-      }
-    };
+    
     this.datePickerObj = {
       inputDate: new Date(), // default new Date()
       // fromDate: new Date(), // default null
@@ -188,6 +170,7 @@ export class NewMissionRequestPage implements OnInit {
 
     if (this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)) {
       this.loadOutsideLocations();
+      this.loadMissionTypesWithoutCashing();
     }
 
   }
@@ -208,6 +191,19 @@ export class NewMissionRequestPage implements OnInit {
       });
     }
   }
+
+  async loadMissionTypesWithoutCashing() {
+    this.service.loadMissionTypes().then((res) => {
+      this.missionTypes = res.Items;
+      if(this.missionTypes && this.request.MissionTypeId && this.request.MissionTypeId > 0){
+        var list = this.missionTypes.filter(mt => mt.ID == this.request.MissionTypeId);
+        if(list && list.length > 0)
+          this.request.MissionType = list[0];
+      }
+
+    });
+  }
+
 
   async loadMissionDistances() {
     this.missionDistances = this.service.getMissionDistances();
@@ -237,6 +233,22 @@ export class NewMissionRequestPage implements OnInit {
     }
   }
 
+  getDayShift(){
+    if(this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)){
+      var missionDate = this.formatDate(this.requestForm.get('MissionDate').value);
+      this.service.getDayShift(missionDate).then((res) => {
+        if(res.Item && res.Item.SignInTime){
+          this.requestForm.controls['FromTime'].setValue(res.Item.SignInTime);
+          this.requestForm.controls['ToTime'].setValue(res.Item.SignOffTime);
+          this.requestForm.controls['ExtendNextDay'].setValue(res.Item.SignOffNextDay);
+        } else {
+          this.displayErrorMsg(this.noShiftErrorMsg);
+        }
+      });
+  
+    }
+  }
+
   formatDate(date) {
     const d = new Date(date),
       year = d.getFullYear();
@@ -254,10 +266,37 @@ export class NewMissionRequestPage implements OnInit {
 
   submit() {
     this.renderSaveButton = false;
+    var fromTime = "";
+    var toTime = "";
+
+    if(this.authService.getAllowedScreens().includes(this.appCon.ARABIA_MISSION_REQUEST_PAGE)){
+      fromTime = this.requestForm.controls['FromTime'].value;
+      toTime = this.requestForm.controls['ToTime'].value;
+    } else {
+      var fromHours = new Date(this.requestForm.controls['FromTime'].value).getHours();
+      var fromMinutes = new Date(this.requestForm.controls['FromTime'].value).getMinutes();    
+      if(fromHours > 12){
+        fromHours = fromHours - 12;
+        fromTime = "0" + fromHours + ":" + (fromMinutes > 10 ? fromMinutes : "0" + fromMinutes) + " PM";
+      } else {
+        fromTime = "0" + fromHours + ":" + (fromMinutes > 10 ? fromMinutes : "0" + fromMinutes) + " AM";
+      }
+        var toHours = new Date(this.requestForm.controls['ToTime'].value).getHours();
+      var toMinutes = new Date(this.requestForm.controls['ToTime'].value).getMinutes();    
+      if(toHours > 12){
+        toHours = toHours - 12;
+        toTime = "0" + toHours + ":" + (toMinutes > 10 ? toMinutes : "0" + toMinutes) + " PM";
+      } else {
+        toTime = "0" + toHours + ":" + (toMinutes > 10 ? toMinutes : "0" + toMinutes) + " AM";
+      }
+    }
+
     
     const extendNextDay = this.requestForm.get('ExtendNextDay').value;
     const request = {
       ... this.requestForm.value,
+      FromTime: fromTime,
+      ToTime: toTime,
       MissionDate: this.formatDate(this.requestForm.get('MissionDate').value),
       MissionEndDate: this.formatDate(this.requestForm.get('MissionEndDate').value),
       ExtendNextDay: extendNextDay ? extendNextDay : false

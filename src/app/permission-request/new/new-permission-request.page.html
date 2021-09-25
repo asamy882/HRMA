@@ -37,9 +37,12 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.permissionRequest.fromTime' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input readonly [liIonicTimepicker]="timePickerObj"  class="px-2 rounded bg-form border-1"
-                   formControlName="FromTime" mode="md" [disabled]="readonly"
-                  [placeholder]="'app.permissionRequest.fromTime' | translate"></ion-input>
+                <ion-datetime formControlName="FromTime" displayFormat="h:mm A" style="padding: 10px !important;" 
+                [disabled]="readonly"  [placeholder]="'app.permissionRequest.fromTime' | translate" *ngIf="!readonly"
+                class="native-input sc-ion-input-md px-2 rounded bg-form border-1 ng-untouched ng-pristine ng-invalid ion-untouched ion-pristine ion-invalid sc-ion-input-md-h sc-ion-input-md-s md hydrated"></ion-datetime>              
+                <ion-input readonly  class="px-2 rounded bg-form border-1"
+                formControlName="FromTime" [disabled]="readonly" *ngIf="readonly"
+                [placeholder]="'app.missionRequest.fromTime' | translate"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -49,9 +52,12 @@
                 <ion-label class="font-weight-bold mb--2">{{ 'app.permissionRequest.toTime' | translate }}</ion-label>
               </ion-item>
               <ion-item class="border-0">
-                <ion-input readonly [liIonicTimepicker]="timePickerObj"  class="px-2 rounded bg-form border-1"
-                   formControlName="ToTime" mode="md" [disabled]="readonly"
-                  [placeholder]="'app.permissionRequest.toTime' | translate"></ion-input>
+               <ion-datetime formControlName="ToTime" displayFormat="h:mm A" style="padding: 10px !important;" 
+                [disabled]="readonly"  [placeholder]="'app.permissionRequest.toTime' | translate" *ngIf="!readonly"
+                class="native-input sc-ion-input-md px-2 rounded bg-form border-1 ng-untouched ng-pristine ng-invalid ion-untouched ion-pristine ion-invalid sc-ion-input-md-h sc-ion-input-md-s md hydrated"></ion-datetime>
+                <ion-input readonly  class="px-2 rounded bg-form border-1"
+                formControlName="ToTime" [disabled]="readonly" *ngIf="readonly"
+                [placeholder]="'app.missionRequest.toTime' | translate"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>

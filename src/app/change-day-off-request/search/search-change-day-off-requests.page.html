@@ -41,7 +41,7 @@
             </div>
             <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
               <ion-icon name="time"></ion-icon><strong>{{ 'app.changeDayOffRequest.signOut' | translate }}:</strong>
-              {{req.Shift.SignInTime}}
+              {{req.Shift.SignOffTime}}
             </div>
           </div>
         </ion-card>

@@ -51,6 +51,12 @@ export class MissionRequestService {
     return this.http.post(url, data);
   }
 
+  getDayShift(date): Promise<any> {
+    const url = '/api/Dashboard/GetDayShift?date='+date;
+    return this.http.get(url);
+  }
+
+
   getMyMissionRequests(): Promise<any> {
     const url = `/api/Dashboard/GetMyMissionRequests`;
     return this.http.get(url);

@@ -309,7 +309,8 @@
       "comments":"تعليقات",
       "addLocation":"إضافة موقع",
       "branch": "المواقع",
-      "EmptyLocationErrorMsg": "يجب عليك إضافة موقع واحد على الأقل"
+      "EmptyLocationErrorMsg": "يجب عليك إضافة موقع واحد على الأقل",
+      "noShiftErrorMsg": "لم يتم العثور على وردية في اليوم المحدد"
     },
     "chooseRequest": {
       "title": "الطلبات",
