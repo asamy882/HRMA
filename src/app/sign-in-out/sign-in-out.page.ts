@@ -8,6 +8,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { UUID } from 'angular2-uuid';
 import { NavigationExtras, Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
+
 
 
 @Component({
@@ -36,7 +38,8 @@ export class SignInOutPage implements OnInit {
     private readonly translate: TranslateService,
     private geolocation: Geolocation,
     private router: Router,
-    private uniqueDeviceID: UniqueDeviceID
+    private uniqueDeviceID: UniqueDeviceID,
+    public platform: Platform
   ) {
     this.uniqueDeviceID.get()
   .then((uuid: any) => this.uuid = uuid)
@@ -90,7 +93,15 @@ export class SignInOutPage implements OnInit {
   
   submit() {
     this.renderSaveButton = false;
+    //alert('submit');
+    //alert(this.platform.is('ios'));
+    //alert(this.platform.is('android'));
+    if(this.platform.is('ios')){
+      this.process();
+    } else {
     (<any>window).plugins.mockgpschecker.check((a) => this.successCallback(a), (b) => this.errorCallback(b));
+    }
+    
   }
 
   async displayMsg(msg, cal) {
@@ -102,34 +113,41 @@ export class SignInOutPage implements OnInit {
     toast.present();
   }
 
+  process(){
+    if(!this.lat){
+      this.displayMsg('You should press get my location first','error');
+      this.renderSaveButton = true;
+      return false;
+    }
+    const request = {
+        LocationId: this.requestForm.get('LocationId').value,
+        Direction: this.requestForm.get('Direction').value,
+        DeviceId: this.getDeviceId(),
+        CheckinLocation: this.lat + ',' + this.lng
+       };
+     //  alert(JSON.stringify(request));
+    this.service.addLocationAttendance(request).then(res => {
+      this.renderSaveButton = false;
+      if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
+        this.displayMsg(this.signInSuccessMsg,'success');
+        this.navigateToHome();
+      } else {
+        this.displayMsg(this.signOutSuccessMsg,'success');
+        this.navigateToHome();
+      }
+    },
+    error => {
+      this.renderSaveButton = true;
+    });
+  }
   
 
 
   successCallback(result) {
     if(result.isMock == false){
-      if(!this.lat){
-        this.displayMsg('You should press get my location first','error');
-        return false;
-      }
-      const request = {
-          LocationId: this.requestForm.get('LocationId').value,
-          Direction: this.requestForm.get('Direction').value,
-          DeviceId: this.getDeviceId(),
-          CheckinLocation: this.lat + ',' + this.lng
-         };
-       //  alert(JSON.stringify(request));
-      this.service.addLocationAttendance(request).then(res => {
-        this.renderSaveButton = false;
-        if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
-          this.displayMsg(this.signInSuccessMsg,'success');
-          this.navigateToHome();
-        } else {
-          this.displayMsg(this.signOutSuccessMsg,'success');
-          this.navigateToHome();
-        }
-      });
-  
+      this.process();  
     } else {
+      this.renderSaveButton = true;
       this.displayMsg('Plaese disable fake location app','error');
       return false;
     }

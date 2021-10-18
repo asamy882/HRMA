@@ -98,11 +98,10 @@ export class MissionSignInOutPage implements OnInit {
     //alert('submit');
     //alert(this.platform.is('ios'));
     //alert(this.platform.is('android'));
-    this.process();
     if(this.platform.is('ios')){
       this.process();
     } else {
-    //  (<any>window).plugins.mockgpschecker.check((a) => this.successCallback(a), (b) => this.errorCallback(b));
+    (<any>window).plugins.mockgpschecker.check((a) => this.successCallback(a), (b) => this.errorCallback(b));
     }
     
   }
@@ -130,8 +129,6 @@ export class MissionSignInOutPage implements OnInit {
   }
 
   process(){
-    this.lat = 29.624478;
-    this.lng = 31.255412;
     if(!this.lat){
       this.renderSaveButton = true;
       this.displayMsg('You should press get my location first','error');
@@ -145,7 +142,8 @@ export class MissionSignInOutPage implements OnInit {
         CheckinLocation: this.lat + ',' + this.lng
        };
       // alert(JSON.stringify(request));
-    this.service.addLocationAttendance(request).then(res => {        if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
+    this.service.addLocationAttendance(request).then(res => {       
+      if(this.requestForm.get('Direction').value == '1' || this.requestForm.get('Direction').value == 1){
         this.displayMsg(this.signInSuccessMsg,'success');
         this.navigateToHome();
       } else {
