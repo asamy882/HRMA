@@ -56,6 +56,7 @@ export class NewLoanRequestPage implements OnInit {
         this.renderCloseButton = true;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
         this.title = 'app.loanRequest.taskActionRequestPageTitle';
         this.service.getLoanRequest(requestId).then(res => {

@@ -87,6 +87,7 @@ export class NewWorkinDayOffRequestPage implements OnInit {
         this.renderCloseButton = true;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
         this.title = 'app.workinDayOffRequest.taskActionRequestPageTitle';
         this.service.getWorkinDayOffRequest(requestId).then(res => {

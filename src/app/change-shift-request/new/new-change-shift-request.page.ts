@@ -60,6 +60,7 @@ export class NewChangeShiftRequestPage implements OnInit {
         this.renderCloseButton = true;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
         this.title = 'app.changeShiftRequest.taskActionRequestPageTitle';
         this.service.getChangeShiftRequest(requestId).then(res => {

@@ -3,6 +3,7 @@ export class PenaltyRequest {
   PenaltyTypeId: number;
   PenaltyReason: any;
   PenaltyValue: number;
+  DeductionFactor: number;
   PenaltyCause: string;
   PenaltyDate: string;
   Employee: any;

@@ -3,7 +3,9 @@ import { HttpService } from 'src/common/services/http.service';
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MyTasksService {
  
   constructor(private http: HttpService) {

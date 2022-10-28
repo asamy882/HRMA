@@ -93,6 +93,7 @@ export class NewVacationRequestPage implements OnInit {
         this.renderSaveButton = false;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
         this.title = 'app.vacationRequest.taskActionRequestPageTitle';
         this.service.getVacationRequest(requestId).then(res => {

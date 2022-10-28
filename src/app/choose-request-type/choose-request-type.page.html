@@ -47,7 +47,7 @@
             <span class="font-weight-bold">{{'app.chooseRequest.loanReq' | translate}}</span>
           </ion-card>
         </ion-col>
-        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.PENALTY_REQUEST_PAGE)">
+        <ion-col size="6" *ngIf="service.getAllowedScreens().includes(appCon.PENALTY_REQUEST_PAGE) || service.getAllowedScreens().includes(appCon.QT_PENALTY_REQUEST_PAGE)">
           <ion-card class="nine-menu" routerLink="/penalty-request/search">
             <img class="logo" src="assets/imgs/penalty-icon.png" />
             <span class="font-weight-bold">{{'app.chooseRequest.penaltyReq' | translate}} </span>

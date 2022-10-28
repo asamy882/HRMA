@@ -42,13 +42,15 @@ export class AuthService {
     if(!this.baseUrl){
       this.baseUrl = AppConstants.getApiEndpoin();
     }
-    let loginUrl = "";
-    if(companyId && companyId != "" && companyId != null){
-      loginUrl = this.baseUrl + `/api/Authentication/Login?companyId=${companyId}&username=${username}&password=${password}`;
-    } else {
-      loginUrl = this.baseUrl + `/api/Authentication/Login?username=${username}&password=${password}`;
-    }
-    return this.http.post<any>(loginUrl, null)
+    const loginUrl = this.baseUrl +  "/api/Authentication/UserLogin";
+    
+    const loginRequest = {
+      "CompanyId": companyId ? companyId : '',
+      "UserName": username,
+      "Password": password
+    };
+
+    return this.http.post<any>(loginUrl, loginRequest)
       .pipe(map(res => {
         // login successful if there's a jwt token in the response
         if (res.Success) {

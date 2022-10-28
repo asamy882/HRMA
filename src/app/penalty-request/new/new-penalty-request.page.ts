@@ -44,7 +44,6 @@ export class NewPenaltyRequestPage implements OnInit {
     if (authService.getAllowedScreens().includes(appCon.QT_PENALTY_REQUEST_PAGE)) {
       this.requestForm = formBuilder.group({
         PenaltyTypeId: new FormControl('', [Validators.required]),
-        PenaltyReason: new FormControl('', [Validators.required]),
         PenaltyValue: new FormControl('', [Validators.required]),
         PenaltyCause: new FormControl('', [Validators.required]),
         PenaltyDate: new FormControl('', [Validators.required]),
@@ -84,7 +83,9 @@ export class NewPenaltyRequestPage implements OnInit {
         this.renderCloseButton = true;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
+        this.renderCloseButton = false;
         this.title = 'app.penaltyRequest.taskActionRequestPageTitle';
         this.service.getPenaltyRequest(requestId).then(res => {
           this.request = res.Item;
@@ -171,8 +172,14 @@ export class NewPenaltyRequestPage implements OnInit {
 
   setFormValues(req: PenaltyRequest) {
     this.requestForm.controls['PenaltyTypeId'].setValue(req.PenaltyTypeId);
-    this.requestForm.controls['PenaltyReason'].setValue(req.PenaltyReason.ID);
-    this.requestForm.controls['PenaltyValue'].setValue(req.PenaltyValue);
+    if (!this.authService.getAllowedScreens().includes(this.appCon.QT_PENALTY_REQUEST_PAGE)) {
+      this.requestForm.controls['PenaltyReason'].setValue(req.PenaltyReason.ID);
+    }
+    if(req.PenaltyTypeId == 2 && this.authService.getAllowedScreens().includes(this.appCon.QT_PENALTY_REQUEST_PAGE) && req.DeductionFactor) {
+      this.requestForm.controls['PenaltyValue'].setValue(req.DeductionFactor);
+    } else {
+      this.requestForm.controls['PenaltyValue'].setValue(req.PenaltyValue);
+    }
     this.requestForm.controls['PenaltyCause'].setValue(req.PenaltyCause);
     this.requestForm.controls['PenaltyDate'].setValue(req.PenaltyDate);
     this.requestForm.controls['EmployeeId'].setValue(req.Employee.EmployeeId);

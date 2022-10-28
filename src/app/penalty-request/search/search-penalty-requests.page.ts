@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PenaltyRequestService } from '../penalty-request.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { LanguageService } from 'src/common/services/language.service';
+import { AuthService } from 'src/common/services/auth.service';
+import { AppConstants } from 'src/common/AppConstants';
 
 @Component({
   selector: 'app-search-vaction-requests',
@@ -12,7 +14,9 @@ export class SearchPenaltyRequestsPage implements OnInit {
 
   requests: any[] = [];
 
-  constructor(private service: PenaltyRequestService, private router: Router, public languageService: LanguageService) { }
+  constructor(private service: PenaltyRequestService, private router: Router, 
+    public languageService: LanguageService, public authService: AuthService, public appCon: AppConstants
+    ) { }
 
   ngOnInit() {
     this.service.getMyPenaltyRequests().then(res => {

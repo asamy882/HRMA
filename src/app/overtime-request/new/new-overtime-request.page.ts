@@ -67,6 +67,7 @@ export class NewOvertimeRequestPage implements OnInit {
         this.renderCloseButton = true;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
         this.title = 'app.overtimeRequest.taskActionRequestPageTitle';
         this.service.getOvertimeRequest(requestId).then(res => {

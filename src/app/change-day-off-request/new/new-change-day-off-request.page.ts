@@ -62,6 +62,7 @@ export class NewChangeDayOffRequestPage implements OnInit {
         this.renderCloseButton = true;
       } else if (requestId) {
         this.backPage = '/mytasks';
+        this.renderCloseButton = false;
         this.readonly = true;
         this.title = 'app.changeDayOffRequest.taskActionRequestPageTitle';
         this.service.getChangeDayOffRequest(requestId).then(res => {

@@ -20,7 +20,7 @@
   </div>
   <div class="personal-menu">
     <ion-card routerLink='/mytasks'><img class="logo" src="assets/imgs/tasks-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'" />
-      <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.mytasks' | translate}}</span></ion-card>
+      <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.mytasks' | translate}} ({{pendingTasksCount}})</span></ion-card>
     <ion-card routerLink='/choose-request-type'><img class="logo" src="assets/imgs/requests-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>
       <span [ngClass]="languageService.currentLanguageIsEnglish() ?  'text-align-l' : 'text-align-r'">{{'app.menu.requests' | translate}}</span></ion-card>
     <ion-card routerLink='/myinformations'><img class="logo" src="assets/imgs/information-icon.png" [ngClass]="languageService.currentLanguageIsEnglish() ?  'float-l' : 'float-r'"/>

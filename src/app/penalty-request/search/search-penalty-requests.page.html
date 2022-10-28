@@ -27,7 +27,7 @@
                 <ion-icon name="calendar"></ion-icon><strong>{{ 'app.penaltyRequest.penaltyDate' | translate }}:</strong>
                 {{req.PenaltyDate}}
               </div>
-              <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'">
+              <div [ngClass]="languageService.currentLanguageIsEnglish() ? 'text-align-l' : 'text-align-r'" *ngIf="!authService.getAllowedScreens().includes(appCon.QT_PENALTY_REQUEST_PAGE)">
               <ion-icon name="warning"></ion-icon><strong>{{ 'app.penaltyRequest.penaltyReason' | translate }}:</strong>
               {{req.PenaltyReason?.Name}}
             </div>

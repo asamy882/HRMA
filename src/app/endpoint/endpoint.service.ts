@@ -11,7 +11,7 @@ export class EndpointService {
 
 
   getEndpoint(companyKey): Promise<any> {
-    const serviceUrl = "https://api.kiansoft-eg.com/api/AppRegistration/RegisterApp";
+    const serviceUrl = "http://api.kiansoft-eg.com/api/AppRegistration/RegisterApp";
     const data = {
       "CompanyKey":companyKey,
       "AppID":"3DMW-RICG-6OK7-796F"
